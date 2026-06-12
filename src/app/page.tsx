@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import ThemeToggle from "./theme-toggle";
-import { getClickCounts, recordClick, totalClicks, sortedTools, type ClickCounts } from "@/lib/tracker";
+import { fetchStats, recordClick, totalClicks, sortedTools, type ClickCounts } from "@/lib/tracker";
 
 const tools = [
   { slug: "/word-maker", icon: "\u270F\uFE0F", name: "Word Maker", desc: "Create words from letters in names" },
@@ -19,12 +19,12 @@ export default function Home() {
   const [counts, setCounts] = useState<ClickCounts>({});
 
   useEffect(() => {
-    setCounts(getClickCounts());
+    fetchStats().then(setCounts);
   }, []);
 
-  function handleClick(slug: string) {
-    recordClick(slug);
-    setCounts(getClickCounts());
+  async function handleClick(slug: string) {
+    const stats = await recordClick(slug);
+    setCounts(stats);
   }
 
   return (

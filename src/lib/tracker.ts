@@ -1,20 +1,26 @@
-const STORAGE_KEY = "tool-click-counts";
-
 export type ClickCounts = Record<string, number>;
 
-export function getClickCounts(): ClickCounts {
-  if (typeof window === "undefined") return {};
+export async function fetchStats(): Promise<ClickCounts> {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    const res = await fetch("/api/stats");
+    return await res.json();
   } catch {
     return {};
   }
 }
 
-export function recordClick(slug: string): void {
-  const counts = getClickCounts();
-  counts[slug] = (counts[slug] || 0) + 1;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(counts));
+export async function recordClick(slug: string): Promise<ClickCounts> {
+  try {
+    const res = await fetch("/api/track", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug }),
+    });
+    const data = await res.json();
+    return data.stats ?? {};
+  } catch {
+    return {};
+  }
 }
 
 export function totalClicks(counts: ClickCounts): number {
