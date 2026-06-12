@@ -10,9 +10,6 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
-
 # next.js
 /.next/
 /out/
@@ -22,7 +19,19 @@
 
 # misc
 .DS_Store
+Thumbs.db
+
+# secrets, keys & certificates
 *.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+*.keystore
+*.jks
+credential*.json
+service-account*.json
 
 # debug
 npm-debug.log*
@@ -31,11 +40,36 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
+.env
+.env*.local
+
+# package manager (may contain auth tokens)
+.npmrc
+.yarnrc.yml
 
 # vercel
 .vercel
 
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+
+# test artifacts
+/coverage
+/playwright-report/
+/test-results/
+/cypress/videos/
+/cypress/screenshots/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# project docs
+AGENTS.md
+CLAUDE.md
+DESIGN.md

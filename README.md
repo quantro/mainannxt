@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# tools
+
+A Next.js 16 project built with React 19, TypeScript, and Tailwind CSS 4.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Modules
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Shared Library
 
-## Learn More
+- **`src/lib/dictionary.ts`** — Exports `WORDS` (~2,000+ 3–5 letter words) and `isWord()` used by Anagram, Acronym, and Ladder tools.
 
-To learn more about Next.js, take a look at the following resources:
+### Routes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Route | File | Description |
+|-------|------|-------------|
+| `/` | `src/app/page.tsx` | **Home** — Landing page with a responsive card grid linking to all 6 tools and a theme toggle. |
+| `/word-maker` | `src/app/word-maker/page.tsx` | **Word Maker** — Enter names with per-row position sliders, find patterns via recursive backtracking across name permutations, and export a canvas-based grid visualization as PNG. |
+| `/anagram` | `src/app/anagram/page.tsx` | **Anagram Finder** — Debounced dictionary lookup that finds all words formable from a given set of letters, sorted by length. |
+| `/acronym` | `src/app/acronym/page.tsx` | **Acronym Builder** — Generate acronyms from phrases using first-letter or custom-position modes. Brute-forces up to 50,000 combinations to find real-word acronyms. |
+| `/blender` | `src/app/blender/page.tsx` | **Name Blender** — Blends two names using 7 algorithms (front+back, overlap, interleave, vowel-consonant segement interleave with both orderings). |
+| `/cipher` | `src/app/cipher/page.tsx` | **Cipher Tool** — Encode/decode text with 5 ciphers: Caesar, ROT13, Atbash, Vigenere, and Rail Fence. Includes copy-to-clipboard. |
+| `/ladder` | `src/app/ladder/page.tsx` | **Word Ladder** — BFS shortest-path search between two words, showing each step with the changed letter highlighted. |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Shared Components
 
-## Deploy on Vercel
+- **`src/app/theme-toggle.tsx`** — Sun/moon toggle button that persists the active theme to `localStorage`. Used by all pages.
+- **`src/app/globals.css`** — Design system via CSS custom properties mapped to Tailwind v4 `@theme` tokens (Apple-inspired: SF Pro fonts, pill buttons, parchment backgrounds).
+- **`src/app/layout.tsx`** — Root layout with flicker-free theming via inline script and `data-theme` attribute.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
