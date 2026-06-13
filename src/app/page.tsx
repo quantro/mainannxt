@@ -5,20 +5,37 @@ import { useState, useEffect } from "react";
 import ThemeToggle from "./theme-toggle";
 import { fetchStats, recordClick, totalClicks, sortedTools, type ClickCounts } from "@/lib/tracker";
 
-const tools = [
-  { slug: "/word-maker", icon: "\u270F\uFE0F", name: "Word Maker", desc: "Create words from letters in names" },
-  { slug: "/anagram", icon: "\uD83C\uDFB2", name: "Anagram Finder", desc: "Find real words from a set of letters" },
-  { slug: "/acronym", icon: "\uD83C\uDFAF", name: "Acronym Builder", desc: "Generate acronyms from phrases" },
-  { slug: "/blender", icon: "\uD83E\uDDEA", name: "Name Blender", desc: "Blend two names together" },
-  { slug: "/cipher", icon: "\uD83D\uDD11", name: "Cipher Tool", desc: "Encode and decode text with ciphers" },
-  { slug: "/ladder", icon: "\uD83E\uDE9C", name: "Word Ladder", desc: "Find shortest path between two words" },
-  { slug: "/zodiac", icon: "\uD83C\uDF1F", name: "Star Sign Reader", desc: "Discover your zodiac sign and traits" },
-  { slug: "/numerology", icon: "\uD83D\uDD22", name: "Numerology", desc: "Life path and destiny numbers" },
-  { slug: "/chinese-zodiac", icon: "\uD83D\uDC32", name: "Chinese Zodiac", desc: "Find your animal sign and element" },
-  { slug: "/fortune", icon: "\uD83D\uDD2E", name: "Fortune Teller", desc: "Mystical fortune reading and tarot" },
-  { slug: "/primbon", icon: "\uD83C\uDF19", name: "Primbon Jawa", desc: "Javanese weton personality and love match" },
-  { slug: "/pranata-mangsa", icon: "\uD83C\uDF3E", name: "Pranata Mangsa", desc: "Javanese seasonal calendar and wisdom" },
-  { slug: "/calendar", icon: "\uD83D\uDCC5", name: "World Calendars", desc: "Chinese, Javanese, and Islamic calendars" },
+interface Tool {
+  slug: string;
+  icon: string;
+  name: string;
+  desc: string;
+  category: string;
+}
+
+const tools: Tool[] = [
+  { slug: "/word-maker", icon: "\u270F\uFE0F", name: "Word Maker", desc: "Create words from letters in names", category: "Words" },
+  { slug: "/anagram", icon: "\uD83C\uDFB2", name: "Anagram Finder", desc: "Find real words from a set of letters", category: "Words" },
+  { slug: "/acronym", icon: "\uD83C\uDFAF", name: "Acronym Builder", desc: "Generate acronyms from phrases", category: "Words" },
+  { slug: "/blender", icon: "\uD83E\uDDEA", name: "Name Blender", desc: "Blend two names together", category: "Words" },
+  { slug: "/ladder", icon: "\uD83E\uDE9C", name: "Word Ladder", desc: "Find shortest path between two words", category: "Words" },
+  { slug: "/cipher", icon: "\uD83D\uDD11", name: "Cipher Tool", desc: "Encode and decode text with ciphers", category: "Utilities" },
+  { slug: "/wheel", icon: "\uD83C\uDFAF", name: "Wheel of Names", desc: "Spin to pick a random winner", category: "Utilities" },
+  { slug: "/network", icon: "\uD83C\uDF10", name: "Network Tools", desc: "IP, DNS lookup, and port reference", category: "Utilities" },
+  { slug: "/zodiac", icon: "\uD83C\uDF1F", name: "Star Sign Reader", desc: "Discover your zodiac sign and traits", category: "Divination" },
+  { slug: "/numerology", icon: "\uD83D\uDD22", name: "Numerology", desc: "Life path and destiny numbers", category: "Divination" },
+  { slug: "/chinese-zodiac", icon: "\uD83D\uDC32", name: "Chinese Zodiac", desc: "Find your animal sign and element", category: "Divination" },
+  { slug: "/fortune", icon: "\uD83D\uDD2E", name: "Fortune Teller", desc: "Mystical fortune reading and tarot", category: "Divination" },
+  { slug: "/primbon", icon: "\uD83C\uDF19", name: "Primbon Jawa", desc: "Javanese weton personality and love match", category: "Divination" },
+  { slug: "/pranata-mangsa", icon: "\uD83C\uDF3E", name: "Pranata Mangsa", desc: "Javanese seasonal calendar and wisdom", category: "Calendars" },
+  { slug: "/calendar", icon: "\uD83D\uDCC5", name: "World Calendars", desc: "Chinese, Javanese, and Islamic calendars", category: "Calendars" },
+];
+
+const CATEGORIES = [
+  { key: "Words", icon: "\uD83D\uDCDD", label: "Word Play" },
+  { key: "Utilities", icon: "\uD83D\uDEE0\uFE0F", label: "Utilities & Tools" },
+  { key: "Divination", icon: "\uD83D\uDD2E", label: "Divination & Astrology" },
+  { key: "Calendars", icon: "\uD83D\uDCC5", label: "Calendars & Seasons" },
 ];
 
 export default function Home() {
@@ -80,23 +97,38 @@ export default function Home() {
         Select a tool to use
       </p>
 
-      <div className="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-        {tools.map(tool => (
-          <Link
-            key={tool.slug}
-            href={tool.slug}
-            onClick={() => handleClick(tool.slug)}
-            className="apple-card block px-5 py-4 hover:border-[var(--color-primary)] hover:shadow-sm transition-all no-underline"
-          >
-            <div className="text-[22px] mb-2">{tool.icon}</div>
-            <h2 className="text-[15px] font-semibold leading-[1.24] tracking-[-0.374px] text-[var(--color-ink)]">
-              {tool.name}
-            </h2>
-            <p className="text-[13px] leading-[1.43] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mt-0.5">
-              {tool.desc}
-            </p>
-          </Link>
-        ))}
+      <div className="w-full max-w-4xl space-y-10">
+        {CATEGORIES.map((cat) => {
+          const catTools = tools.filter((t) => t.category === cat.key);
+          return (
+            <div key={cat.key}>
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-[18px]">{cat.icon}</span>
+                <h2 className="text-[14px] font-semibold uppercase tracking-[0.5px] text-[var(--color-ink-muted-48)]">
+                  {cat.label}
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                {catTools.map((tool) => (
+                  <Link
+                    key={tool.slug}
+                    href={tool.slug}
+                    onClick={() => handleClick(tool.slug)}
+                    className="apple-card block px-5 py-4 hover:border-[var(--color-primary)] hover:shadow-sm transition-all no-underline"
+                  >
+                    <div className="text-[22px] mb-2">{tool.icon}</div>
+                    <h3 className="text-[15px] font-semibold leading-[1.24] tracking-[-0.374px] text-[var(--color-ink)]">
+                      {tool.name}
+                    </h3>
+                    <p className="text-[13px] leading-[1.43] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mt-0.5">
+                      {tool.desc}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
