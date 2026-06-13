@@ -23,7 +23,12 @@ const tools: Tool[] = [
   { slug: "/cipher", icon: "\uD83D\uDD11", name: "Cipher Tool", desc: "Encode and decode text with ciphers", category: "Utilities" },
   { slug: "/wheel", icon: "\uD83C\uDFAF", name: "Wheel of Names", desc: "Spin to pick a random winner", category: "Utilities" },
   { slug: "/network", icon: "\uD83C\uDF10", name: "Network Tools", desc: "IP, DNS lookup, and port reference", category: "Utilities" },
-  { slug: "/pdf-forge", icon: "\uD83D\uDCC4", name: "PDF Forge", desc: "Compress, merge, convert images and text to PDF", category: "Utilities" },
+  { slug: "/pdf-forge", icon: "\uD83D\uDCC4", name: "PDF Forge", desc: "Compress, merge, split, convert images and text to PDF", category: "Utilities" },
+  { slug: "/password-generator", icon: "\uD83D\uDD11", name: "Password Generator", desc: "Generate secure random passwords with strength meter", category: "Utilities" },
+  { slug: "/qr-code", icon: "\uD83D\uDCF1", name: "QR Code Generator", desc: "Generate QR codes from text or URLs", category: "Utilities" },
+  { slug: "/indonesian-holidays", icon: "\uD83C\uDDEE\uD83C\uDDE9", name: "Indonesian Holidays", desc: "National, Islamic, and cultural holidays for any year", category: "Calendars" },
+  { slug: "/weton-calendar", icon: "\uD83D\uDCC6", name: "Weton Calendar", desc: "Month-at-a-glance Javanese weton grid", category: "Calendars" },
+  { slug: "/tafsir-mimpi", icon: "\uD83D\uDCAD", name: "Tafsir Mimpi", desc: "Javanese dream meaning dictionary", category: "Divination" },
   { slug: "/zodiac", icon: "\uD83C\uDF1F", name: "Star Sign Reader", desc: "Discover your zodiac sign and traits", category: "Divination" },
   { slug: "/tarot", icon: "\uD83C\uDF84", name: "Tarot Reading", desc: "Full 78-card deck with multiple spreads", category: "Divination" },
   { slug: "/runes", icon: "\uD83E\uDEA8", name: "Rune Divination", desc: "Elder Futhark rune casting and readings", category: "Divination" },
@@ -44,6 +49,7 @@ const CATEGORIES = [
 
 export default function Home() {
   const [showStats, setShowStats] = useState(false);
+  const [search, setSearch] = useState("");
   const [counts, setCounts] = useState<ClickCounts>({});
 
   useEffect(() => {
@@ -97,13 +103,25 @@ export default function Home() {
       <h1 className="apple-headline text-[40px] leading-[1.1] text-center mb-1">
         Fun Tools
       </h1>
-      <p className="text-[17px] leading-[1.47] tracking-[-0.374px] text-[var(--color-ink-muted-48)] mb-12">
+      <p className="text-[17px] leading-[1.47] tracking-[-0.374px] text-[var(--color-ink-muted-48)] mb-6">
         Select a tool to use
       </p>
 
+      <div className="w-full max-w-xs mb-10">
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search tools\u2026"
+          className="apple-input w-full h-10 text-[14px] text-center"
+        />
+      </div>
+
       <div className="w-full max-w-4xl space-y-10">
         {CATEGORIES.map((cat) => {
-          const catTools = tools.filter((t) => t.category === cat.key);
+          const catTools = tools.filter(
+            (t) => t.category === cat.key && (!search || t.name.toLowerCase().includes(search.toLowerCase()) || t.desc.toLowerCase().includes(search.toLowerCase()))
+          );
+          if (catTools.length === 0 && search) return null;
           return (
             <div key={cat.key}>
               <div className="flex items-center gap-2 mb-3">
@@ -133,6 +151,9 @@ export default function Home() {
             </div>
           );
         })}
+        {search && !tools.some((t) => t.name.toLowerCase().includes(search.toLowerCase()) || t.desc.toLowerCase().includes(search.toLowerCase())) && (
+          <p className="text-[14px] text-[var(--color-ink-muted-48)] text-center py-8">No tools found matching "{search}"</p>
+        )}
       </div>
       <Disclaimer type="utility" />
     </div>

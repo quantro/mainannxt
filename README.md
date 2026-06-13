@@ -29,7 +29,10 @@ Open [http://localhost:3000](http://localhost:3000) to see the result.
 | `/ladder` | `src/app/ladder/page.tsx` | **Word Ladder** — BFS shortest-path search between two words, showing each step with the changed letter highlighted. |
 | `/wheel` | `src/app/wheel/page.tsx` | **Wheel of Names** — Canvas-drawn spinning wheel with colored segments and name management. |
 | `/network` | `src/app/network/page.tsx` | **Network Tools** — My IP (ipify + ipapi geolocation), DNS lookup (Google DNS-over-HTTPS), and common ports reference. |
-| `/pdf-forge` | `src/app/pdf-forge/page.tsx` | **PDF Forge** — Client-side PDF tools: compress, merge, image-to-PDF, and text-to-PDF. Powered by pdf-lib. |
+| `/pdf-forge` | `src/app/pdf-forge/page.tsx` | **PDF Forge** — Client-side PDF tools: compress, merge, split, image-to-PDF, and text-to-PDF. Powered by pdf-lib. |
+| `/password-generator` | `src/app/password-generator/page.tsx` | **Password Generator** — Secure random passwords with length slider, char type toggles, and strength meter. Uses crypto.getRandomValues. |
+| `/qr-code` | `src/app/qr-code/page.tsx` | **QR Code Generator** — Generate QR codes from text or URLs with error correction level and color options. Download as PNG. |
+| `/indonesian-holidays` | `src/app/indonesian-holidays/page.tsx` | **Indonesian Holidays** — National, Islamic, Christian, Hindu/Buddhist, and cultural holidays for 2025–2035. Data sourced from api.co.id. |
 | `/zodiac` | `src/app/zodiac/page.tsx` | **Star Sign Reader** — Western zodiac sign calculator with personality profiles and compatibility. |
 | `/tarot` | `src/app/tarot/page.tsx` | **Tarot Reading** — Full 78-card Rider-Waite-Smith deck with single, three-card, and Celtic Cross spreads. Includes card images, multi-paragraph readings, and conclusion synthesis. |
 | `/runes` | `src/app/runes/page.tsx` | **Rune Divination** — 24 Elder Futhark runes organized in three aettir. Single, three-rune, and five-rune spreads with upright/merkstave interpretations, full readings, and keyword tags. |
@@ -38,7 +41,9 @@ Open [http://localhost:3000](http://localhost:3000) to see the result.
 | `/fortune` | `src/app/fortune/page.tsx` | **Fortune Teller** — Mystical fortune reading with multiple categories. |
 | `/primbon` | `src/app/primbon/page.tsx` | **Primbon Jawa** — Javanese weton calculator with neptu, pangarasan, pancasuda, and love compatibility. |
 | `/pranata-mangsa` | `src/app/pranata-mangsa/page.tsx` | **Pranata Mangsa** — Javanese 12-season agricultural calendar with seasonal wisdom and natural signs. |
-| `/calendar` | `src/app/calendar/page.tsx` | **World Calendars** — Tabbed viewer for Chinese (stem-branch + zodiac), Javanese (Saka + weton), and Islamic (Hijri) calendars. |
+| `/weton-calendar` | `src/app/weton-calendar/page.tsx` | **Weton Calendar** — Month-at-a-glance grid with weton per day (day + pasaran), 35-combination legend, and cultural context essay. |
+| `/tafsir-mimpi` | `src/app/tafsir-mimpi/page.tsx` | **Tafsir Mimpi** — Searchable Javanese dream dictionary with ~780 dream symbols and multi-paragraph interpretations in Indonesian. |
+| `/calendar` | `src/app/calendar/page.tsx` | **World Calendars** — 4-tab viewer for Chinese (stem-branch + zodiac), Javanese (Saka + weton), Islamic (Hijri), and Hebrew calendars. |
 
 ### Shared Components
 

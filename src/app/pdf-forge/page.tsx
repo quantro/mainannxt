@@ -5,11 +5,12 @@ import { PDFDocument, PDFName, PDFRawStream, rgb } from "pdf-lib";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
 
-type Tool = "compress" | "merge" | "image" | "text";
+type Tool = "compress" | "merge" | "split" | "image" | "text";
 
 const TOOLS: { key: Tool; icon: string; label: string }[] = [
   { key: "compress", icon: "\uD83D\uDCE6", label: "Compress PDF" },
   { key: "merge", icon: "\uD83D\uDCCB", label: "Merge PDFs" },
+  { key: "split", icon: "\u2702\uFE0F", label: "Split PDF" },
   { key: "image", icon: "\uD83D\uDDBC\uFE0F", label: "Image to PDF" },
   { key: "text", icon: "\u270D\uFE0F", label: "Text to PDF" },
 ];
@@ -41,9 +42,16 @@ export default function PdfForgePage() {
   const [compressOrigSize, setCompressOrigSize] = useState(0);
   const [compressLoading, setCompressLoading] = useState(false);
 
+  const [splitFile, setSplitFile] = useState<File | null>(null);
+  const [splitRange, setSplitRange] = useState("");
+  const [splitBlob, setSplitBlob] = useState<Blob | null>(null);
+  const [splitLoading, setSplitLoading] = useState(false);
+  const [splitTotalPages, setSplitTotalPages] = useState(0);
+
   const mergeInputRef = useRef<HTMLInputElement>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const compressInputRef = useRef<HTMLInputElement>(null);
+  const splitInputRef = useRef<HTMLInputElement>(null);
 
   async function doMerge() {
     if (mergeFiles.length < 2) return;
@@ -214,6 +222,42 @@ export default function PdfForgePage() {
     setCompressLoading(false);
   }
 
+  async function doSplit() {
+    const file = splitFile;
+    const range = splitRange.trim();
+    if (!file || !range) return;
+    setSplitLoading(true);
+    setSplitBlob(null);
+    try {
+      const pdfDoc = await PDFDocument.load(await file.arrayBuffer());
+      const total = pdfDoc.getPageCount();
+      setSplitTotalPages(total);
+      const pages: number[] = [];
+      for (const part of range.split(",")) {
+        const trimmed = part.trim();
+        if (trimmed.includes("-")) {
+          const [a, b] = trimmed.split("-").map((s) => parseInt(s.trim()));
+          const from = Math.max(1, Math.min(a, b));
+          const to = Math.min(Math.max(a, b), total);
+          for (let i = from; i <= to; i++) pages.push(i);
+        } else {
+          const n = parseInt(trimmed);
+          if (n >= 1 && n <= total) pages.push(n);
+        }
+      }
+      const unique = [...new Set(pages)].filter((p) => p >= 1 && p <= total);
+      if (unique.length === 0) throw new Error("No valid pages in range");
+      const out = await PDFDocument.create();
+      const copied = await out.copyPages(pdfDoc, unique.map((p) => p - 1));
+      copied.forEach((p) => out.addPage(p));
+      const pdfBytes = (await out.save()).buffer as ArrayBuffer;
+      setSplitBlob(new Blob([pdfBytes], { type: "application/pdf" }));
+    } catch (e: unknown) {
+      alert("Split failed: " + (e instanceof Error ? e.message : "Unknown error"));
+    }
+    setSplitLoading(false);
+  }
+
   const mergeWarn = useMemo(() => {
     if (mergeFiles.length < 2) return "Select at least 2 PDF files to merge.";
     return "";
@@ -313,6 +357,62 @@ export default function PdfForgePage() {
                 className="inline-block apple-btn-primary px-6 py-2 text-[13px]"
               >
                 Download compressed PDF
+              </a>
+            </div>
+          )}
+        </div>
+      )}
+
+      {tab === "split" && (
+        <div className="w-full max-w-2xl space-y-4">
+          <div className="apple-card px-6 py-5">
+            <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Select PDF</h2>
+            <input
+              ref={splitInputRef}
+              type="file"
+              accept=".pdf,application/pdf"
+              onChange={(e) => {
+                setSplitBlob(null);
+                setSplitTotalPages(0);
+                setSplitFile(e.target.files?.[0] || null);
+              }}
+              className="w-full text-[13px] file:mr-2 file:px-3 file:py-1.5 file:rounded-[8px] file:border-0 file:text-[12px] file:font-semibold file:bg-[var(--color-primary)] file:text-white file:cursor-pointer"
+            />
+            {splitFile && (
+              <div className="mt-3 flex items-center justify-between text-[12px] text-[var(--color-ink-muted-48)]">
+                <span className="truncate">{splitFile.name}</span>
+                <span>{formatSize(splitFile.size)}</span>
+              </div>
+            )}
+          </div>
+          <div className="apple-card px-6 py-5">
+            <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Page Range</h2>
+            <input
+              value={splitRange}
+              onChange={(e) => setSplitRange(e.target.value)}
+              placeholder='e.g. 1-3, 5, 7-9'
+              className="apple-input w-full h-9 text-[13px]"
+            />
+            {splitTotalPages > 0 && (
+              <p className="text-[11px] text-[var(--color-ink-muted-48)] mt-1">PDF has {splitTotalPages} pages. Enter page numbers or ranges separated by commas.</p>
+            )}
+          </div>
+          <button
+            onClick={doSplit}
+            disabled={!splitFile || !splitRange.trim() || splitLoading}
+            className="apple-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
+          >
+            {splitLoading ? "Splitting\u2026" : "Split PDF"}
+          </button>
+          {splitBlob && (
+            <div className="apple-card px-6 py-5 text-center">
+              <p className="text-[13px] font-semibold text-[var(--color-ink)] mb-2">Extracted pages successfully</p>
+              <a
+                href={URL.createObjectURL(splitBlob)}
+                download="split.pdf"
+                className="inline-block apple-btn-primary px-6 py-2 text-[13px]"
+              >
+                Download split.pdf
               </a>
             </div>
           )}
