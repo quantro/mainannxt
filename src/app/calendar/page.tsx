@@ -4,9 +4,9 @@ import { useMemo, useState } from "react";
 import ThemeToggle from "../theme-toggle";
 
 const CHINESE_ZODIAC = [
-  "Monkey", "Rooster", "Dog", "Pig",
   "Rat", "Ox", "Tiger", "Rabbit",
   "Dragon", "Snake", "Horse", "Goat",
+  "Monkey", "Rooster", "Dog", "Pig",
 ];
 
 const HEAVENLY_STEMS = ["Jia", "Yi", "Bing", "Ding", "Wu", "Ji", "Geng", "Xin", "Ren", "Gui"];
@@ -65,8 +65,6 @@ const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
 const PASARAN = ["Legi", "Pahing", "Pon", "Wage", "Kliwon"];
 
 const HIJRI_MONTHS = ["Muharram", "Safar", "Rabi' al-Awwal", "Rabi' al-Thani", "Jumada al-Awwal", "Jumada al-Thani", "Rajab", "Sha'ban", "Ramadan", "Shawwal", "Dhu al-Qa'dah", "Dhu al-Hijjah"];
-const ISLAMIC_ERA_START_JDN = 1948439;
-
 function gregorianToJdn(y: number, m: number, d: number): number {
   const a = Math.floor((14 - m) / 12);
   const yy = y + 4800 - a;
@@ -74,23 +72,33 @@ function gregorianToJdn(y: number, m: number, d: number): number {
   return d + Math.floor((153 * mm + 2) / 5) + 365 * yy + Math.floor(yy / 4) - Math.floor(yy / 100) + Math.floor(yy / 400) - 32045;
 }
 
+const HIJRI_LEAP_YEARS = new Set([2, 5, 7, 10, 13, 16, 18, 21, 24, 27, 29]);
+
+function isHijriLeap(y: number): boolean {
+  return HIJRI_LEAP_YEARS.has(((y - 1) % 30) + 1);
+}
+
+function hijriYearDays(y: number): number {
+  return isHijriLeap(y) ? 355 : 354;
+}
+
 function jdnToHijri(jdn: number) {
-  const yh = Math.floor((jdn - ISLAMIC_ERA_START_JDN) / 354.367);
-  let remainingDays = jdn - (ISLAMIC_ERA_START_JDN + Math.floor(yh * 354.367));
-  let year = yh + 1;
-  if (remainingDays < 0) {
-    year -= 1;
-    remainingDays = jdn - (ISLAMIC_ERA_START_JDN + Math.floor((year - 1) * 354.367));
-  }
-  const hijriMonths = [30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29];
-  if ((year * 354.367) % 1 > 0.5) hijriMonths[11] = 30;
-  let month = 0;
-  let day = remainingDays + 1;
+  const epoch = 1948440;
+  const days = jdn - epoch;
+  if (days < 0) return { year: 1, month: 1, day: 1 };
+  const approx = Math.floor((days + 0.5) / 354.36707);
+  let year = Math.max(1, approx);
+  let cum = 0;
+  for (let y = 1; y < year; y++) cum += hijriYearDays(y);
+  while (cum + hijriYearDays(year) <= days) { cum += hijriYearDays(year); year++; }
+  while (cum > days && year > 1) { year--; cum -= hijriYearDays(year); }
+  const doy = days - cum + 1;
+  const mlen = [30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, isHijriLeap(year) ? 30 : 29];
+  let month = 1, day = doy;
   for (let i = 0; i < 12; i++) {
-    if (day <= hijriMonths[i]) { month = i + 1; break; }
-    day -= hijriMonths[i];
+    if (day <= mlen[i]) break;
+    day -= mlen[i]; month++;
   }
-  if (month === 0) { month = 12; day = 30; }
   return { year, month, day };
 }
 
@@ -102,13 +110,15 @@ type Tab = "chinese" | "javanese" | "islamic";
 
 export default function CalendarPage() {
   const now = useMemo(() => new Date(), []);
-  const [year, setYear] = useState(now.getFullYear());
+  const [yearText, setYearText] = useState(String(now.getFullYear()));
   const [month, setMonth] = useState(now.getMonth() + 1);
   const [day, setDay] = useState(now.getDate());
+  const [calculated, setCalculated] = useState(true);
   const [tab, setTab] = useState<Tab>("chinese");
   const [openFestival, setOpenFestival] = useState<string | null>(null);
   const [openObservance, setOpenObservance] = useState<string | null>(null);
 
+  const year = parseInt(yearText) || now.getFullYear();
   const maxDay = useMemo(() => daysInMonth(month, year), [month, year]);
   const clampedDay = Math.min(day, maxDay);
 
@@ -120,15 +130,13 @@ export default function CalendarPage() {
   const hijri = useMemo(() => jdnToHijri(jdn), [jdn]);
   const chineseYear = useMemo(() => getChineseYear(year), [year]);
 
-  const jdnFixed = 2461117;
-  const diffDays = jdn - jdnFixed;
-  const wetonDay = DAYS[((5 + diffDays % 7 + 7) % 7)];
-  const wetonPasaran = PASARAN[((3 + diffDays % 5 + 5) % 5)];
+  const wetonDay = DAYS[dayOfWeek];
+  const wetonPasaran = PASARAN[((jdn + 1) % 5 + 5) % 5];
   const sakaYear = year - 78;
   const jMonthIdx = ((month + 9) % 12 + 12) % 12;
 
   const isToday =
-    year === now.getFullYear() && month === now.getMonth() + 1 && clampedDay === now.getDate();
+    !calculated || (year === now.getFullYear() && month === now.getMonth() + 1 && clampedDay === now.getDate());
 
   const TABS: { key: Tab; label: string; icon: string }[] = [
     { key: "chinese", label: "Chinese", icon: "🐉" },
@@ -153,11 +161,13 @@ export default function CalendarPage() {
         <div className="grid grid-cols-3 gap-2 mb-3">
           <div>
             <label className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)]">Year</label>
-            <select value={year} onChange={(e) => setYear(parseInt(e.target.value))} className="apple-input w-full h-9 text-[13px] mt-0.5">
-              {Array.from({ length: 201 }, (_, i) => now.getFullYear() - 100 + i).map((y) => (
-                <option key={y} value={y}>{y}</option>
-              ))}
-            </select>
+            <input
+              value={yearText}
+              onChange={(e) => setYearText(e.target.value.replace(/[^0-9-]/g, ""))}
+              onKeyDown={(e) => e.key === "Enter" && setCalculated((c) => !c)}
+              placeholder="e.g. 1985"
+              className="apple-input w-full h-9 text-[13px] mt-0.5"
+            />
           </div>
           <div>
             <label className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)]">Month</label>
@@ -176,17 +186,30 @@ export default function CalendarPage() {
             </select>
           </div>
         </div>
-        <div className="text-center">
-          <div className="text-[15px] font-semibold text-[var(--color-ink)]">{dateStr}</div>
-          {isToday && <div className="text-[10px] text-[var(--color-primary)] font-semibold uppercase mt-0.5">Today</div>}
+        <div className="flex items-center justify-center gap-3">
+          <button
+            onClick={() => setCalculated((c) => !c)}
+            className="apple-btn-primary h-10 px-6 text-[13px]"
+          >
+            Calculate
+          </button>
           {!isToday && (
             <button
-              onClick={() => { setYear(now.getFullYear()); setMonth(now.getMonth() + 1); setDay(now.getDate()); }}
-              className="text-[11px] text-[var(--color-primary)] hover:underline mt-0.5"
+              onClick={() => {
+                setYearText(String(now.getFullYear()));
+                setMonth(now.getMonth() + 1);
+                setDay(now.getDate());
+                setCalculated(true);
+              }}
+              className="text-[11px] text-[var(--color-primary)] hover:underline"
             >
               Back to today
             </button>
           )}
+        </div>
+        <div className="text-center mt-3">
+          <div className="text-[15px] font-semibold text-[var(--color-ink)]">{dateStr}</div>
+          {isToday && <div className="text-[10px] text-[var(--color-primary)] font-semibold uppercase mt-0.5">Today</div>}
         </div>
       </div>
 
@@ -285,9 +308,9 @@ export default function CalendarPage() {
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Pasaran Cycle</h3>
             <div className="grid grid-cols-5 gap-1.5">
               {PASARAN.map((p, i) => (
-                <div key={p} className={`px-1 py-1.5 rounded-[8px] text-center ${i === (3 + diffDays % 5 + 5) % 5 ? 'bg-[var(--color-primary)] text-white font-semibold' : 'bg-[var(--color-surface-pearl)] text-[var(--color-ink-muted-48)]'}`}>
+                <div key={p} className={`px-1 py-1.5 rounded-[8px] text-center ${i === ((jdn + 1) % 5 + 5) % 5 ? 'bg-[var(--color-primary)] text-white font-semibold' : 'bg-[var(--color-surface-pearl)] text-[var(--color-ink-muted-48)]'}`}>
                   <div className="text-[10px] font-semibold">{p}</div>
-                  <div className="text-[8px] opacity-70">{i === (3 + diffDays % 5 + 5) % 5 ? "active" : ""}</div>
+                  <div className="text-[8px] opacity-70">{i === ((jdn + 1) % 5 + 5) % 5 ? "active" : ""}</div>
                 </div>
               ))}
             </div>
