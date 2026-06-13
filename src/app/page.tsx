@@ -12,6 +12,10 @@ const tools = [
   { slug: "/blender", icon: "\uD83E\uDDEA", name: "Name Blender", desc: "Blend two names together" },
   { slug: "/cipher", icon: "\uD83D\uDD11", name: "Cipher Tool", desc: "Encode and decode text with ciphers" },
   { slug: "/ladder", icon: "\uD83E\uDE9C", name: "Word Ladder", desc: "Find shortest path between two words" },
+  { slug: "/zodiac", icon: "\uD83C\uDF1F", name: "Star Sign Reader", desc: "Discover your zodiac sign and traits" },
+  { slug: "/numerology", icon: "\uD83D\uDD22", name: "Numerology", desc: "Life path and destiny numbers" },
+  { slug: "/chinese-zodiac", icon: "\uD83D\uDC32", name: "Chinese Zodiac", desc: "Find your animal sign and element" },
+  { slug: "/fortune", icon: "\uD83D\uDD2E", name: "Fortune Teller", desc: "Mystical fortune reading and tarot" },
 ];
 
 export default function Home() {
@@ -67,7 +71,7 @@ export default function Home() {
       )}
 
       <h1 className="apple-headline text-[40px] leading-[1.1] text-center mb-1">
-        Tools
+        Fun Tools
       </h1>
       <p className="text-[17px] leading-[1.47] tracking-[-0.374px] text-[var(--color-ink-muted-48)] mb-12">
         Select a tool to use
