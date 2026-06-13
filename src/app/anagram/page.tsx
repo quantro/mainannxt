@@ -2,6 +2,7 @@
 
 import { useMemo, useRef, useState, useEffect } from "react";
 import { WORDS } from "@/lib/dictionary";
+import { WORDS_ID } from "@/lib/dictionary-id";
 import ThemeToggle from "../theme-toggle";
 
 function canForm(word: string, sourceCounts: Record<string, number>): boolean {
@@ -13,10 +14,14 @@ function canForm(word: string, sourceCounts: Record<string, number>): boolean {
   return true;
 }
 
+const DICTS = { en: WORDS, id: WORDS_ID } as const;
+const LANG_LABELS = { en: "English", id: "Bahasa Indonesia" };
+
 export default function AnagramPage() {
   const [input, setInput] = useState("");
   const [debouncedInput, setDebouncedInput] = useState("");
   const [mounted, setMounted] = useState(false);
+  const [lang, setLang] = useState<"en" | "id">("en");
   const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
@@ -34,6 +39,7 @@ export default function AnagramPage() {
   }, [input]);
 
   const words = useMemo(() => {
+    const dict = DICTS[lang];
     const letters = debouncedInput.toLowerCase().replace(/[^a-z]/g, "");
     if (letters.length < 3) return [];
 
@@ -41,7 +47,7 @@ export default function AnagramPage() {
     for (const ch of letters) sourceCounts[ch] = (sourceCounts[ch] || 0) + 1;
 
     const results: string[] = [];
-    for (const word of WORDS) {
+    for (const word of dict) {
       if (word.length < 3 || word.length > letters.length) continue;
       if (canForm(word, sourceCounts)) results.push(word);
     }
@@ -52,7 +58,7 @@ export default function AnagramPage() {
     });
 
     return results;
-  }, [debouncedInput]);
+  }, [debouncedInput, lang]);
 
   if (!mounted) {
     return (
@@ -82,9 +88,26 @@ export default function AnagramPage() {
       </h1>
 
       <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
-        <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
-          Letters
-        </h2>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-[14px] font-semibold uppercase text-[var(--color-ink-muted-48)]">
+            Letters
+          </h2>
+          <div className="flex gap-1">
+            {(["en", "id"] as const).map((l) => (
+              <button
+                key={l}
+                onClick={() => { setLang(l); setInput(""); setDebouncedInput(""); }}
+                className={`px-3 py-1 rounded-[8px] text-[11px] font-semibold transition-all ${
+                  lang === l
+                    ? "bg-[var(--color-primary)] text-white"
+                    : "bg-[var(--color-surface-pearl)] text-[var(--color-ink-muted-48)] hover:brightness-95"
+                }`}
+              >
+                {LANG_LABELS[l]}
+              </button>
+            ))}
+          </div>
+        </div>
         <input
           value={input}
           onChange={(e) =>
