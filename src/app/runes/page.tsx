@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo } from "react";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 interface Rune {
   name: string;
@@ -464,6 +465,7 @@ export default function RunesPage() {
       <p className="text-[10px] text-[var(--color-ink-muted-48)] mt-8 text-center max-w-lg leading-[1.6]">
         Elder Futhark rune meanings based on historical sources: the Old English, Old Icelandic, and Old Norwegian Rune Poems, the <em>Poetic Edda</em>, and archaeological scholarship. Rune symbols rendered as Unicode characters from the Runic block (U+16A0&ndash;U+16FF), public domain.
       </p>
+          <Disclaimer type="divination" />
     </div>
   );
 }

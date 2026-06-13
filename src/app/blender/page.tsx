@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 function capitalize(s: string): string {
   if (!s) return s;
@@ -161,6 +162,7 @@ export default function BlenderPage() {
           </p>
         </div>
       )}
+          <Disclaimer type="utility" />
     </div>
   );
 }

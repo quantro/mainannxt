@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import ThemeToggle from "./theme-toggle";
+import { Disclaimer } from "./disclaimer";
 import { fetchStats, recordClick, totalClicks, sortedTools, type ClickCounts } from "@/lib/tracker";
 
 interface Tool {
@@ -132,6 +133,7 @@ export default function Home() {
           );
         })}
       </div>
+      <Disclaimer type="utility" />
     </div>
   );
 }

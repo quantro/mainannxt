@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 const COLORS = [
   "#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEAA7",
@@ -219,6 +220,7 @@ export default function WheelPage() {
           </p>
         </div>
       )}
+          <Disclaimer type="utility" />
     </div>
   );
 }

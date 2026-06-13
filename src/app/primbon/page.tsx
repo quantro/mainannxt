@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 const DAYS: Record<string, { en: string; jv: string; neptu: number }> = {
   "0": { en: "Sunday", jv: "Minggu/Ahad", neptu: 5 },
@@ -308,6 +309,7 @@ export default function PrimbonPage() {
           </div>
         </div>
       )}
+          <Disclaimer type="divination" />
     </div>
   );
 }

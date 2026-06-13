@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 type CipherMode = "caesar" | "rot13" | "atbash" | "vigenere" | "railfence";
 
@@ -276,6 +277,7 @@ export default function CipherPage() {
           )}
         </div>
       </div>
+          <Disclaimer type="utility" />
     </div>
   );
 }

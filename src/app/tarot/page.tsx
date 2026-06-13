@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo } from "react";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 interface TarotCard {
   name: string;
@@ -376,6 +377,7 @@ export default function TarotPage() {
       <p className="text-[10px] text-[var(--color-ink-muted-48)] mt-8 text-center max-w-lg">
         Cards sourced from the public domain <strong>Rider-Waite-Smith tarot</strong> (1909) by A.E. Waite and Pamela Colman Smith, via the <a href="https://archive.org/details/rider-waite-tarot" target="_blank" rel="noopener noreferrer" className="underline">Internet Archive</a>.
       </p>
+          <Disclaimer type="divination" />
     </div>
   );
 }

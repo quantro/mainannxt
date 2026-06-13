@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 interface AnimalSign {
   animal: string;
@@ -378,6 +379,7 @@ export default function ChineseZodiacPage() {
           </div>
         </div>
       )}
+          <Disclaimer type="divination" />
     </div>
   );
 }

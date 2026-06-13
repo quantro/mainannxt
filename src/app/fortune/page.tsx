@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useCallback } from "react";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 interface Reading {
   fortune: string;
@@ -224,6 +225,7 @@ export default function FortunePage() {
           </div>
         </div>
       )}
+          <Disclaimer type="divination" />
     </div>
   );
 }

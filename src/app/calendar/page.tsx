@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 const CHINESE_ZODIAC = [
   "Rat", "Ox", "Tiger", "Rabbit",
@@ -387,6 +388,7 @@ export default function CalendarPage() {
           The Hijri date shown is an approximate conversion. Exact Islamic dates depend on local moon sighting and may vary by one day depending on location. The Chinese calendar shown uses the year-based zodiac cycle; exact lunar dates in the Chinese calendar would require a full lunisolar conversion. The Javanese pasaran calculation is based on a fixed reference date.
         </p>
       </div>
+          <Disclaimer type="divination" />
     </div>
   );
 }

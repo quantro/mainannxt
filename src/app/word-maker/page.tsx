@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, useRef, useState } from "react";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 export default function Home() {
   const [names, setNames] = useState<string[]>(["", "", "", ""]);
@@ -517,6 +518,7 @@ export default function Home() {
       )}
 
       <canvas ref={canvasRef} className="hidden" />
+          <Disclaimer type="utility" />
     </div>
   );
 }

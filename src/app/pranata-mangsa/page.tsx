@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 interface MangsaData {
   id: number;
@@ -376,6 +377,7 @@ export default function PranataMangsaPage() {
           </div>
         </div>
       )}
+          <Disclaimer type="divination" />
     </div>
   );
 }

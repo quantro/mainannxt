@@ -4,6 +4,7 @@ import { useMemo, useRef, useState, useEffect } from "react";
 import { WORDS } from "@/lib/dictionary";
 import { WORDS_ID } from "@/lib/dictionary-id";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 function canForm(word: string, sourceCounts: Record<string, number>): boolean {
   const counts: Record<string, number> = {};
@@ -151,6 +152,7 @@ export default function AnagramPage() {
           </p>
         </div>
       )}
+          <Disclaimer type="utility" />
     </div>
   );
 }

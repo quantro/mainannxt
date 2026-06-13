@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 interface NumberMeaning {
   number: string;
@@ -373,6 +374,7 @@ export default function NumerologyPage() {
           </div>
         </div>
       )}
+          <Disclaimer type="divination" />
     </div>
   );
 }

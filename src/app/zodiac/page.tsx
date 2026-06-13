@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 interface ZodiacSign {
   name: string;
@@ -372,6 +373,7 @@ export default function ZodiacPage() {
           </p>
         </div>
       )}
+          <Disclaimer type="divination" />
     </div>
   );
 }

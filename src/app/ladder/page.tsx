@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { isWord } from "@/lib/dictionary";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 
 function findLadder(start: string, end: string): string[] | null {
   if (start.length !== end.length) return null;
@@ -188,6 +189,7 @@ export default function LadderPage() {
           </p>
         </div>
       )}
+          <Disclaimer type="utility" />
     </div>
   );
 }

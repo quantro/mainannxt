@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ThemeToggle from "../theme-toggle";
+import { Disclaimer } from "../disclaimer";
 import { isWord } from "@/lib/dictionary";
 
 interface RealWordResult {
@@ -286,6 +287,7 @@ export default function AcronymPage() {
           )}
         </div>
       )}
+          <Disclaimer type="utility" />
     </div>
   );
 }
