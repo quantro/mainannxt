@@ -103,11 +103,110 @@ function jdnToHijri(jdn: number) {
   return { year, month, day };
 }
 
+const HEBREW_EPOCH = 347997;
+
+const HEBREW_MONTHS_COMMON = [
+  "Tishrei", "Cheshvan", "Kislev", "Tevet",
+  "Shevat", "Adar", "Nisan", "Iyar",
+  "Sivan", "Tamuz", "Av", "Elul",
+];
+
+const HEBREW_MONTHS_LEAP = [
+  "Tishrei", "Cheshvan", "Kislev", "Tevet",
+  "Shevat", "Adar I", "Adar II", "Nisan",
+  "Iyar", "Sivan", "Tamuz", "Av", "Elul",
+];
+
+const HEBREW_HOLIDAYS: Record<string, { name: string; date: string; desc: string }> = {
+  roshhashana: { name: "Rosh Hashanah (Jewish New Year)", date: "1–2 Tishrei", desc: "The Jewish New Year, marking the creation of the world. It is a time of reflection, prayer, and repentance. The shofar (ram's horn) is blown in synagogue. Traditional foods include apples dipped in honey for a sweet new year, and round challah bread symbolizing the cycle of life." },
+  yomkippur: { name: "Yom Kippur (Day of Atonement)", date: "10 Tishrei", desc: "The holiest day of the Jewish year, a day of fasting, prayer, and repentance. It is the culmination of the Ten Days of Repentance that begin with Rosh Hashanah. Observant Jews refrain from food, drink, bathing, and other physical pleasures for 25 hours." },
+  sukkot: { name: "Sukkot (Feast of Tabernacles)", date: "15–21 Tishrei", desc: "A harvest festival commemorating the 40 years of wandering in the desert after the Exodus. Families build temporary huts (sukkot) with roofs made of branches and eat meals inside them. The four species — etrog, lulav, hadas, and aravah — are shaken together in prayer." },
+  simchattorah: { name: "Simchat Torah", date: "22–23 Tishrei (23 in diaspora)", desc: "A celebration marking the conclusion of the annual cycle of public Torah readings and the beginning of the new cycle. The Torah scrolls are taken from the ark and carried around the synagogue in seven circuits (hakafot) with singing and dancing." },
+  chanukah: { name: "Chanukah (Festival of Lights)", date: "25 Kislev – 2/3 Tevet", desc: "An eight-day festival commemorating the rededication of the Second Temple in Jerusalem after the Maccabean Revolt. The miracle of the oil that lasted eight days is celebrated by lighting the nine-branched menorah, eating fried foods (latkes, sufganiyot), and spinning the dreidel." },
+  tu: { name: "Tu BiShvat (New Year for Trees)", date: "15 Shevat", desc: "A minor holiday marking the 'new year for trees,' the date used for calculating agricultural tithes. In modern times it has become an ecological holiday, with tree planting ceremonies and a special seder featuring fruits and nuts." },
+  purim: { name: "Purim", date: "14–15 Adar (14 Adar II in leap years)", desc: "A joyous festival celebrating the salvation of the Jewish people in ancient Persia as told in the Book of Esther (Megillah). Observances include reading the Megillah, sending food gifts (mishloach manot), giving charity, festive meals, and wearing costumes." },
+  pesach: { name: "Pesach (Passover)", date: "15–22 Nisan (15–21 in Israel)", desc: "The eight-day festival commemorating the Exodus from Egypt. The central observance is the seder, a ritual meal where the story of the Exodus is told from the Haggadah. Matzah (unleavened bread) is eaten, and chametz (leavened products) is forbidden throughout the holiday." },
+  shavuot: { name: "Shavuot (Festival of Weeks)", date: "6–7 Sivan", desc: "A two-day festival (one in Israel) marking the giving of the Torah at Mount Sinai. It also has agricultural significance as the wheat harvest festival. Customs include staying up all night to study Torah, reading the Book of Ruth, and eating dairy foods." },
+  tishabav: { name: "Tisha B'Av", date: "9 Av", desc: "A major fast day mourning the destruction of both the First and Second Temples in Jerusalem, as well as other tragedies in Jewish history. The Book of Lamentations is read in synagogue. It is the culmination of a three-week period of mourning beginning with the fast of 17 Tammuz." },
+};
+
+function isHebrewLeapYear(y: number): boolean {
+  return ((7 * y + 1) % 19) < 7;
+}
+
+function hebrewMonthsInYear(y: number): number {
+  return isHebrewLeapYear(y) ? 13 : 12;
+}
+
+function hebrewNewYear(year: number): number {
+  const monthsElapsed = Math.floor((235 * year - 234) / 19);
+  const partsElapsed = 12084 + 13753 * monthsElapsed;
+  const day = 29 * monthsElapsed + Math.floor(partsElapsed / 25920);
+  const parts = partsElapsed % 25920;
+
+  let jdn = HEBREW_EPOCH + day;
+
+  const weekday = (jdn + 1) % 7;
+
+  const isLeap = isHebrewLeapYear(year);
+  const prevIsLeap = isHebrewLeapYear(year - 1);
+
+  let postpone = 0;
+  if (parts >= 19440 || (weekday === 1 && parts >= 9924 && !prevIsLeap) || (weekday === 3 && parts >= 16789 && isLeap)) {
+    postpone = 1;
+  }
+  if (postpone === 0) {
+    if (weekday === 0 || weekday === 3 || weekday === 5) postpone = 1;
+  }
+  if (postpone === 1) {
+    const newWeekday = (jdn + 2) % 7;
+    if (newWeekday === 0 || newWeekday === 3 || newWeekday === 5) postpone = 2;
+  }
+
+  return jdn + postpone;
+}
+
+function hebrewYearDays(year: number): number {
+  return hebrewNewYear(year + 1) - hebrewNewYear(year);
+}
+
+function hebrewMonthDays(year: number, month: number): number {
+  const mlen = isHebrewLeapYear(year)
+    ? [30, 29, 30, 29, 30, 30, 29, 30, 29, 30, 29, 30, 29]
+    : [30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29];
+
+  const yd = hebrewYearDays(year);
+  const type = yd % 10;
+
+  if (month === 2) return type === 5 ? 30 : 29;
+  if (month === 3) return type === 3 ? 29 : 30;
+  return mlen[month - 1];
+}
+
+function jdnToHebrew(jdn: number) {
+  const approx = Math.floor((jdn - HEBREW_EPOCH) / 365.246822206);
+  let year = Math.max(1, approx);
+  while (jdn >= hebrewNewYear(year + 1)) year++;
+  while (jdn < hebrewNewYear(year)) year--;
+
+  const start = hebrewNewYear(year);
+  const totalMonths = hebrewMonthsInYear(year);
+  let doy = jdn - start;
+  let month = 1;
+  for (let m = 1; m <= totalMonths; m++) {
+    const md = hebrewMonthDays(year, m);
+    if (doy < md) { month = m; break; }
+    doy -= md;
+  }
+
+  return { year, month, day: doy + 1, isLeap: isHebrewLeapYear(year) };
+}
+
 function daysInMonth(month: number, year: number) {
   return new Date(year, month, 0).getDate();
 }
 
-type Tab = "chinese" | "javanese" | "islamic";
+type Tab = "chinese" | "javanese" | "islamic" | "hebrew";
 
 export default function CalendarPage() {
   const now = useMemo(() => new Date(), []);
@@ -136,6 +235,11 @@ export default function CalendarPage() {
   const sakaYear = year - 78;
   const jMonthIdx = ((month + 9) % 12 + 12) % 12;
 
+  const hebrew = useMemo(() => jdnToHebrew(jdn), [jdn]);
+  const hebrewMonths = hebrew.isLeap ? HEBREW_MONTHS_LEAP : HEBREW_MONTHS_COMMON;
+  const hebrewMonthName = hebrewMonths[hebrew.month - 1];
+  const hebrewYearAm = hebrew.year;
+
   const isToday =
     !calculated || (year === now.getFullYear() && month === now.getMonth() + 1 && clampedDay === now.getDate());
 
@@ -143,6 +247,7 @@ export default function CalendarPage() {
     { key: "chinese", label: "Chinese", icon: "🐉" },
     { key: "javanese", label: "Javanese", icon: "🌴" },
     { key: "islamic", label: "Islamic", icon: "🌙" },
+    { key: "hebrew", label: "Hebrew", icon: "✡️" },
   ];
 
   return (
@@ -155,7 +260,7 @@ export default function CalendarPage() {
         World Calendars
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
-        Three calendars, one moment. Explore Chinese, Javanese, and Islamic dates.
+        Four calendars, one moment. Explore Chinese, Javanese, Islamic, and Hebrew dates.
       </p>
 
       <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
@@ -383,9 +488,64 @@ export default function CalendarPage() {
         </div>
       )}
 
+      {tab === "hebrew" && (
+        <div className="w-full max-w-2xl space-y-4">
+          <div className="apple-card px-6 py-5">
+            <div className="flex items-center gap-3 mb-1">
+              <span className="text-[22px]">✡️</span>
+              <h2 className="text-[17px] font-semibold text-[var(--color-ink)]">Hebrew Calendar (Luach)</h2>
+            </div>
+            <div className="text-[20px] font-bold text-[var(--color-ink)] mb-1">
+              {hebrew.day} {hebrewMonthName} {hebrewYearAm} AM
+            </div>
+            <div className="text-[13px] text-[var(--color-ink-muted-48)] mb-3">
+              Year {hebrewYearAm} Anno Mundi &middot; {hebrew.isLeap ? "Leap year (13 months)" : "Common year (12 months)"}
+            </div>
+            <div className="px-4 py-3 rounded-[11px] bg-[var(--color-surface-pearl)]">
+              <p className="text-[13px] leading-[1.7] text-[var(--color-ink)]">
+                The Hebrew calendar, also called the Jewish calendar, is a lunisolar calendar used by Jewish communities worldwide for religious observances. The year count begins from the biblical creation of the world (Anno Mundi), with the current epoch corresponding to 3761 BCE. Months follow the lunar cycle, while the 19-year cycle adds an extra month (Adar I) seven times per cycle to keep Passover in spring. The calendar features complex postponement rules (dehiyot) that prevent certain holy days from falling on prohibited weekdays. Today's date is <strong>{hebrew.day} {hebrewMonthName} {hebrewYearAm}</strong> in the Hebrew calendar. The current year is {hebrewYearAm % 1000} in the hebrew millennium.
+              </p>
+            </div>
+          </div>
+
+          <div className="apple-card px-6 py-5">
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Hebrew Months</h3>
+            <div className="grid grid-cols-3 gap-1.5">
+              {hebrewMonths.map((hm, i) => (
+                <div key={hm} className={`px-1 py-1.5 rounded-[8px] text-center text-[10px] ${i === hebrew.month - 1 ? 'bg-[var(--color-primary)] text-white font-semibold' : 'bg-[var(--color-surface-pearl)] text-[var(--color-ink-muted-48)]'}`}>
+                  <div className="font-semibold">{hm}</div>
+                  <div className="text-[8px] opacity-70">{i === hebrew.month - 1 ? "current" : ""}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="apple-card px-6 py-5">
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Jewish Holidays & Observances</h3>
+            <div className="grid grid-cols-1 gap-1.5">
+              {Object.entries(HEBREW_HOLIDAYS).map(([key, h]) => (
+                <button
+                  key={key}
+                  onClick={() => setOpenFestival(openFestival === key ? null : key)}
+                  className="w-full text-left px-3 py-2 rounded-[9px] bg-[var(--color-surface-pearl)] hover:brightness-95 active:brightness-90 transition-all"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-[12px] font-semibold text-[var(--color-ink)]">{h.name}</span>
+                    <span className="text-[10px] text-[var(--color-ink-muted-48)]">{h.date}</span>
+                  </div>
+                  {openFestival === key && (
+                    <p className="text-[11px] leading-[1.5] text-[var(--color-ink)] mt-1.5">{h.desc}</p>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="w-full max-w-2xl apple-card px-6 py-5 mt-4">
         <p className="text-[12px] leading-[1.6] text-[var(--color-ink-muted-48)]">
-          The Hijri date shown is an approximate conversion. Exact Islamic dates depend on local moon sighting and may vary by one day depending on location. The Chinese calendar shown uses the year-based zodiac cycle; exact lunar dates in the Chinese calendar would require a full lunisolar conversion. The Javanese pasaran calculation is based on a fixed reference date.
+          The Hijri date shown is an approximate conversion. Exact Islamic dates depend on local moon sighting and may vary by one day depending on location. The Chinese calendar shown uses the year-based zodiac cycle; exact lunar dates in the Chinese calendar would require a full lunisolar conversion. The Javanese pasaran calculation is based on a fixed reference date. The Hebrew date uses the standard tabular calendar with postponement rules (dehiyot).
         </p>
       </div>
           <Disclaimer type="divination" />
