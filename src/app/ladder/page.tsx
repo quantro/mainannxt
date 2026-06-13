@@ -57,19 +57,19 @@ export default function LadderPage() {
     }
 
     if (s.length < 3 || s.length > 5) {
-      setError("Words must be 3\u20135 letters.");
+      setError("Words must be 3–5 letters.");
       setSearched(false);
       return;
     }
 
     if (!isWord(s)) {
-      setError(`\u201C${s}\u201D is not in the dictionary.`);
+      setError(`"${s}" is not in the dictionary.`);
       setSearched(false);
       return;
     }
 
     if (!isWord(e)) {
-      setError(`\u201C${e}\u201D is not in the dictionary.`);
+      setError(`"${e}" is not in the dictionary.`);
       setSearched(false);
       return;
     }
@@ -157,7 +157,7 @@ export default function LadderPage() {
                 <div key={wi} className="flex items-center gap-3">
                   {wi > 0 && (
                     <span className="text-[var(--color-ink-muted-48)] text-[18px] leading-none">
-                      {'\u2192'}
+                      {'→'}
                     </span>
                   )}
                   <div className="flex gap-[2px]">

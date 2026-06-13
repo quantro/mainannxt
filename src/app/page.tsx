@@ -16,6 +16,9 @@ const tools = [
   { slug: "/numerology", icon: "\uD83D\uDD22", name: "Numerology", desc: "Life path and destiny numbers" },
   { slug: "/chinese-zodiac", icon: "\uD83D\uDC32", name: "Chinese Zodiac", desc: "Find your animal sign and element" },
   { slug: "/fortune", icon: "\uD83D\uDD2E", name: "Fortune Teller", desc: "Mystical fortune reading and tarot" },
+  { slug: "/primbon", icon: "\uD83C\uDF19", name: "Primbon Jawa", desc: "Javanese weton personality and love match" },
+  { slug: "/pranata-mangsa", icon: "\uD83C\uDF3E", name: "Pranata Mangsa", desc: "Javanese seasonal calendar and wisdom" },
+  { slug: "/calendar", icon: "\uD83D\uDCC5", name: "World Calendars", desc: "Chinese, Javanese, and Islamic calendars" },
 ];
 
 export default function Home() {

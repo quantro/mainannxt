@@ -78,7 +78,7 @@ const modes: { value: CipherMode; label: string }[] = [
   { value: "caesar", label: "Caesar" },
   { value: "rot13", label: "ROT13" },
   { value: "atbash", label: "Atbash" },
-  { value: "vigenere", label: "Vigen\u00e8re" },
+  { value: "vigenere", label: "Vigenère" },
   { value: "railfence", label: "Rail Fence" },
 ];
 
