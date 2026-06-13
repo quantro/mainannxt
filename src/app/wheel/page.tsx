@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ThemeToggle from "../theme-toggle";
 
 const COLORS = [
@@ -12,6 +12,14 @@ const COLORS = [
   "#ABEBC6", "#F2D7D5", "#AEB6BF", "#A9DFBF", "#F9E79F",
 ];
 
+function isDark(hex: string) {
+  const c = hex.replace("#", "");
+  const r = parseInt(c.slice(0, 2), 16);
+  const g = parseInt(c.slice(2, 4), 16);
+  const b = parseInt(c.slice(4, 6), 16);
+  return r * 0.299 + g * 0.587 + b * 0.114 < 140;
+}
+
 export default function WheelPage() {
   const [names, setNames] = useState<string[]>(["Alice", "Bob", "Charlie", "Diana"]);
   const [input, setInput] = useState("");
@@ -19,9 +27,71 @@ export default function WheelPage() {
   const [winner, setWinner] = useState<string | null>(null);
   const [rotation, setRotation] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  const segmentAngle = useMemo(() => 360 / names.length, [names]);
   const radius = 180;
+
+  const segAngle = useMemo(() => 360 / names.length, [names]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || names.length === 0) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const cx = radius;
+    const cy = radius;
+    const seg = (2 * Math.PI) / names.length;
+
+    ctx.clearRect(0, 0, radius * 2, radius * 2);
+
+    names.forEach((name, i) => {
+      const startAngle = i * seg - Math.PI / 2;
+      const endAngle = startAngle + seg;
+
+      // Segment fill
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, radius - 4, startAngle, endAngle);
+      ctx.closePath();
+      ctx.fillStyle = COLORS[i % COLORS.length];
+      ctx.fill();
+
+      // Segment border
+      ctx.strokeStyle = "rgba(255,255,255,0.6)";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Text
+      const midAngle = startAngle + seg / 2;
+      const textR = radius * 0.62;
+      const tx = cx + Math.cos(midAngle) * textR;
+      const ty = cy + Math.sin(midAngle) * textR;
+
+      ctx.save();
+      ctx.translate(tx, ty);
+      ctx.rotate(midAngle + Math.PI / 2);
+      ctx.fillStyle = isDark(COLORS[i % COLORS.length]) ? "#fff" : "#1a1a1a";
+      ctx.font = `bold ${Math.max(10, Math.min(14, 200 / names.length))}px -apple-system, system-ui, sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+
+      const maxLen = Math.max(3, Math.floor((radius * 0.35) / (5 + names.length * 0.4)));
+      const label = name.length > maxLen ? name.slice(0, maxLen - 1) + "\u2026" : name;
+      ctx.fillText(label, 0, 0);
+      ctx.restore();
+    });
+
+    // Center hub with ring
+    ctx.beginPath();
+    ctx.arc(cx, cy, 16, 0, 2 * Math.PI);
+    const g = ctx.createRadialGradient(cx - 4, cy - 4, 2, cx, cy, 16);
+    g.addColorStop(0, "#fff");
+    g.addColorStop(1, "#e0e0e0");
+    ctx.fillStyle = g;
+    ctx.fill();
+    ctx.strokeStyle = "#ccc";
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }, [names, radius]);
 
   function addName() {
     const trimmed = input.trim();
@@ -42,70 +112,19 @@ export default function WheelPage() {
     setSpinning(true);
     setWinner(null);
 
-    const spinDeg = 1800 + Math.random() * 720;
+    const extraSpins = 5 + Math.floor(Math.random() * 3);
+    const spinDeg = extraSpins * 360 + Math.random() * 360;
     const totalRotation = rotation + spinDeg;
     setRotation(totalRotation);
 
-    const normalized = totalRotation % 360;
-    const winIdx = Math.floor((360 - (normalized % 360)) / segmentAngle) % names.length;
+    const normalized = ((totalRotation % 360) + 360) % 360;
+    const winIdx = Math.floor((360 - normalized) / segAngle) % names.length;
     const picked = names[winIdx];
 
     setTimeout(() => {
       setWinner(picked);
       setSpinning(false);
-    }, 4000);
-  }
-
-  function drawCanvas(ctx: CanvasRenderingContext2D, rot: number) {
-    const cx = radius;
-    const cy = radius;
-    const seg = (2 * Math.PI) / names.length;
-
-    ctx.clearRect(0, 0, radius * 2, radius * 2);
-
-    names.forEach((name, i) => {
-      const startAngle = rot + i * seg - Math.PI / 2;
-      const endAngle = startAngle + seg;
-
-      ctx.beginPath();
-      ctx.moveTo(cx, cy);
-      ctx.arc(cx, cy, radius - 4, startAngle, endAngle);
-      ctx.closePath();
-      ctx.fillStyle = COLORS[i % COLORS.length];
-      ctx.fill();
-      ctx.strokeStyle = "#fff";
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
-      const midAngle = startAngle + seg / 2;
-      const textR = radius * 0.62;
-      const tx = cx + Math.cos(midAngle) * textR;
-      const ty = cy + Math.sin(midAngle) * textR;
-
-      ctx.save();
-      ctx.translate(tx, ty);
-      ctx.rotate(midAngle + Math.PI / 2);
-      ctx.fillStyle = "#1a1a1a";
-      ctx.font = "bold 11px -apple-system, system-ui, sans-serif";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-
-      const maxLen = Math.floor((radius * 0.35) / 6.5);
-      const label = name.length > maxLen ? name.slice(0, maxLen) + ".." : name;
-      ctx.fillText(label, 0, 0);
-      ctx.restore();
-    });
-
-    const grd = ctx.createRadialGradient(cx, cy, 8, cx, cy, radius * 0.18);
-    grd.addColorStop(0, "#fff");
-    grd.addColorStop(1, "#f0f0f0");
-    ctx.beginPath();
-    ctx.arc(cx, cy, radius * 0.14, 0, 2 * Math.PI);
-    ctx.fillStyle = grd;
-    ctx.fill();
-    ctx.strokeStyle = "#ddd";
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
+    }, 4500);
   }
 
   return (
@@ -157,18 +176,22 @@ export default function WheelPage() {
 
       <div className="relative w-full max-w-[400px] mx-auto mb-6 flex flex-col items-center">
         <div className="w-[360px] h-[360px] relative touch-none">
-          {/* Pointer */}
           <div className="absolute top-[-8px] left-1/2 -translate-x-1/2 z-10">
-            <svg width="28" height="30" viewBox="0 0 28 30">
-              <polygon points="14,30 0,0 28,0" fill="#FF3B30" stroke="#fff" strokeWidth="2" />
+            <svg width="28" height="32" viewBox="0 0 28 32">
+              <polygon points="14,32 0,0 28,0" fill="#FF3B30" stroke="#fff" strokeWidth="2" />
             </svg>
           </div>
           <canvas
             ref={canvasRef}
             width={radius * 2}
             height={radius * 2}
-            className="w-[360px] h-[360px] rounded-full shadow-lg"
-            style={{ transform: `rotate(${rotation}deg)`, transition: spinning ? "transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99)" : "none" }}
+            className="w-[360px] h-[360px] rounded-full shadow-xl"
+            style={{
+              transform: `rotate(${rotation}deg)`,
+              transition: spinning
+                ? "transform 4.5s cubic-bezier(0.13, 0.72, 0.14, 1)"
+                : "none",
+            }}
           />
         </div>
         <button
@@ -181,7 +204,7 @@ export default function WheelPage() {
       </div>
 
       {winner && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5 text-center animate-in fade-in">
+        <div className="w-full max-w-2xl apple-card px-6 py-5 text-center">
           <div className="text-[36px] mb-2">🎉</div>
           <div className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-1">Winner</div>
           <div className="text-[28px] font-bold text-[var(--color-ink)]">{winner}</div>
