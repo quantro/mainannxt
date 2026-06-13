@@ -29,6 +29,7 @@ Open [http://localhost:3000](http://localhost:3000) to see the result.
 | `/ladder` | `src/app/ladder/page.tsx` | **Word Ladder** — BFS shortest-path search between two words, showing each step with the changed letter highlighted. |
 | `/wheel` | `src/app/wheel/page.tsx` | **Wheel of Names** — Canvas-drawn spinning wheel with colored segments and name management. |
 | `/network` | `src/app/network/page.tsx` | **Network Tools** — My IP (ipify + ipapi geolocation), DNS lookup (Google DNS-over-HTTPS), and common ports reference. |
+| `/bentopdf` | `src/app/bentopdf/page.tsx` | **BentoPDF** — Full privacy-first PDF toolkit embedded via iframe: merge, split, edit, convert, compress, encrypt, and more. |
 | `/zodiac` | `src/app/zodiac/page.tsx` | **Star Sign Reader** — Western zodiac sign calculator with personality profiles and compatibility. |
 | `/tarot` | `src/app/tarot/page.tsx` | **Tarot Reading** — Full 78-card Rider-Waite-Smith deck with single, three-card, and Celtic Cross spreads. Includes card images, multi-paragraph readings, and conclusion synthesis. |
 | `/runes` | `src/app/runes/page.tsx` | **Rune Divination** — 24 Elder Futhark runes organized in three aettir. Single, three-rune, and five-rune spreads with upright/merkstave interpretations, full readings, and keyword tags. |
@@ -42,6 +43,7 @@ Open [http://localhost:3000](http://localhost:3000) to see the result.
 ### Shared Components
 
 - **`src/app/theme-toggle.tsx`** — Sun/moon toggle button that persists the active theme to `localStorage`. Used by all pages.
+- **`src/app/disclaimer.tsx`** — Reusable disclaimer component with two variants (divination/utility). Used by all pages.
 - **`src/app/globals.css`** — Design system via CSS custom properties mapped to Tailwind v4 `@theme` tokens (Apple-inspired: SF Pro fonts, pill buttons, parchment backgrounds).
 - **`src/app/layout.tsx`** — Root layout with flicker-free theming via inline script and `data-theme` attribute.
 
