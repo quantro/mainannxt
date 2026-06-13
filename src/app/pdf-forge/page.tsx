@@ -1,13 +1,14 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
-import { PDFDocument, rgb } from "pdf-lib";
+import { PDFDocument, PDFName, PDFRawStream, rgb } from "pdf-lib";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
 
-type Tool = "merge" | "image" | "text";
+type Tool = "compress" | "merge" | "image" | "text";
 
 const TOOLS: { key: Tool; icon: string; label: string }[] = [
+  { key: "compress", icon: "\uD83D\uDCE6", label: "Compress PDF" },
   { key: "merge", icon: "\uD83D\uDCCB", label: "Merge PDFs" },
   { key: "image", icon: "\uD83D\uDDBC\uFE0F", label: "Image to PDF" },
   { key: "text", icon: "\u270D\uFE0F", label: "Text to PDF" },
@@ -34,8 +35,15 @@ export default function PdfForgePage() {
   const [textBlob, setTextBlob] = useState<Blob | null>(null);
   const [textLoading, setTextLoading] = useState(false);
 
+  const [compressFile, setCompressFile] = useState<File | null>(null);
+  const [compressQuality, setCompressQuality] = useState(0.5);
+  const [compressBlob, setCompressBlob] = useState<Blob | null>(null);
+  const [compressOrigSize, setCompressOrigSize] = useState(0);
+  const [compressLoading, setCompressLoading] = useState(false);
+
   const mergeInputRef = useRef<HTMLInputElement>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
+  const compressInputRef = useRef<HTMLInputElement>(null);
 
   async function doMerge() {
     if (mergeFiles.length < 2) return;
@@ -146,6 +154,66 @@ export default function PdfForgePage() {
     setTextLoading(false);
   }
 
+  async function doCompress() {
+    const file = compressFile;
+    if (!file) return;
+    setCompressLoading(true);
+    setCompressBlob(null);
+    const origSize = file.size;
+    setCompressOrigSize(origSize);
+    try {
+      const buf = await file.arrayBuffer();
+      const pdfDoc = await PDFDocument.load(buf, { ignoreEncryption: true });
+
+      pdfDoc.setTitle("");
+      pdfDoc.setAuthor("");
+      pdfDoc.setSubject("");
+      pdfDoc.setKeywords([]);
+      pdfDoc.setProducer("");
+      pdfDoc.setCreator("");
+
+      const quality = compressQuality;
+      const objects = pdfDoc.context.enumerateIndirectObjects();
+      for (const [, obj] of objects) {
+        if (obj instanceof PDFRawStream) {
+          const filter = obj.dict.get(PDFName.of("Filter"));
+          const filter2 = obj.dict.get(PDFName.of("SubFilter"));
+          if (
+            (filter === PDFName.of("DCTDecode") || filter2 === PDFName.of("DCTDecode")) &&
+            obj.contents.length > 100
+          ) {
+            try {
+              const blob = new Blob([obj.contents as BlobPart], { type: "image/jpeg" });
+              const bitmap = await createImageBitmap(blob);
+              const canvas = document.createElement("canvas");
+              canvas.width = bitmap.width;
+              canvas.height = bitmap.height;
+              const ctx = canvas.getContext("2d")!;
+              ctx.drawImage(bitmap, 0, 0);
+              bitmap.close();
+              const compressedBlob = await new Promise<Blob>((res) =>
+                canvas.toBlob((b) => res(b!), "image/jpeg", quality)
+              );
+              const compressed = new Uint8Array(await compressedBlob.arrayBuffer());
+              if (compressed.length < obj.contents.length) {
+                (obj as any).contents = compressed;
+              }
+            } catch {
+              /* skip images that fail */
+            }
+          }
+        }
+      }
+
+      const saved = await pdfDoc.save({ useObjectStreams: true });
+      const compressedBytes = saved.buffer as ArrayBuffer;
+      setCompressBlob(new Blob([compressedBytes], { type: "application/pdf" }));
+    } catch (e: unknown) {
+      alert("Compression failed: " + (e instanceof Error ? e.message : "Unknown error"));
+    }
+    setCompressLoading(false);
+  }
+
   const mergeWarn = useMemo(() => {
     if (mergeFiles.length < 2) return "Select at least 2 PDF files to merge.";
     return "";
@@ -160,7 +228,7 @@ export default function PdfForgePage() {
         PDF Forge
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
-        Client-side PDF tools: merge, image-to-PDF, and text-to-PDF. Nothing leaves your device.
+        Client-side PDF tools: compress, merge, image-to-PDF, and text-to-PDF. Nothing leaves your device.
       </p>
 
       <div className="w-full max-w-2xl flex gap-1 mb-5">
@@ -178,6 +246,78 @@ export default function PdfForgePage() {
           </button>
         ))}
       </div>
+
+      {tab === "compress" && (
+        <div className="w-full max-w-2xl space-y-4">
+          <div className="apple-card px-6 py-5">
+            <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Select PDF</h2>
+            <input
+              ref={compressInputRef}
+              type="file"
+              accept=".pdf,application/pdf"
+              onChange={(e) => {
+                setCompressBlob(null);
+                setCompressFile(e.target.files?.[0] || null);
+              }}
+              className="w-full text-[13px] file:mr-2 file:px-3 file:py-1.5 file:rounded-[8px] file:border-0 file:text-[12px] file:font-semibold file:bg-[var(--color-primary)] file:text-white file:cursor-pointer"
+            />
+            {compressFile && (
+              <div className="mt-3 flex items-center justify-between text-[12px] text-[var(--color-ink-muted-48)]">
+                <span className="truncate">{compressFile.name}</span>
+                <span>{formatSize(compressFile.size)}</span>
+              </div>
+            )}
+          </div>
+          <div className="apple-card px-6 py-5">
+            <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Compression Level</h2>
+            <div className="flex items-center gap-3">
+              <span className="text-[11px] text-[var(--color-ink-muted-48)] w-10 text-right">Light</span>
+              <input
+                type="range"
+                min="0"
+                max="2"
+                step="1"
+                value={compressQuality > 0.7 ? 0 : compressQuality > 0.3 ? 1 : 2}
+                onChange={(e) => {
+                  const v = parseInt(e.target.value);
+                  setCompressQuality(v === 0 ? 0.8 : v === 1 ? 0.5 : 0.2);
+                }}
+                className="flex-1 accent-[var(--color-primary)]"
+              />
+              <span className="text-[11px] text-[var(--color-ink-muted-48)] w-10">Max</span>
+            </div>
+            <p className="text-[11px] text-[var(--color-ink-muted-48)] mt-2 text-center">
+              Recompresses JPEG images at the selected quality + deflate stream compression.
+              For advanced features, use the full bentopdf toolkit.
+            </p>
+          </div>
+          <button
+            onClick={doCompress}
+            disabled={!compressFile || compressLoading}
+            className="apple-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
+          >
+            {compressLoading ? "Compressing\u2026" : "Compress PDF"}
+          </button>
+          {compressBlob && (
+            <div className="apple-card px-6 py-5 text-center">
+              <p className="text-[13px] font-semibold text-[var(--color-ink)] mb-1">
+                Compressed successfully
+              </p>
+              <p className="text-[11px] text-[var(--color-ink-muted-48)] mb-3">
+                {formatSize(compressOrigSize)} &rarr; {formatSize(compressBlob.size)}
+                {" "}({Math.round((1 - compressBlob.size / compressOrigSize) * 100)}% reduction)
+              </p>
+              <a
+                href={URL.createObjectURL(compressBlob)}
+                download={"compressed-" + compressFile?.name}
+                className="inline-block apple-btn-primary px-6 py-2 text-[13px]"
+              >
+                Download compressed PDF
+              </a>
+            </div>
+          )}
+        </div>
+      )}
 
       {tab === "merge" && (
         <div className="w-full max-w-2xl space-y-4">
@@ -324,7 +464,7 @@ export default function PdfForgePage() {
             BentoPDF
           </a>
           , an open-source privacy-first PDF toolkit.
-          For advanced features (split, compress, encrypt, OCR, watermark, and more), visit the original project.
+          For advanced features (split, encrypt, OCR, watermark, and more), visit the original project.
         </p>
       </div>
 

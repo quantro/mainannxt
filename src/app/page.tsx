@@ -23,7 +23,7 @@ const tools: Tool[] = [
   { slug: "/cipher", icon: "\uD83D\uDD11", name: "Cipher Tool", desc: "Encode and decode text with ciphers", category: "Utilities" },
   { slug: "/wheel", icon: "\uD83C\uDFAF", name: "Wheel of Names", desc: "Spin to pick a random winner", category: "Utilities" },
   { slug: "/network", icon: "\uD83C\uDF10", name: "Network Tools", desc: "IP, DNS lookup, and port reference", category: "Utilities" },
-  { slug: "/pdf-forge", icon: "\uD83D\uDCC4", name: "PDF Forge", desc: "Merge PDFs, convert images and text to PDF", category: "Utilities" },
+  { slug: "/pdf-forge", icon: "\uD83D\uDCC4", name: "PDF Forge", desc: "Compress, merge, convert images and text to PDF", category: "Utilities" },
   { slug: "/zodiac", icon: "\uD83C\uDF1F", name: "Star Sign Reader", desc: "Discover your zodiac sign and traits", category: "Divination" },
   { slug: "/tarot", icon: "\uD83C\uDF84", name: "Tarot Reading", desc: "Full 78-card deck with multiple spreads", category: "Divination" },
   { slug: "/runes", icon: "\uD83E\uDEA8", name: "Rune Divination", desc: "Elder Futhark rune casting and readings", category: "Divination" },
