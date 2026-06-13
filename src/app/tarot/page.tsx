@@ -158,6 +158,32 @@ function getSuitColor(suit: string): string {
   return SUIT_COLORS[suit] ?? "#6b4fa0";
 }
 
+const MAJOR_TO_FILE: Record<string, string> = {
+  "The Fool": "fool", "The Magician": "magician", "The High Priestess": "priestess",
+  "The Empress": "empress", "The Emperor": "emperor", "The Hierophant": "hierophant",
+  "The Lovers": "lovers", "The Chariot": "chariot", "Strength": "strength",
+  "The Hermit": "hermit", "Wheel of Fortune": "fortune", "Justice": "justice",
+  "The Hanged Man": "hanged", "Death": "death", "Temperance": "temperance",
+  "The Devil": "devil", "The Tower": "tower", "The Star": "star",
+  "The Moon": "moon", "The Sun": "sun", "Judgement": "judgement", "The World": "world",
+};
+
+const MINOR_RANK_TO_FILE: Record<string, string> = {
+  "Ace": "ace", "Two": "2", "Three": "3", "Four": "4", "Five": "5",
+  "Six": "6", "Seven": "7", "Eight": "8", "Nine": "9", "Ten": "10",
+  "Page": "page", "Knight": "knight", "Queen": "queen", "King": "king",
+};
+
+function getCardImage(card: TarotCard): string {
+  if (card.arcana === "major") {
+    const key = MAJOR_TO_FILE[card.name];
+    return key ? `/tarot/major_arcana_${key}.png` : "";
+  }
+  const suit = card.suit.toLowerCase();
+  const rank = MINOR_RANK_TO_FILE[card.number ?? ""] ?? "";
+  return rank ? `/tarot/minor_arcana_${suit}_${rank}.png` : "";
+}
+
 function getConclusion(cards: { card: TarotCard; reversed: boolean }[], spread: Spread): string {
   const isReversed = (i: number) => cards[i]?.reversed ?? false;
   const name = (i: number) => cards[i]?.card.name ?? "";
@@ -261,9 +287,12 @@ export default function TarotPage() {
                     <div className="text-[13px] font-bold text-center" style={{ color: suitColor }}>
                       {card.arcana === "major" ? MAJOR_SYMBOLS[card.name] ?? "" : card.number}
                     </div>
-                    <div className="text-[36px] my-1">
-                      {card.suit === "Major Arcana" ? "✦" : SUIT_EMOJI[card.suit] ?? "⬡"}
-                    </div>
+                    <img
+                      src={getCardImage(card)}
+                      alt={card.name}
+                      className="w-[110px] h-auto my-1.5 rounded-[6px] shadow-sm"
+                      loading="lazy"
+                    />
                     <div className="text-[14px] font-bold text-center text-[#1a1a1a] leading-tight">{card.name}</div>
                     <div className="text-[9px] text-center mt-1 px-2 py-0.5 rounded-full" style={{ background: `${suitColor}20`, color: suitColor }}>
                       {card.suit === "Major Arcana" ? "Major Arcana" : `${card.suit} (${card.element})`}
@@ -343,6 +372,10 @@ export default function TarotPage() {
           </p>
         </div>
       )}
+
+      <p className="text-[10px] text-[var(--color-ink-muted-48)] mt-8 text-center max-w-lg">
+        Cards sourced from the public domain <strong>Rider-Waite-Smith tarot</strong> (1909) by A.E. Waite and Pamela Colman Smith, via the <a href="https://archive.org/details/rider-waite-tarot" target="_blank" rel="noopener noreferrer" className="underline">Internet Archive</a>.
+      </p>
     </div>
   );
 }

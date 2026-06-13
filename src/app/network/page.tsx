@@ -284,6 +284,9 @@ export default function NetworkPage() {
           </div>
         </div>
       )}
+      <p className="text-[10px] text-[var(--color-ink-muted-48)] mt-8 text-center max-w-lg leading-[1.6]">
+        Public IP via <a href="https://www.ipify.org" target="_blank" rel="noopener noreferrer" className="underline">ipify</a>. Geolocation by <a href="https://ipapi.co" target="_blank" rel="noopener noreferrer" className="underline">ipapi</a>. DNS resolution by <a href="https://dns.google" target="_blank" rel="noopener noreferrer" className="underline">Google Public DNS</a>.
+      </p>
     </div>
   );
 }

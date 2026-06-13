@@ -24,6 +24,7 @@ const tools: Tool[] = [
   { slug: "/network", icon: "\uD83C\uDF10", name: "Network Tools", desc: "IP, DNS lookup, and port reference", category: "Utilities" },
   { slug: "/zodiac", icon: "\uD83C\uDF1F", name: "Star Sign Reader", desc: "Discover your zodiac sign and traits", category: "Divination" },
   { slug: "/tarot", icon: "\uD83C\uDF84", name: "Tarot Reading", desc: "Full 78-card deck with multiple spreads", category: "Divination" },
+  { slug: "/runes", icon: "\uD83E\uDEA8", name: "Rune Divination", desc: "Elder Futhark rune casting and readings", category: "Divination" },
   { slug: "/numerology", icon: "\uD83D\uDD22", name: "Numerology", desc: "Life path and destiny numbers", category: "Divination" },
   { slug: "/chinese-zodiac", icon: "\uD83D\uDC32", name: "Chinese Zodiac", desc: "Find your animal sign and element", category: "Divination" },
   { slug: "/fortune", icon: "\uD83D\uDD2E", name: "Fortune Teller", desc: "Mystical fortune reading and tarot", category: "Divination" },

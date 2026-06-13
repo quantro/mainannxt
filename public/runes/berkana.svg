@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" width="200" height="280">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f5efe6"/>
+      <stop offset="100%" stop-color="#ece3d5"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="280" fill="url(#bg)" rx="14"/>
+  <rect x="4" y="4" width="192" height="272" fill="none" stroke="#d4c9b5" stroke-width="1" rx="12"/>
+  <text x="100" y="205" text-anchor="middle"
+    font-family="'Apple Symbols','Segoe UI Symbol','Arial Unicode MS','Noto Sans Symbols',sans-serif"
+    font-size="140" fill="#3d3229" font-weight="400">ᛒ</text>
+</svg>
