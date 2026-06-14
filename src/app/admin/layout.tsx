@@ -8,6 +8,7 @@ import ThemeToggle from "../theme-toggle";
 const nav = [
   { href: "/admin", label: "Dashboard", icon: "\uD83D\uDCCA" },
   { href: "/admin/clicks", label: "Click Log", icon: "\uD83D\uDCCB" },
+  { href: "/admin/suggestions", label: "Saran", icon: "\uD83D\uDCE3" },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

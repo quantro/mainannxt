@@ -44,8 +44,10 @@ Open [http://localhost:3000](http://localhost:3000) to see the result.
 | `/weton-calendar` | `src/app/weton-calendar/page.tsx` | **Weton Calendar** — Month-at-a-glance grid with weton per day (day + pasaran), 35-combination legend, and cultural context essay. |
 | `/tafsir-mimpi` | `src/app/tafsir-mimpi/page.tsx` | **Tafsir Mimpi** — Searchable Javanese dream dictionary with ~780 dream symbols and multi-paragraph interpretations in Indonesian. |
 | `/calendar` | `src/app/calendar/page.tsx` | **World Calendars** — 4-tab viewer for Chinese (stem-branch + zodiac), Javanese (Saka + weton), Islamic (Hijri), and Hebrew calendars. |
-| `/admin` | `src/app/admin/page.tsx` | **Admin Dashboard** — Click summary overview. Auth TBD. |
-| `/admin/clicks` | `src/app/admin/clicks/page.tsx` | **Click Log** — IP-tracked click history, grouped by day with search. Auth TBD. |
+| `/saran` | `src/app/saran/page.tsx` | **Kirim Saran** — Form untuk mengirim saran atau ide alat baru. Bahasa Indonesia. |
+| `/admin` | `src/app/admin/page.tsx` | **Admin Dashboard** — Click summary overview. Auth required. |
+| `/admin/clicks` | `src/app/admin/clicks/page.tsx` | **Click Log** — IP-tracked click history, grouped by day with search. Auth required. |
+| `/admin/suggestions` | `src/app/admin/suggestions/page.tsx` | **Saran Masukan** — Lihat saran dari pengguna. Auth required. |
 
 ### Shared Components
 
