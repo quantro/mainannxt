@@ -65,6 +65,12 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center min-h-screen px-6 py-24">
       <div className="absolute top-4 right-4 flex items-center gap-2">
+        <Link
+          href="/saran"
+          className="apple-btn-ghost text-[13px] no-underline"
+        >
+          Saran
+        </Link>
         <button
           onClick={() => setShowStats(!showStats)}
           className="apple-btn-ghost text-[13px]"
