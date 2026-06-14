@@ -46,11 +46,19 @@ const tools: Tool[] = [
   { slug: "/countdown-timer", icon: "\u23F1\uFE0F", name: "Countdown Timer", desc: "Countdown timer and stopwatch with lap recording", category: "Utilities" },
   { slug: "/random-number", icon: "\uD83D\uDCAF", name: "Random Number", desc: "Generate random numbers with customizable ranges", category: "Utilities" },
   { slug: "/saran", icon: "\uD83D\uDCE3", name: "Kirim Saran", desc: "Sampaikan ide atau masukan untuk alat baru", category: "Utilities" },
+  { slug: "/personality-test", icon: "\uD83E\uDDD0", name: "Personality Test", desc: "Tes kepribadian Big Five (OCEAN) dalam bahasa Indonesia", category: "Psychology" },
+  { slug: "/stress-assessment", icon: "\uD83D\uDCA9", name: "Stress Assessment", desc: "Kuesioner stres dan kecemasan berdasarkan GAD-7 & PSS", category: "Psychology" },
+  { slug: "/mood-tracker", icon: "\uD83D\uDE0A", name: "Mood Tracker", desc: "Lacak suasana hati harian dengan kalender visual", category: "Psychology" },
+  { slug: "/habit-tracker", icon: "\uD83D\uDD14", name: "Habit Tracker", desc: "Catat kebiasaan harian dan lihat streak Anda", category: "Psychology" },
+  { slug: "/focus-timer", icon: "\u23F1\uFE0F", name: "Focus Timer", desc: "Teknik Pomodoro dengan timer melingkar dan sesi tracking", category: "Psychology" },
+  { slug: "/cognitive-biases", icon: "\uD83E\uDDE0", name: "Cognitive Biases", desc: "Ensiklopedia bias kognitif lengkap dengan contoh", category: "Psychology" },
+  { slug: "/emotion-wheel", icon: "\uD83C\uDF0D", name: "Emotion Wheel", desc: "Roda emosi Plutchik interaktif untuk memahami perasaan", category: "Psychology" },
 ];
 
 const CATEGORIES = [
   { key: "Words", icon: "\uD83D\uDCDD", label: "Word Play" },
   { key: "Utilities", icon: "\uD83D\uDEE0\uFE0F", label: "Utilities & Tools" },
+  { key: "Psychology", icon: "\uD83E\uDDD0", label: "Psychology & Self-Improvement" },
   { key: "Divination", icon: "\uD83D\uDD2E", label: "Divination & Astrology" },
   { key: "Calendars", icon: "\uD83D\uDCC5", label: "Calendars & Seasons" },
 ];

@@ -50,6 +50,13 @@ Open [http://localhost:3000](http://localhost:3000) to see the result.
 | `/text-diff` | `src/app/text-diff/page.tsx` | **Text Diff** — Compare two texts with line-by-line diff highlighting. |
 | `/countdown-timer` | `src/app/countdown-timer/page.tsx` | **Countdown Timer** — Countdown timer and stopwatch with lap recording. |
 | `/random-number` | `src/app/random-number/page.tsx` | **Random Number** — Generate random numbers with customizable ranges. |
+| `/personality-test` | `src/app/personality-test/page.tsx` | **Personality Test** — Tes kepribadian Big Five (OCEAN) dalam bahasa Indonesia. |
+| `/stress-assessment` | `src/app/stress-assessment/page.tsx` | **Stress Assessment** — Kuesioner stres dan kecemasan berdasarkan GAD-7 & PSS. |
+| `/mood-tracker` | `src/app/mood-tracker/page.tsx` | **Mood Tracker** — Lacak suasana hati harian dengan kalender visual. |
+| `/habit-tracker` | `src/app/habit-tracker/page.tsx` | **Habit Tracker** — Catat kebiasaan harian dan lihat streak Anda. |
+| `/focus-timer` | `src/app/focus-timer/page.tsx` | **Focus Timer** — Teknik Pomodoro dengan timer melingkar dan sesi tracking. |
+| `/cognitive-biases` | `src/app/cognitive-biases/page.tsx` | **Cognitive Biases** — Ensiklopedia bias kognitif lengkap dengan contoh. |
+| `/emotion-wheel` | `src/app/emotion-wheel/page.tsx` | **Emotion Wheel** — Roda emosi Plutchik interaktif untuk memahami perasaan. |
 | `/saran` | `src/app/saran/page.tsx` | **Kirim Saran** — Form untuk mengirim saran atau ide alat baru. Bahasa Indonesia. |
 | `/admin` | `src/app/admin/page.tsx` | **Admin Dashboard** — Click summary overview. Auth required. |
 | `/admin/clicks` | `src/app/admin/clicks/page.tsx` | **Click Log** — IP-tracked click history, grouped by day with search. Auth required. |
