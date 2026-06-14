@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ThemeToggle from "../theme-toggle";
 
 interface LogEntry {
   id: number;
@@ -52,7 +51,7 @@ function maskIp(ip: string) {
   return ip;
 }
 
-export default function ClickHistoryPage() {
+export default function AdminClickLog() {
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [search, setSearch] = useState("");
 
@@ -79,15 +78,9 @@ export default function ClickHistoryPage() {
   }, {});
 
   return (
-    <div className="flex flex-col items-center min-h-screen px-6 py-24">
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
-      </div>
-
-      <h1 className="apple-headline text-[32px] leading-[1.1] text-center mb-1">
-        Click History
-      </h1>
-      <p className="text-[14px] text-[var(--color-ink-muted-48)] mb-6">
+    <div>
+      <h1 className="text-[24px] font-semibold mb-1">Click Log</h1>
+      <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6">
         {logs.length} click{logs.length === 1 ? "" : "s"} recorded
       </p>
 
