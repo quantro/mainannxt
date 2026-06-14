@@ -3,6 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import { PDFDocument, PDFName, PDFRawStream, rgb } from "pdf-lib";
 import ThemeToggle from "../theme-toggle";
+import { PageTitle } from "../page-title";
 import { Disclaimer } from "../disclaimer";
 
 type Tool = "compress" | "merge" | "split" | "image" | "text";
@@ -265,6 +266,7 @@ export default function PdfForgePage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
+      <PageTitle title="PDF Forge" />
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>

@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { fetchStats, totalClicks, sortedTools, type ClickCounts } from "@/lib/tracker";
+import { PageTitle } from "../page-title";
+import { SkeletonList } from "../skeleton";
 
 const toolsInfo: Record<string, { icon: string; name: string }> = {
   "/word-maker": { icon: "\u270F\uFE0F", name: "Word Maker" },
@@ -30,10 +32,14 @@ const toolsInfo: Record<string, { icon: string; name: string }> = {
 };
 
 export default function AdminDashboard() {
+  const [loading, setLoading] = useState(true);
   const [counts, setCounts] = useState<ClickCounts>({});
 
   useEffect(() => {
-    fetchStats().then(setCounts);
+    fetchStats().then((data) => {
+      setCounts(data);
+      setLoading(false);
+    });
   }, []);
 
   const sorted = sortedTools(counts);
@@ -41,32 +47,37 @@ export default function AdminDashboard() {
 
   return (
     <div>
+      <PageTitle title="Admin Dashboard" />
       <h1 className="text-[24px] font-semibold mb-1">Dashboard</h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6">
         {total} total click{total === 1 ? "" : "s"} across {sorted.length} tool{sorted.length === 1 ? "" : "s"}
       </p>
 
-      <div className="apple-card p-5">
-        <h2 className="text-[15px] font-semibold mb-3">Click Summary</h2>
-        {sorted.length === 0 ? (
-          <p className="text-[13px] text-[var(--color-ink-muted-48)]">No clicks yet.</p>
-        ) : (
-          <div className="space-y-2">
-            {sorted.map(([slug, n]) => {
-              const info = toolsInfo[slug];
-              return (
-                <div key={slug} className="flex items-center justify-between text-[13px]">
-                  <span>
-                    <span className="mr-2">{info?.icon || "\uD83D\uDCC1"}</span>
-                    {info?.name || slug}
-                  </span>
-                  <span className="font-semibold tabular-nums">{n}</span>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
+      {loading ? (
+        <SkeletonList count={8} />
+      ) : (
+        <div className="apple-card p-5">
+          <h2 className="text-[15px] font-semibold mb-3">Click Summary</h2>
+          {sorted.length === 0 ? (
+            <p className="text-[13px] text-[var(--color-ink-muted-48)]">No clicks yet.</p>
+          ) : (
+            <div className="space-y-2">
+              {sorted.map(([slug, n]) => {
+                const info = toolsInfo[slug];
+                return (
+                  <div key={slug} className="flex items-center justify-between text-[13px]">
+                    <span>
+                      <span className="mr-2">{info?.icon || "\uD83D\uDCC1"}</span>
+                      {info?.name || slug}
+                    </span>
+                    <span className="font-semibold tabular-nums">{n}</span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

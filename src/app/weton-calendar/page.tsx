@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
+import { PageTitle } from "../page-title";
 
 const DAYS = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
 const PASARAN = ["Legi", "Pahing", "Pon", "Wage", "Kliwon"];
@@ -126,6 +127,7 @@ export default function WetonCalendarPage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
+      <PageTitle title="Weton Calendar" />
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>

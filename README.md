@@ -44,6 +44,12 @@ Open [http://localhost:3000](http://localhost:3000) to see the result.
 | `/weton-calendar` | `src/app/weton-calendar/page.tsx` | **Weton Calendar** — Month-at-a-glance grid with weton per day (day + pasaran), 35-combination legend, and cultural context essay. |
 | `/tafsir-mimpi` | `src/app/tafsir-mimpi/page.tsx` | **Tafsir Mimpi** — Searchable Javanese dream dictionary with ~780 dream symbols and multi-paragraph interpretations in Indonesian. |
 | `/calendar` | `src/app/calendar/page.tsx` | **World Calendars** — 4-tab viewer for Chinese (stem-branch + zodiac), Javanese (Saka + weton), Islamic (Hijri), and Hebrew calendars. |
+| `/unit-converter` | `src/app/unit-converter/page.tsx` | **Unit Converter** — Convert length, weight, temperature, and volume units. |
+| `/color-picker` | `src/app/color-picker/page.tsx` | **Color Picker** — Convert between HEX, RGB, and HSL color formats with swatch preview. |
+| `/json-formatter` | `src/app/json-formatter/page.tsx` | **JSON Formatter** — Format, validate, and minify JSON. |
+| `/text-diff` | `src/app/text-diff/page.tsx` | **Text Diff** — Compare two texts with line-by-line diff highlighting. |
+| `/countdown-timer` | `src/app/countdown-timer/page.tsx` | **Countdown Timer** — Countdown timer and stopwatch with lap recording. |
+| `/random-number` | `src/app/random-number/page.tsx` | **Random Number** — Generate random numbers with customizable ranges. |
 | `/saran` | `src/app/saran/page.tsx` | **Kirim Saran** — Form untuk mengirim saran atau ide alat baru. Bahasa Indonesia. |
 | `/admin` | `src/app/admin/page.tsx` | **Admin Dashboard** — Click summary overview. Auth required. |
 | `/admin/clicks` | `src/app/admin/clicks/page.tsx` | **Click Log** — IP-tracked click history, grouped by day with search. Auth required. |

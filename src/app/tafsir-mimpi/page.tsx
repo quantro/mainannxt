@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
+import { PageTitle } from "../page-title";
 import dreamsData from "./dreams.json";
 
 interface DreamEntry {
@@ -56,6 +57,7 @@ export default function TafsirMimpiPage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
+      <PageTitle title="Tafsir Mimpi" />
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>

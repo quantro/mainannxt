@@ -3,6 +3,7 @@
 import { useMemo, useState, useCallback } from "react";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
+import { PageTitle } from "../page-title";
 
 interface Reading {
   fortune: string;
@@ -107,6 +108,7 @@ export default function FortunePage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
+      <PageTitle title="Fortune Teller" />
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>

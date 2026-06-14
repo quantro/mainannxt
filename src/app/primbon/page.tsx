@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
+import { PageTitle } from "../page-title";
 
 const DAYS: Record<string, { en: string; jv: string; neptu: number }> = {
   "0": { en: "Sunday", jv: "Minggu/Ahad", neptu: 5 },
@@ -140,6 +141,7 @@ export default function PrimbonPage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
+      <PageTitle title="Primbon Jawa" />
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>

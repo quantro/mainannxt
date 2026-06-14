@@ -3,6 +3,7 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
+import { PageTitle } from "../page-title";
 
 export default function Home() {
   const [names, setNames] = useState<string[]>(["", "", "", ""]);
@@ -318,6 +319,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
+      <PageTitle title="Word Maker" />
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>

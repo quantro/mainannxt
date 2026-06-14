@@ -3,6 +3,7 @@
 import { useState, useCallback, useMemo } from "react";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
+import { PageTitle } from "../page-title";
 
 interface TarotCard {
   name: string;
@@ -233,6 +234,7 @@ export default function TarotPage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
+      <PageTitle title="Tarot Reading" />
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>

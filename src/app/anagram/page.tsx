@@ -5,6 +5,7 @@ import { WORDS } from "@/lib/dictionary";
 import { WORDS_ID } from "@/lib/dictionary-id";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
+import { PageTitle } from "../page-title";
 
 function canForm(word: string, sourceCounts: Record<string, number>): boolean {
   const counts: Record<string, number> = {};
@@ -64,6 +65,7 @@ export default function AnagramPage() {
   if (!mounted) {
     return (
       <div className="flex flex-col items-center min-h-screen px-4 py-12">
+        <PageTitle title="Anagram Finder" />
         <div className="absolute top-4 right-4">
           <ThemeToggle />
         </div>
@@ -81,6 +83,7 @@ export default function AnagramPage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
+      <PageTitle title="Anagram Finder" />
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>

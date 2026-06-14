@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { PageTitle } from "../../page-title";
+import { SkeletonTable } from "../../skeleton";
 
 interface LogEntry {
   id: number;
@@ -52,14 +54,18 @@ function maskIp(ip: string) {
 }
 
 export default function AdminClickLog() {
+  const [loading, setLoading] = useState(true);
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetch("/api/click-log?limit=500")
       .then((r) => r.json())
-      .then(setLogs)
-      .catch(() => {});
+      .then((data) => {
+        setLogs(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, []);
 
   const filtered = search.trim()
@@ -79,6 +85,7 @@ export default function AdminClickLog() {
 
   return (
     <div>
+      <PageTitle title="Click Log" />
       <h1 className="text-[24px] font-semibold mb-1">Click Log</h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6">
         {logs.length} click{logs.length === 1 ? "" : "s"} recorded
@@ -91,44 +98,48 @@ export default function AdminClickLog() {
         className="apple-input w-full max-w-xs h-10 text-[14px] text-center mb-8"
       />
 
-      <div className="w-full max-w-2xl space-y-6">
-        {Object.entries(grouped).map(([day, entries]) => (
-          <div key={day}>
-            <h2 className="text-[13px] font-semibold uppercase tracking-[0.5px] text-[var(--color-ink-muted-48)] mb-2">
-              {new Date(day + "T00:00:00").toLocaleDateString("en-ID", {
-                weekday: "long", year: "numeric", month: "long", day: "numeric",
-              })}
-            </h2>
-            <div className="space-y-1">
-              {entries.map((entry) => {
-                const info = toolsInfo[entry.tool_slug];
-                return (
-                  <div
-                    key={entry.id}
-                    className="apple-card flex items-center gap-3 px-4 py-2.5 text-[13px]"
-                  >
-                    <span className="text-[18px] shrink-0">{info?.icon || "\uD83D\uDCC1"}</span>
-                    <div className="flex-1 min-w-0">
-                      <span className="font-medium">{info?.name || entry.tool_slug}</span>
+      {loading ? (
+        <SkeletonTable rows={10} />
+      ) : (
+        <div className="w-full max-w-2xl space-y-6">
+          {Object.entries(grouped).map(([day, entries]) => (
+            <div key={day}>
+              <h2 className="text-[13px] font-semibold uppercase tracking-[0.5px] text-[var(--color-ink-muted-48)] mb-2">
+                {new Date(day + "T00:00:00").toLocaleDateString("en-ID", {
+                  weekday: "long", year: "numeric", month: "long", day: "numeric",
+                })}
+              </h2>
+              <div className="space-y-1">
+                {entries.map((entry) => {
+                  const info = toolsInfo[entry.tool_slug];
+                  return (
+                    <div
+                      key={entry.id}
+                      className="apple-card flex items-center gap-3 px-4 py-2.5 text-[13px]"
+                    >
+                      <span className="text-[18px] shrink-0">{info?.icon || "\uD83D\uDCC1"}</span>
+                      <div className="flex-1 min-w-0">
+                        <span className="font-medium">{info?.name || entry.tool_slug}</span>
+                      </div>
+                      <code className="text-[11px] font-mono text-[var(--color-ink-muted-48)] shrink-0">
+                        {maskIp(entry.ip_address)}
+                      </code>
+                      <span className="text-[11px] text-[var(--color-ink-muted-48)] shrink-0 tabular-nums">
+                        {formatTime(entry.clicked_at)}
+                      </span>
                     </div>
-                    <code className="text-[11px] font-mono text-[var(--color-ink-muted-48)] shrink-0">
-                      {maskIp(entry.ip_address)}
-                    </code>
-                    <span className="text-[11px] text-[var(--color-ink-muted-48)] shrink-0 tabular-nums">
-                      {formatTime(entry.clicked_at)}
-                    </span>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        ))}
-        {filtered.length === 0 && (
-          <p className="text-[14px] text-[var(--color-ink-muted-48)] text-center py-8">
-            {search ? "No matching clicks." : "No clicks yet."}
-          </p>
-        )}
-      </div>
+          ))}
+          {filtered.length === 0 && (
+            <p className="text-[14px] text-[var(--color-ink-muted-48)] text-center py-8">
+              {search ? "No matching clicks." : "No clicks yet."}
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 }

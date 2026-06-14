@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import ThemeToggle from "../theme-toggle";
+import { PageTitle } from "../page-title";
+import { useToast } from "../toast";
 
 export default function SaranPage() {
+  const { toast } = useToast();
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -27,8 +30,9 @@ export default function SaranPage() {
         throw new Error(data.error || "Gagal mengirim");
       }
 
-      setStatus("success");
       setMessage("");
+      setStatus("idle");
+      toast("Saran berhasil dikirim!", "success");
     } catch (err: unknown) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "Terjadi kesalahan");
@@ -37,6 +41,7 @@ export default function SaranPage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen px-6 py-24">
+      <PageTitle title="Kirim Saran" />
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
@@ -48,55 +53,40 @@ export default function SaranPage() {
         Punya ide untuk alat baru? Atau ada yang ingin diperbaiki? Tulis saran kamu di sini.
       </p>
 
-      {status === "success" ? (
-        <div className="apple-card w-full max-w-md p-8 text-center">
-          <p className="text-[15px] font-medium mb-1">Terima kasih!</p>
-          <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-4">
-            Saran kamu sudah kami terima.
+      <form
+        onSubmit={handleSubmit}
+        className="apple-card w-full max-w-md p-6 space-y-4"
+      >
+        <div>
+          <label className="text-[13px] font-medium block mb-1.5">
+            Saran atau ide kamu
+          </label>
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Contoh: Buat alat kalkulator BMI, atau tambah fitur ekspor PDF…"
+            rows={5}
+            maxLength={2000}
+            required
+            className="apple-input w-full resize-none text-[14px] p-3"
+          />
+          <p className="text-[11px] text-[var(--color-ink-muted-48)] mt-1 text-right">
+            {message.length}/2000
           </p>
-          <button
-            onClick={() => setStatus("idle")}
-            className="apple-btn-primary text-[13px] px-5 py-2"
-          >
-            Kirim lagi
-          </button>
         </div>
-      ) : (
-        <form
-          onSubmit={handleSubmit}
-          className="apple-card w-full max-w-md p-6 space-y-4"
+
+        {status === "error" && (
+          <p className="text-[13px] text-red-500">{errorMsg}</p>
+        )}
+
+        <button
+          type="submit"
+          disabled={status === "loading" || !message.trim()}
+          className="apple-btn-primary w-full h-10 text-[14px] disabled:opacity-50"
         >
-          <div>
-            <label className="text-[13px] font-medium block mb-1.5">
-              Saran atau ide kamu
-            </label>
-            <textarea
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="Contoh: Buat alat kalkulator BMI, atau tambah fitur ekspor PDF…"
-              rows={5}
-              maxLength={2000}
-              required
-              className="apple-input w-full resize-none text-[14px] p-3"
-            />
-            <p className="text-[11px] text-[var(--color-ink-muted-48)] mt-1 text-right">
-              {message.length}/2000
-            </p>
-          </div>
-
-          {status === "error" && (
-            <p className="text-[13px] text-red-500">{errorMsg}</p>
-          )}
-
-          <button
-            type="submit"
-            disabled={status === "loading" || !message.trim()}
-            className="apple-btn-primary w-full h-10 text-[14px] disabled:opacity-50"
-          >
-            {status === "loading" ? "Mengirim…" : "Kirim Saran"}
-          </button>
-        </form>
-      )}
+          {status === "loading" ? "Mengirim…" : "Kirim Saran"}
+        </button>
+      </form>
     </div>
   );
 }

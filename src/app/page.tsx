@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import ThemeToggle from "./theme-toggle";
 import { Disclaimer } from "./disclaimer";
+import { PageTitle } from "./page-title";
 import { fetchStats, recordClick, totalClicks, sortedTools, type ClickCounts } from "@/lib/tracker";
 
 interface Tool {
@@ -38,6 +39,12 @@ const tools: Tool[] = [
   { slug: "/primbon", icon: "\uD83C\uDF19", name: "Primbon Jawa", desc: "Javanese weton personality and love match", category: "Divination" },
   { slug: "/pranata-mangsa", icon: "\uD83C\uDF3E", name: "Pranata Mangsa", desc: "Javanese seasonal calendar and wisdom", category: "Calendars" },
   { slug: "/calendar", icon: "\uD83D\uDCC5", name: "World Calendars", desc: "Chinese, Javanese, and Islamic calendars", category: "Calendars" },
+  { slug: "/unit-converter", icon: "\uD83D\uDCF0", name: "Unit Converter", desc: "Convert length, weight, temperature, and volume units", category: "Utilities" },
+  { slug: "/color-picker", icon: "\uD83C\uDFA8", name: "Color Picker", desc: "Convert between HEX, RGB, and HSL color formats", category: "Utilities" },
+  { slug: "/json-formatter", icon: "\uD83D\uDCCB", name: "JSON Formatter", desc: "Format, validate, and minify JSON", category: "Utilities" },
+  { slug: "/text-diff", icon: "\uD83D\uDCDD", name: "Text Diff", desc: "Compare two texts and see added/removed lines", category: "Utilities" },
+  { slug: "/countdown-timer", icon: "\u23F1\uFE0F", name: "Countdown Timer", desc: "Countdown timer and stopwatch with lap recording", category: "Utilities" },
+  { slug: "/random-number", icon: "\uD83D\uDCAF", name: "Random Number", desc: "Generate random numbers with customizable ranges", category: "Utilities" },
   { slug: "/saran", icon: "\uD83D\uDCE3", name: "Kirim Saran", desc: "Sampaikan ide atau masukan untuk alat baru", category: "Utilities" },
 ];
 
@@ -64,6 +71,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center min-h-screen px-6 py-24">
+      <PageTitle title="Fun Tools" />
       <div className="absolute top-4 right-4 flex items-center gap-2">
         <Link
           href="/saran"

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import QRCode from "qrcode";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
+import { PageTitle } from "../page-title";
 
 export default function QrCodePage() {
   const [text, setText] = useState("");
@@ -32,6 +33,7 @@ export default function QrCodePage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
+      <PageTitle title="QR Code Generator" />
       <div className="absolute top-4 right-4"><ThemeToggle /></div>
       <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">QR Code Generator</h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">

@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ToastProvider } from "./toast";
+import { ErrorBoundary } from "./error-boundary";
+import { CommandPalette } from "./cmdk";
 
 export const metadata: Metadata = {
   title: "Modules",
@@ -20,7 +23,14 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ErrorBoundary>
+          <ToastProvider>
+            {children}
+            <CommandPalette />
+          </ToastProvider>
+        </ErrorBoundary>
+      </body>
     </html>
   );
 }

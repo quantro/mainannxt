@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
+import { PageTitle } from "../page-title";
 import { isWord } from "@/lib/dictionary";
 
 interface RealWordResult {
@@ -111,6 +112,7 @@ export default function AcronymPage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
+      <PageTitle title="Acronym Builder" />
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>

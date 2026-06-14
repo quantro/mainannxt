@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { isWord } from "@/lib/dictionary";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
+import { PageTitle } from "../page-title";
 
 function findLadder(start: string, end: string): string[] | null {
   if (start.length !== end.length) return null;
@@ -89,6 +90,7 @@ export default function LadderPage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
+      <PageTitle title="Word Ladder" />
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>

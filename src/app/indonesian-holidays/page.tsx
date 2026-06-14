@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
+import { PageTitle } from "../page-title";
 import data from "@/lib/indonesian-holidays.json";
 
 type Holiday = {
@@ -21,6 +22,10 @@ const TYPE_COLORS: Record<string, string> = {
   "Observance": "bg-gray-500/10 text-gray-500",
 };
 
+const DAYS = [
+  "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu",
+];
+
 const MONTHS = [
   "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December",
@@ -32,6 +37,11 @@ function getMonth(dateStr: string): number {
 
 function getDay(dateStr: string): number {
   return parseInt(dateStr.split("-")[2]);
+}
+
+function getDayName(dateStr: string): string {
+  const d = new Date(dateStr + "T00:00:00");
+  return DAYS[d.getDay()];
 }
 
 export default function IndonesianHolidaysPage() {
@@ -70,6 +80,7 @@ export default function IndonesianHolidaysPage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
+      <PageTitle title="Indonesian Holidays" />
       <div className="absolute top-4 right-4"><ThemeToggle /></div>
       <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">Indonesian Holidays</h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
@@ -115,6 +126,7 @@ export default function IndonesianHolidaysPage() {
                   .map((h, idx) => (
                     <div key={idx} className="flex items-start gap-3 py-1.5 border-b border-[var(--color-border-subtle)] last:border-0">
                       <span className="text-[11px] font-semibold text-[var(--color-ink)] w-8 shrink-0 tabular-nums">{getDay(h.date)}</span>
+                      <span className="text-[11px] text-[var(--color-ink-muted-48)] w-16 shrink-0">{getDayName(h.date)}</span>
                       <div className="flex-1 min-w-0">
                         <span className="text-[13px] text-[var(--color-ink)]">{h.name}</span>
                       </div>
