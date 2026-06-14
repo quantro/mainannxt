@@ -73,7 +73,7 @@ export default function SaranPage() {
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Contoh: Buat alat kalkulator BMI, atau tambah fitur ekspor PDF\u2026"
+              placeholder="Contoh: Buat alat kalkulator BMI, atau tambah fitur ekspor PDF…"
               rows={5}
               maxLength={2000}
               required
@@ -93,7 +93,7 @@ export default function SaranPage() {
             disabled={status === "loading" || !message.trim()}
             className="apple-btn-primary w-full h-10 text-[14px] disabled:opacity-50"
           >
-            {status === "loading" ? "Mengirim\u2026" : "Kirim Saran"}
+            {status === "loading" ? "Mengirim…" : "Kirim Saran"}
           </button>
         </form>
       )}

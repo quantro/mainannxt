@@ -44,7 +44,7 @@ export default function AdminSuggestions() {
       <input
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        placeholder="Cari saran\u2026"
+        placeholder="Cari saran…"
         className="apple-input w-full max-w-xs h-10 text-[14px] text-center mb-6"
       />
 

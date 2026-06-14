@@ -76,7 +76,7 @@ export default function WheelPage() {
       ctx.textBaseline = "middle";
 
       const maxLen = Math.max(3, Math.floor((radius * 0.35) / (5 + names.length * 0.4)));
-      const label = name.length > maxLen ? name.slice(0, maxLen - 1) + "\u2026" : name;
+      const label = name.length > maxLen ? name.slice(0, maxLen - 1) + "…" : name;
       ctx.fillText(label, 0, 0);
       ctx.restore();
     });

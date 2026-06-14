@@ -44,7 +44,7 @@ export default function QrCodePage() {
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Type or paste text / URL here\u2026"
+            placeholder="Type or paste text / URL here…"
             rows={3}
             className="apple-input w-full resize-none text-[14px]"
           />

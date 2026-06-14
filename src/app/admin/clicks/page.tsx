@@ -87,7 +87,7 @@ export default function AdminClickLog() {
       <input
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        placeholder="Filter by tool or IP\u2026"
+        placeholder="Filter by tool or IP…"
         className="apple-input w-full max-w-xs h-10 text-[14px] text-center mb-8"
       />
 

@@ -74,7 +74,7 @@ function LoginForm() {
           disabled={loading}
           className="apple-btn-primary w-full h-10 text-[14px] disabled:opacity-50"
         >
-          {loading ? "Signing in\u2026" : "Sign In"}
+          {loading ? "Signing in…" : "Sign In"}
         </button>
       </form>
     </div>

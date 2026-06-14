@@ -118,7 +118,7 @@ export default function Home() {
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search tools\u2026"
+          placeholder="Search tools…"
           className="apple-input w-full h-10 text-[14px] text-center"
         />
       </div>

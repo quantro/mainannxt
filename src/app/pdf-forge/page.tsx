@@ -340,7 +340,7 @@ export default function PdfForgePage() {
             disabled={!compressFile || compressLoading}
             className="apple-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
           >
-            {compressLoading ? "Compressing\u2026" : "Compress PDF"}
+            {compressLoading ? "Compressing…" : "Compress PDF"}
           </button>
           {compressBlob && (
             <div className="apple-card px-6 py-5 text-center">
@@ -402,7 +402,7 @@ export default function PdfForgePage() {
             disabled={!splitFile || !splitRange.trim() || splitLoading}
             className="apple-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
           >
-            {splitLoading ? "Splitting\u2026" : "Split PDF"}
+            {splitLoading ? "Splitting…" : "Split PDF"}
           </button>
           {splitBlob && (
             <div className="apple-card px-6 py-5 text-center">
@@ -450,7 +450,7 @@ export default function PdfForgePage() {
             disabled={!!mergeWarn || mergeLoading}
             className="apple-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
           >
-            {mergeLoading ? "Merging\u2026" : "Merge PDFs"}
+            {mergeLoading ? "Merging…" : "Merge PDFs"}
           </button>
           {mergeWarn && !mergeLoading && (
             <p className="text-[12px] text-[var(--color-ink-muted-48)] text-center">{mergeWarn}</p>
@@ -504,7 +504,7 @@ export default function PdfForgePage() {
             disabled={imageFiles.length === 0 || imageLoading}
             className="apple-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
           >
-            {imageLoading ? "Converting\u2026" : "Convert to PDF"}
+            {imageLoading ? "Converting…" : "Convert to PDF"}
           </button>
           {imageBlob && (
             <div className="apple-card px-6 py-5 text-center">
@@ -530,7 +530,7 @@ export default function PdfForgePage() {
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
-              placeholder="Type or paste your text here\u2026"
+              placeholder="Type or paste your text here…"
               rows={10}
               className="apple-input w-full resize-y text-[14px] leading-[1.6]"
             />
@@ -540,7 +540,7 @@ export default function PdfForgePage() {
             disabled={!text.trim() || textLoading}
             className="apple-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
           >
-            {textLoading ? "Creating PDF\u2026" : "Create PDF"}
+            {textLoading ? "Creating PDF…" : "Create PDF"}
           </button>
           {textBlob && (
             <div className="apple-card px-6 py-5 text-center">
