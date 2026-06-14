@@ -165,13 +165,13 @@ export default function FocusTimerPage() {
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
       <PageTitle title="Focus Timer" />
       <div className="absolute top-4 right-4"><ThemeToggle /></div>
-      <h1 className="apple-headline text-[32px] leading-[1.1] text-center mb-1">Focus Timer</h1>
+      <h1 className="cosmic-headline text-[32px] leading-[1.1] text-center mb-1">Focus Timer</h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
         Tingkatkan produktivitas dengan Teknik Pomodoro.
       </p>
 
       <div className="w-full max-w-md space-y-4">
-        <div className="apple-card px-5 py-4">
+        <div className="cosmic-card px-5 py-4">
           <div className="flex gap-2 mb-4">
             {TABS.map((tab) => (
               <button
@@ -222,26 +222,26 @@ export default function FocusTimerPage() {
 
         <div className="flex gap-2 justify-center">
           {!running ? (
-            <button onClick={startTimer} className="apple-btn-primary h-11 px-8 text-[14px]">
+            <button onClick={startTimer} className="cosmic-btn-primary h-11 px-8 text-[14px]">
               Mulai
             </button>
           ) : paused ? (
-            <button onClick={resumeTimer} className="apple-btn-primary h-11 px-8 text-[14px]">
+            <button onClick={resumeTimer} className="cosmic-btn-primary h-11 px-8 text-[14px]">
               Lanjutkan
             </button>
           ) : (
-            <button onClick={pauseTimer} className="apple-btn-primary h-11 px-8 text-[14px]">
+            <button onClick={pauseTimer} className="cosmic-btn-primary h-11 px-8 text-[14px]">
               Jeda
             </button>
           )}
           {(running || remaining > 0) && (
-            <button onClick={resetTimer} className="apple-btn-primary h-11 px-8 text-[14px] !bg-[var(--color-surface-pearl)] !text-[var(--color-ink)]">
+            <button onClick={resetTimer} className="cosmic-btn-primary h-11 px-8 text-[14px] !bg-[var(--color-surface-pearl)] !text-[var(--color-ink)]">
               Reset
             </button>
           )}
         </div>
 
-        <div className="apple-card px-5 py-3 flex items-center justify-between">
+        <div className="cosmic-card px-5 py-3 flex items-center justify-between">
           <span className="text-[13px] text-[var(--color-ink-muted-48)]">
             Hari ini: {sessionsToday} sesi fokus selesai
           </span>
@@ -258,7 +258,7 @@ export default function FocusTimerPage() {
         </div>
 
         {settingsOpen && (
-          <div className="apple-card px-5 py-4 space-y-3">
+          <div className="cosmic-card px-5 py-4 space-y-3">
             <h2 className="text-[11px] font-semibold uppercase text-[var(--color-ink-muted-48)]">Pengaturan Durasi (menit)</h2>
             <div className="grid grid-cols-3 gap-3">
               <div>
@@ -268,7 +268,7 @@ export default function FocusTimerPage() {
                   min="1" max="120"
                   value={focusMin}
                   onChange={(e) => setFocusMin(e.target.value)}
-                  className="apple-input w-full h-10 text-center text-[14px]"
+                  className="cosmic-input w-full h-10 text-center text-[14px]"
                 />
               </div>
               <div>
@@ -278,7 +278,7 @@ export default function FocusTimerPage() {
                   min="1" max="30"
                   value={shortMin}
                   onChange={(e) => setShortMin(e.target.value)}
-                  className="apple-input w-full h-10 text-center text-[14px]"
+                  className="cosmic-input w-full h-10 text-center text-[14px]"
                 />
               </div>
               <div>
@@ -288,7 +288,7 @@ export default function FocusTimerPage() {
                   min="1" max="60"
                   value={longMin}
                   onChange={(e) => setLongMin(e.target.value)}
-                  className="apple-input w-full h-10 text-center text-[14px]"
+                  className="cosmic-input w-full h-10 text-center text-[14px]"
                 />
               </div>
             </div>

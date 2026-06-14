@@ -57,7 +57,7 @@ export default function JsonFormatterPage() {
         <ThemeToggle />
       </div>
 
-      <h1 className="apple-headline text-[32px] leading-[1.1] text-center mb-1">
+      <h1 className="cosmic-headline text-[32px] leading-[1.1] text-center mb-1">
         JSON Formatter &amp; Validator
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
@@ -65,7 +65,7 @@ export default function JsonFormatterPage() {
       </p>
 
       <div className="w-full max-w-2xl space-y-4">
-        <div className="apple-card px-5 py-4 space-y-3">
+        <div className="cosmic-card px-5 py-4 space-y-3">
           <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] uppercase">
             Input
           </h2>
@@ -73,39 +73,39 @@ export default function JsonFormatterPage() {
             value={input}
             onChange={(e) => { setInput(e.target.value); setError(""); }}
             placeholder='{"key": "value"}'
-            className="apple-input w-full min-h-[200px] resize-y rounded-[11px] text-[13px] font-mono leading-[1.5]"
+            className="cosmic-input w-full min-h-[200px] resize-y rounded-[11px] text-[13px] font-mono leading-[1.5]"
             spellCheck={false}
           />
           <div className="flex flex-wrap gap-2">
-            <button onClick={handleFormat} className="apple-btn-primary text-[13px] px-5 py-2">
+            <button onClick={handleFormat} className="cosmic-btn-primary text-[13px] px-5 py-2">
               Format
             </button>
-            <button onClick={handleValidate} className="apple-btn-primary text-[13px] px-5 py-2">
+            <button onClick={handleValidate} className="cosmic-btn-primary text-[13px] px-5 py-2">
               Validate
             </button>
-            <button onClick={handleMinify} className="apple-btn-primary text-[13px] px-5 py-2">
+            <button onClick={handleMinify} className="cosmic-btn-primary text-[13px] px-5 py-2">
               Minify
             </button>
           </div>
         </div>
 
         {error && (
-          <div className="apple-card px-5 py-4 border-red-400">
+          <div className="cosmic-card px-5 py-4 border-red-400">
             <p className="text-[13px] text-red-500 font-mono whitespace-pre-wrap">{error}</p>
           </div>
         )}
 
         {output && (
-          <div className="apple-card px-5 py-4 space-y-3">
+          <div className="cosmic-card px-5 py-4 space-y-3">
             <div className="flex items-center justify-between">
               <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] uppercase">
                 Result
               </h2>
-              <button onClick={handleCopy} className="apple-btn-ghost text-[11px] px-2 py-1">
+              <button onClick={handleCopy} className="cosmic-btn-ghost text-[11px] px-2 py-1">
                 Copy
               </button>
             </div>
-            <pre className="apple-input w-full min-h-[120px] rounded-[11px] text-[13px] font-mono leading-[1.5] overflow-auto whitespace-pre p-4">
+            <pre className="cosmic-input w-full min-h-[120px] rounded-[11px] text-[13px] font-mono leading-[1.5] overflow-auto whitespace-pre p-4">
               {output}
             </pre>
           </div>

@@ -120,14 +120,14 @@ export default function MoodTrackerPage() {
         <ThemeToggle />
       </div>
 
-      <h1 className="apple-headline text-[32px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[32px] leading-[1.47] tracking-[-0.374px] mb-2">
         Mood Tracker
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-8 text-center max-w-lg">
         Catat suasana hati harianmu dan lihat polanya dalam sebulan.
       </p>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">
           Suasana Hati Hari Ini
         </h2>
@@ -158,15 +158,15 @@ export default function MoodTrackerPage() {
         )}
       </div>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <div className="flex items-center justify-between mb-4">
-          <button onClick={prevMonth} className="apple-btn-ghost text-[12px] px-3 py-1.5">
+          <button onClick={prevMonth} className="cosmic-btn-ghost text-[12px] px-3 py-1.5">
             &larr; Sebelumnya
           </button>
           <h2 className="text-[15px] font-semibold text-[var(--color-ink)]">
             {MONTHS[month]} {year}
           </h2>
-          <button onClick={nextMonth} className="apple-btn-ghost text-[12px] px-3 py-1.5">
+          <button onClick={nextMonth} className="cosmic-btn-ghost text-[12px] px-3 py-1.5">
             Berikutnya &rarr;
           </button>
         </div>
@@ -209,7 +209,7 @@ export default function MoodTrackerPage() {
         </div>
       </div>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">
           Statistik Bulan Ini
         </h2>
@@ -228,7 +228,7 @@ export default function MoodTrackerPage() {
       </div>
 
       {selectedDay !== null && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
           <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">
             {selectedDay} {MONTHS[month]} {year}
           </h2>
@@ -252,18 +252,18 @@ export default function MoodTrackerPage() {
             value={note}
             onChange={(e) => setNote(e.target.value)}
             placeholder="Catatan opsional..."
-            className="apple-input w-full h-9 text-[13px] mb-3"
+            className="cosmic-input w-full h-9 text-[13px] mb-3"
           />
           <div className="flex gap-2">
             <button
               onClick={saveMood}
               disabled={selectedMood === null}
-              className="apple-btn-primary h-9 px-5 text-[12px] disabled:opacity-40"
+              className="cosmic-btn-primary h-9 px-5 text-[12px] disabled:opacity-40"
             >
               Simpan
             </button>
             {data[formatDate(year, month, selectedDay)] && (
-              <button onClick={deleteMood} className="apple-btn-ghost h-9 px-5 text-[12px] text-red-500">
+              <button onClick={deleteMood} className="cosmic-btn-ghost h-9 px-5 text-[12px] text-red-500">
                 Hapus
               </button>
             )}
@@ -271,7 +271,7 @@ export default function MoodTrackerPage() {
         </div>
       )}
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5">
         <p className="text-[11px] leading-[1.6] text-[var(--color-ink-muted-48)]">
           Pelacakan suasana hati berdasarkan prinsip ecological momentary assessment (EMA, Shiffman et al., 2008).
         </p>

@@ -56,7 +56,7 @@ export default function AdminDashboard() {
       {loading ? (
         <SkeletonList count={8} />
       ) : (
-        <div className="apple-card p-5">
+        <div className="cosmic-card p-5">
           <h2 className="text-[15px] font-semibold mb-3">Click Summary</h2>
           {sorted.length === 0 ? (
             <p className="text-[13px] text-[var(--color-ink-muted-48)]">No clicks yet.</p>

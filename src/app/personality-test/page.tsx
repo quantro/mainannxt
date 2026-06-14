@@ -130,7 +130,7 @@ export default function PersonalityTestPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[32px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[32px] leading-[1.47] tracking-[-0.374px] mb-2">
         Personality Test
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-8 text-center max-w-xl">
@@ -141,7 +141,7 @@ export default function PersonalityTestPage() {
         <>
           <div className="w-full max-w-2xl space-y-3 mb-6">
             {QUESTIONS.map((q, i) => (
-              <div key={i} className="apple-card px-5 py-4">
+              <div key={i} className="cosmic-card px-5 py-4">
                 <div className="flex items-start gap-3">
                   <span className="text-[11px] font-semibold text-[var(--color-ink-muted-48)] leading-[1.6] mt-0.5 shrink-0 w-6 text-right">
                     {i + 1}
@@ -171,20 +171,20 @@ export default function PersonalityTestPage() {
           <button
             onClick={handleSubmit}
             disabled={!allAnswered}
-            className="apple-btn-primary text-[14px] disabled:opacity-40"
+            className="cosmic-btn-primary text-[14px] disabled:opacity-40"
           >
             {allAnswered ? "Lihat Hasil" : `Jawab semua pertanyaan (${Object.keys(answers).length}/${QUESTIONS.length})`}
           </button>
         </>
       ) : (
         <div className="w-full max-w-2xl space-y-5">
-          <button onClick={handleReset} className="apple-btn-ghost text-[13px] mb-2">
+          <button onClick={handleReset} className="cosmic-btn-ghost text-[13px] mb-2">
             ← Kerjakan Ulang
           </button>
 
           {scores && (
             <>
-              <div className="apple-card px-6 py-5">
+              <div className="cosmic-card px-6 py-5">
                 <h2 className="text-[14px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-4 tracking-[-0.224px]">
                   Skor Kepribadian Big Five
                 </h2>
@@ -210,7 +210,7 @@ export default function PersonalityTestPage() {
                 })}
               </div>
 
-              <div className="apple-card px-6 py-5">
+              <div className="cosmic-card px-6 py-5">
                 <p className="text-[12px] leading-[1.6] text-[var(--color-ink-muted-48)] italic">
                   Berdasarkan model Big Five Personality Traits (Lewis Goldberg, 1993; McCrae &amp; Costa, 2003).
                   Hasil ini bersifat indikatif dan tidak menggantikan asesmen psikologis profesional.

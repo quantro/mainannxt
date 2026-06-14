@@ -84,13 +84,13 @@ export default function RandomNumberPage() {
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
       <PageTitle title="Random Number" />
       <div className="absolute top-4 right-4"><ThemeToggle /></div>
-      <h1 className="apple-headline text-[32px] leading-[1.1] text-center mb-1">Random Number Generator</h1>
+      <h1 className="cosmic-headline text-[32px] leading-[1.1] text-center mb-1">Random Number Generator</h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
         Generate cryptographically secure random numbers.
       </p>
 
       <div className="w-full max-w-md space-y-4">
-        <div className="apple-card px-5 py-4 space-y-4">
+        <div className="cosmic-card px-5 py-4 space-y-4">
           <div className="flex gap-3">
             <div className="flex-1">
               <label className="block text-[11px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-1">Min</label>
@@ -98,7 +98,7 @@ export default function RandomNumberPage() {
                 type="number"
                 value={min}
                 onChange={(e) => setMin(e.target.value)}
-                className="apple-input w-full h-10 text-[14px]"
+                className="cosmic-input w-full h-10 text-[14px]"
               />
             </div>
             <div className="flex-1">
@@ -107,7 +107,7 @@ export default function RandomNumberPage() {
                 type="number"
                 value={max}
                 onChange={(e) => setMax(e.target.value)}
-                className="apple-input w-full h-10 text-[14px]"
+                className="cosmic-input w-full h-10 text-[14px]"
               />
             </div>
             <div className="flex-1">
@@ -117,7 +117,7 @@ export default function RandomNumberPage() {
                 min="1"
                 value={count}
                 onChange={(e) => setCount(e.target.value)}
-                className="apple-input w-full h-10 text-[14px]"
+                className="cosmic-input w-full h-10 text-[14px]"
               />
             </div>
           </div>
@@ -133,19 +133,19 @@ export default function RandomNumberPage() {
             </label>
           </div>
 
-          <button onClick={generate} className="apple-btn-primary w-full h-11 text-[14px]">
+          <button onClick={generate} className="cosmic-btn-primary w-full h-11 text-[14px]">
             Generate
           </button>
         </div>
 
         {error && (
-          <div className="apple-card px-5 py-4 border-red-400/40">
+          <div className="cosmic-card px-5 py-4 border-red-400/40">
             <p className="text-[13px] text-red-500">{error}</p>
           </div>
         )}
 
         {results.length > 0 && !error && (
-          <div className="apple-card px-5 py-4">
+          <div className="cosmic-card px-5 py-4">
             <div className="flex items-start gap-2 mb-2">
               <div className="flex-1 text-[32px] font-mono font-bold tracking-wide text-[var(--color-ink)] leading-snug break-all">
                 {results.length === 1
@@ -157,7 +157,7 @@ export default function RandomNumberPage() {
                       </span>
                     ))}
               </div>
-              <button onClick={copyResults} className="apple-btn-primary shrink-0 text-[12px] px-3 py-1 mt-1">
+              <button onClick={copyResults} className="cosmic-btn-primary shrink-0 text-[12px] px-3 py-1 mt-1">
                 Copy
               </button>
             </div>

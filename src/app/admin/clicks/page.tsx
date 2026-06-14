@@ -95,7 +95,7 @@ export default function AdminClickLog() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Filter by tool or IP…"
-        className="apple-input w-full max-w-xs h-10 text-[14px] text-center mb-8"
+        className="cosmic-input w-full max-w-xs h-10 text-[14px] text-center mb-8"
       />
 
       {loading ? (
@@ -115,7 +115,7 @@ export default function AdminClickLog() {
                   return (
                     <div
                       key={entry.id}
-                      className="apple-card flex items-center gap-3 px-4 py-2.5 text-[13px]"
+                      className="cosmic-card flex items-center gap-3 px-4 py-2.5 text-[13px]"
                     >
                       <span className="text-[18px] shrink-0">{info?.icon || "\uD83D\uDCC1"}</span>
                       <div className="flex-1 min-w-0">

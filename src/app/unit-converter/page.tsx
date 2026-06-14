@@ -102,7 +102,7 @@ export default function UnitConverterPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[32px] leading-[1.1] text-center mb-1">
+      <h1 className="cosmic-headline text-[32px] leading-[1.1] text-center mb-1">
         Unit Converter
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
@@ -110,7 +110,7 @@ export default function UnitConverterPage() {
       </p>
 
       <div className="w-full max-w-md space-y-4">
-        <div className="apple-card px-5 py-4">
+        <div className="cosmic-card px-5 py-4">
           <div className="flex gap-2 mb-4">
             {Object.entries(categories).map(([key, cat]) => (
               <button
@@ -133,7 +133,7 @@ export default function UnitConverterPage() {
               onChange={(e) => setValue(e.target.value)}
               placeholder="Enter value"
               type="number"
-              className="apple-input w-full h-10 text-[14px]"
+              className="cosmic-input w-full h-10 text-[14px]"
             />
 
             <div className="grid grid-cols-2 gap-3">
@@ -144,7 +144,7 @@ export default function UnitConverterPage() {
                 <select
                   value={fromUnit}
                   onChange={(e) => setFromUnit(e.target.value)}
-                  className="apple-input w-full h-10 text-[14px] appearance-none"
+                  className="cosmic-input w-full h-10 text-[14px] appearance-none"
                 >
                   {units.map((u) => (
                     <option key={u} value={u}>
@@ -160,7 +160,7 @@ export default function UnitConverterPage() {
                 <select
                   value={toUnit}
                   onChange={(e) => setToUnit(e.target.value)}
-                  className="apple-input w-full h-10 text-[14px] appearance-none"
+                  className="cosmic-input w-full h-10 text-[14px] appearance-none"
                 >
                   {units.map((u) => (
                     <option key={u} value={u}>
@@ -174,7 +174,7 @@ export default function UnitConverterPage() {
         </div>
 
         {result !== null && (
-          <div className="apple-card px-5 py-4 text-center">
+          <div className="cosmic-card px-5 py-4 text-center">
             <p className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-1">
               Result
             </p>

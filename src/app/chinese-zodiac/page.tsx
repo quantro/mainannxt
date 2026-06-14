@@ -219,11 +219,11 @@ export default function ChineseZodiacPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
         Chinese Zodiac
       </h1>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           Birth Year
         </h2>
@@ -231,11 +231,11 @@ export default function ChineseZodiacPage() {
           value={year}
           onChange={(e) => setYear(e.target.value.replace(/\D/g, "").slice(0, 4))}
           placeholder="Enter your birth year (e.g. 1990)"
-          className="apple-input w-full h-10 text-[14px]"
+          className="cosmic-input w-full h-10 text-[14px]"
         />
       </div>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           Or Your Name
         </h2>
@@ -243,7 +243,7 @@ export default function ChineseZodiacPage() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Enter your name"
-          className="apple-input w-full h-10 text-[14px]"
+          className="cosmic-input w-full h-10 text-[14px]"
         />
         <p className="text-[11px] text-[var(--color-ink-muted-48)] mt-1.5">
           Based on the mystical numerology of vowel and consonant harmony.
@@ -252,7 +252,7 @@ export default function ChineseZodiacPage() {
 
       {result && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5 text-center">
+          <div className="cosmic-card px-6 py-5 text-center">
             <div className="text-[48px] mb-1">{result.animal.emoji}</div>
             <div className="text-[28px] font-bold text-[var(--color-ink)]">
               {result.animal.animal}
@@ -262,13 +262,13 @@ export default function ChineseZodiacPage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <p className="text-[14px] leading-[1.6] text-[var(--color-ink)]">
               {result.animal.description}
             </p>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Your Reading</h3>
             {result.animal.reading.split("\n\n").map((p, i) => (
               <p key={i} className="text-[14px] leading-[1.7] text-[var(--color-ink)] mb-2 last:mb-0">
@@ -277,7 +277,7 @@ export default function ChineseZodiacPage() {
             ))}
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Traits</h3>
             <div className="flex flex-wrap gap-1.5 mb-4">
               {result.animal.traits.map((t) => (
@@ -311,7 +311,7 @@ export default function ChineseZodiacPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="apple-card px-6 py-5">
+            <div className="cosmic-card px-6 py-5">
               <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Best Matches</h3>
               <div className="flex flex-wrap gap-1.5">
                 {result.animal.compatibility.map((c) => (
@@ -321,7 +321,7 @@ export default function ChineseZodiacPage() {
                 ))}
               </div>
             </div>
-            <div className="apple-card px-6 py-5">
+            <div className="cosmic-card px-6 py-5">
               <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Lucky Numbers</h3>
               <div className="text-[28px] font-bold text-[var(--color-ink)]">{result.animal.luckyNumbers}</div>
               <div className="text-[10px] uppercase text-[var(--color-ink-muted-48)] mt-1">Colors</div>
@@ -329,7 +329,7 @@ export default function ChineseZodiacPage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Also born in</h3>
             <p className="text-[13px] text-[var(--color-ink)]">{result.animal.years}</p>
           </div>
@@ -337,7 +337,7 @@ export default function ChineseZodiacPage() {
       )}
 
       {nameResult && !result && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5">
           <div className="text-center mb-3">
             <div className="text-[48px] mb-1">{nameResult.emoji}</div>
             <div className="text-[28px] font-bold text-[var(--color-ink)]">{nameResult.animal}</div>
@@ -357,7 +357,7 @@ export default function ChineseZodiacPage() {
 
       {!result && !nameResult && (!year || !name.trim()) && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
               About Chinese Astrology
             </h2>
@@ -374,7 +374,7 @@ export default function ChineseZodiacPage() {
               The tool also includes a name-based reading: using the mystical numerology of vowels and consonants in your name, it can determine your spirit animal &mdash; a fun alternative if you don't know your birth year or want to see which animal resonates with your name's energy.
             </p>
           </div>
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <p className="text-[14px] leading-[1.43] text-[var(--color-ink-muted-48)] text-center">
               Enter your birth year to discover your Chinese zodiac animal, element, lucky numbers, compatibility matches, and detailed personality traits. Or enter your name for a mystical spirit animal reading.
             </p>

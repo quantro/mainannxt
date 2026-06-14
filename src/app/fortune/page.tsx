@@ -112,14 +112,14 @@ export default function FortunePage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
         Fortune Teller
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-8">
         The spirits speak through names. Enter yours to hear their message.
       </p>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           Your Name
         </h2>
@@ -129,11 +129,11 @@ export default function FortunePage() {
             onChange={(e) => setName(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleReveal()}
             placeholder="Enter your name..."
-            className="apple-input w-full h-10 text-[14px]"
+            className="cosmic-input w-full h-10 text-[14px]"
           />
           <button
             onClick={handleReveal}
-            className="apple-btn-primary text-[13px] whitespace-nowrap"
+            className="cosmic-btn-primary text-[13px] whitespace-nowrap"
             disabled={!name.trim()}
           >
             Reveal
@@ -143,7 +143,7 @@ export default function FortunePage() {
 
       {hasContent && reading && tarot && (
         <div className={`w-full max-w-2xl space-y-4 transition-all duration-500 ${animate ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}>
-          <div className="apple-card px-6 py-5 text-center">
+          <div className="cosmic-card px-6 py-5 text-center">
             <div className="text-[56px] mb-2">{reading.emoji}</div>
             <div className="text-[20px] font-semibold text-[var(--color-ink)] leading-[1.4]">
               &ldquo;{reading.fortune}&rdquo;
@@ -153,7 +153,7 @@ export default function FortunePage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Tarot Card</h3>
             <div className="flex items-start gap-3">
               <div className="w-12 h-16 rounded-[8px] bg-gradient-to-br from-[var(--color-primary)] to-purple-600 flex items-center justify-center text-white text-[20px] font-bold shadow-sm shrink-0">
@@ -166,7 +166,7 @@ export default function FortunePage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Tarot Interpretation</h3>
             {tarot.reading.split("\n\n").map((p, i) => (
               <p key={i} className="text-[14px] leading-[1.7] text-[var(--color-ink)] mb-2 last:mb-0">
@@ -175,7 +175,7 @@ export default function FortunePage() {
             ))}
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Advice</h3>
             <p className="text-[15px] text-[var(--color-ink)] leading-[1.5]">
               {reading.advice}
@@ -183,17 +183,17 @@ export default function FortunePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="apple-card px-6 py-5">
+            <div className="cosmic-card px-6 py-5">
               <div className="text-[10px] uppercase text-[var(--color-ink-muted-48)] tracking-wider">Lucky Number</div>
               <div className="text-[28px] font-bold text-[var(--color-ink)] tabular-nums">{reading.luckyNumber}</div>
             </div>
-            <div className="apple-card px-6 py-5">
+            <div className="cosmic-card px-6 py-5">
               <div className="text-[10px] uppercase text-[var(--color-ink-muted-48)] tracking-wider">Lucky Color</div>
               <div className="text-[28px] font-bold text-[var(--color-ink)]">{reading.luckyColor}</div>
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5 text-center">
+          <div className="cosmic-card px-6 py-5 text-center">
             <p className="text-[13px] text-[var(--color-ink-muted-48)] italic">
               The spirits have spoken through the name <strong className="text-[var(--color-ink)]">{name.trim()}</strong>. Come back tomorrow for a new reading.
             </p>
@@ -203,7 +203,7 @@ export default function FortunePage() {
 
       {!hasContent && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
               About Fortune Telling
             </h2>
@@ -220,7 +220,7 @@ export default function FortunePage() {
               Together, the fortune, the tarot card, and the advice form a three-part reading: insight into what's coming, the archetypal energy surrounding you, and practical guidance for navigating the days ahead. The reading is deterministic based on your name &mdash; enter the same name and you'll receive the same message, making it a personal touchstone you can return to.
             </p>
           </div>
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <p className="text-[14px] leading-[1.43] text-[var(--color-ink-muted-48)] text-center">
               Enter your name to receive a personalized fortune, a tarot card drawn from the Major Arcana, your lucky number, your lucky color, and spiritual advice for the path ahead.
             </p>

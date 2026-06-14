@@ -62,7 +62,7 @@ export default function TextDiffPage() {
         <ThemeToggle />
       </div>
 
-      <h1 className="apple-headline text-[32px] leading-[1.1] text-center mb-1">
+      <h1 className="cosmic-headline text-[32px] leading-[1.1] text-center mb-1">
         Text Diff Checker
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
@@ -71,7 +71,7 @@ export default function TextDiffPage() {
 
       <div className="w-full max-w-4xl space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="apple-card px-5 py-4 space-y-3">
+          <div className="cosmic-card px-5 py-4 space-y-3">
             <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] uppercase">
               Original Text
             </h2>
@@ -79,11 +79,11 @@ export default function TextDiffPage() {
               value={original}
               onChange={(e) => { setOriginal(e.target.value); setCompared(false); }}
               placeholder="Paste original text here..."
-              className="apple-input w-full min-h-[200px] resize-y rounded-[11px] text-[13px] font-mono leading-[1.5]"
+              className="cosmic-input w-full min-h-[200px] resize-y rounded-[11px] text-[13px] font-mono leading-[1.5]"
               spellCheck={false}
             />
           </div>
-          <div className="apple-card px-5 py-4 space-y-3">
+          <div className="cosmic-card px-5 py-4 space-y-3">
             <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] uppercase">
               Changed Text
             </h2>
@@ -91,28 +91,28 @@ export default function TextDiffPage() {
               value={changed}
               onChange={(e) => { setChanged(e.target.value); setCompared(false); }}
               placeholder="Paste changed text here..."
-              className="apple-input w-full min-h-[200px] resize-y rounded-[11px] text-[13px] font-mono leading-[1.5]"
+              className="cosmic-input w-full min-h-[200px] resize-y rounded-[11px] text-[13px] font-mono leading-[1.5]"
               spellCheck={false}
             />
           </div>
         </div>
 
         <div className="flex justify-center">
-          <button onClick={handleCompare} className="apple-btn-primary text-[14px] px-8 py-2">
+          <button onClick={handleCompare} className="cosmic-btn-primary text-[14px] px-8 py-2">
             Compare
           </button>
         </div>
 
         {compared && diff.length > 0 && (
           <>
-            <div className="apple-card px-5 py-4 space-y-2">
+            <div className="cosmic-card px-5 py-4 space-y-2">
               <div className="flex gap-4 text-[13px]">
                 <span className="text-green-600 font-semibold">{summary.added} added</span>
                 <span className="text-red-500 font-semibold">{summary.removed} removed</span>
                 <span className="text-gray-400 font-semibold">{summary.unchanged} unchanged</span>
               </div>
             </div>
-            <div className="apple-card px-5 py-4 space-y-0 overflow-hidden">
+            <div className="cosmic-card px-5 py-4 space-y-0 overflow-hidden">
               {diff.map((line, i) => (
                 <div
                   key={i}

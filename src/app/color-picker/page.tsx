@@ -140,7 +140,7 @@ export default function ColorPickerPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[32px] leading-[1.1] text-center mb-1">
+      <h1 className="cosmic-headline text-[32px] leading-[1.1] text-center mb-1">
         Color Picker
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
@@ -148,12 +148,12 @@ export default function ColorPickerPage() {
       </p>
 
       <div className="w-full max-w-md space-y-4">
-        <div className="apple-card px-5 py-4 space-y-4">
+        <div className="cosmic-card px-5 py-4 space-y-4">
           <input
             value={input}
             onChange={handleInputChange}
             placeholder="#0066CC"
-            className="apple-input w-full h-10 text-[14px]"
+            className="cosmic-input w-full h-10 text-[14px]"
           />
 
           <div
@@ -164,7 +164,7 @@ export default function ColorPickerPage() {
           <div className="flex gap-2">
             <button
               onClick={handleRandom}
-              className="apple-btn-primary text-[13px] px-4 py-2 flex-1"
+              className="cosmic-btn-primary text-[13px] px-4 py-2 flex-1"
             >
               Random Color
             </button>
@@ -172,7 +172,7 @@ export default function ColorPickerPage() {
         </div>
 
         {color && (
-          <div className="apple-card px-5 py-4 space-y-3">
+          <div className="cosmic-card px-5 py-4 space-y-3">
             <FormatRow label="HEX" value={hex} onCopy={() => copy(hex, "HEX")} />
             <FormatRow label="RGB" value={rgb} onCopy={() => copy(rgb, "RGB")} />
             <FormatRow label="HSL" value={hsl} onCopy={() => copy(hsl, "HSL")} />
@@ -180,7 +180,7 @@ export default function ColorPickerPage() {
         )}
 
         {!color && input.trim() && (
-          <div className="apple-card px-5 py-4 text-center">
+          <div className="cosmic-card px-5 py-4 text-center">
             <p className="text-[13px] text-[var(--color-ink-muted-48)]">
               Enter a valid HEX, RGB, or HSL color value.
             </p>
@@ -204,7 +204,7 @@ function FormatRow({ label, value, onCopy }: { label: string; value: string; onC
       </code>
       <button
         onClick={onCopy}
-        className="apple-btn-ghost text-[11px] px-2 py-1 shrink-0"
+        className="cosmic-btn-ghost text-[11px] px-2 py-1 shrink-0"
       >
         Copy
       </button>

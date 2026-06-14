@@ -27,7 +27,7 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         this.props.fallback || (
           <div className="flex items-center justify-center min-h-[200px] px-6">
-            <div className="apple-card px-6 py-5 text-center max-w-sm">
+            <div className="cosmic-card px-6 py-5 text-center max-w-sm">
               <p className="text-[15px] font-medium mb-1">Something went wrong</p>
               <p className="text-[13px] text-[var(--color-ink-muted-48)]">
                 Try refreshing the page.

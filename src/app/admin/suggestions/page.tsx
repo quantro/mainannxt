@@ -52,7 +52,7 @@ export default function AdminSuggestions() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Cari saran…"
-        className="apple-input w-full max-w-xs h-10 text-[14px] text-center mb-6"
+        className="cosmic-input w-full max-w-xs h-10 text-[14px] text-center mb-6"
       />
 
       {loading ? (
@@ -60,7 +60,7 @@ export default function AdminSuggestions() {
       ) : (
         <div className="space-y-3 max-w-2xl">
           {filtered.map((s) => (
-            <div key={s.id} className="apple-card px-5 py-4">
+            <div key={s.id} className="cosmic-card px-5 py-4">
               <div className="flex items-start justify-between gap-4">
                 <p className="text-[14px] leading-[1.6] whitespace-pre-wrap">
                   {s.message}

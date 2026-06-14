@@ -197,7 +197,7 @@ export default function CognitiveBiasesPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
         Cognitive Biases
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-3 text-center max-w-lg">
@@ -205,13 +205,13 @@ export default function CognitiveBiasesPage() {
         — berdasarkan penelitian Kahneman &amp; Tversky.
       </p>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-4">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-4">
         <div className="flex items-center gap-2">
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Cari bias berdasarkan nama, deskripsi, atau contoh..."
-            className="apple-input w-full h-10 text-[14px] flex-1"
+            className="cosmic-input w-full h-10 text-[14px] flex-1"
           />
           {search && (
             <button
@@ -252,14 +252,14 @@ export default function CognitiveBiasesPage() {
 
       <div className="w-full max-w-2xl space-y-3">
         {filtered.length === 0 && (
-          <div className="apple-card px-6 py-8 text-center">
+          <div className="cosmic-card px-6 py-8 text-center">
             <p className="text-[14px] text-[var(--color-ink-muted-48)]">
               Tidak ada bias yang cocok dengan &ldquo;{search}&rdquo;.
             </p>
           </div>
         )}
         {filtered.map((bias) => (
-          <div key={bias.name} className="apple-card px-6 py-4">
+          <div key={bias.name} className="cosmic-card px-6 py-4">
             <button
               onClick={() => toggle(bias.name)}
               className="w-full text-left flex items-center justify-between gap-3"
@@ -307,7 +307,7 @@ export default function CognitiveBiasesPage() {
         ))}
       </div>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-4 mt-6">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-4 mt-6">
         <p className="text-[11px] leading-[1.6] text-[var(--color-ink-muted-48)] text-center italic">
           Berdasarkan penelitian Daniel Kahneman &amp; Amos Tversky (1972&ndash;2012) serta{" "}
           <em>Thinking, Fast and Slow</em> (Kahneman, 2011)

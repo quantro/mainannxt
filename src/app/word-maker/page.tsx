@@ -323,11 +323,11 @@ export default function Home() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
         Word Maker
       </h1>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           Names
         </h2>
@@ -341,7 +341,7 @@ export default function Home() {
                 value={name}
                 onChange={(e) => updateName(i, e.target.value)}
                 placeholder={`Name ${i + 1}`}
-                className="apple-input flex-1 h-10 text-[14px]"
+                className="cosmic-input flex-1 h-10 text-[14px]"
               />
               {showPositions && (
                 <input
@@ -352,7 +352,7 @@ export default function Home() {
                   onChange={(e) =>
                     updatePosition(i, Math.max(0, Number(e.target.value) - 1))
                   }
-                  className="w-14 h-10 px-2 text-center apple-input text-[14px]"
+                  className="w-14 h-10 px-2 text-center cosmic-input text-[14px]"
                   title="Position"
                 />
               )}
@@ -367,7 +367,7 @@ export default function Home() {
           ))}
         </div>
         <div className="flex items-center gap-3 mt-3">
-          <button onClick={addName} className="apple-btn-ghost text-[12px]">
+          <button onClick={addName} className="cosmic-btn-ghost text-[12px]">
             + Add name
           </button>
           <button
@@ -380,7 +380,7 @@ export default function Home() {
       </div>
 
       {hasContent && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
           <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
             Target Word
           </h2>
@@ -392,13 +392,13 @@ export default function Home() {
               )
             }
             placeholder="Type a word to make..."
-            className="apple-input w-full h-10 text-[14px]"
+            className="cosmic-input w-full h-10 text-[14px]"
           />
           <div className="flex items-center gap-3 mt-3">
             <button
               onClick={findPattern}
               disabled={!targetWord}
-              className="apple-btn apple-btn-primary text-[14px]"
+              className="cosmic-btn cosmic-btn-primary text-[14px]"
             >
               Find Pattern
             </button>
@@ -465,7 +465,7 @@ export default function Home() {
           </button>
 
           {showAdvanced && (
-            <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+            <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
               <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
                 Offset (grid column start)
               </h2>
@@ -485,7 +485,7 @@ export default function Home() {
                       onChange={(e) =>
                         updateOffset(i, Math.max(0, Number(e.target.value)))
                       }
-                      className="w-14 h-10 px-2 text-center apple-input text-[14px]"
+                      className="w-14 h-10 px-2 text-center cosmic-input text-[14px]"
                     />
                   </div>
                 ))}
@@ -495,7 +495,7 @@ export default function Home() {
 
           <button
             onClick={generateImage}
-            className="apple-btn apple-btn-primary text-[14px] mb-6"
+            className="cosmic-btn cosmic-btn-primary text-[14px] mb-6"
           >
             Generate Image
           </button>
@@ -503,7 +503,7 @@ export default function Home() {
       )}
 
       {imageUrl && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5 mb-6">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-6">
           <img
             src={imageUrl}
             alt="Generated word art"
@@ -512,7 +512,7 @@ export default function Home() {
           <a
             href={imageUrl}
             download="word-maker.png"
-            className="apple-btn apple-btn-primary text-[14px] mt-4"
+            className="cosmic-btn cosmic-btn-primary text-[14px] mt-4"
           >
             Download PNG
           </a>

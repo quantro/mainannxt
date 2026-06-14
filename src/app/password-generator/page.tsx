@@ -71,18 +71,18 @@ export default function PasswordGeneratorPage() {
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
       <PageTitle title="Password Generator" />
       <div className="absolute top-4 right-4"><ThemeToggle /></div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">Password Generator</h1>
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">Password Generator</h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
         Generate secure, random passwords in your browser.
       </p>
 
       <div className="w-full max-w-md space-y-4">
         {password && (
-          <div className="apple-card px-5 py-4">
+          <div className="cosmic-card px-5 py-4">
             <div className="flex items-center gap-2">
               <code className="flex-1 text-[15px] font-mono tracking-wider break-all select-all">{password}</code>
-              <button onClick={doCopy} className="apple-btn-ghost shrink-0 text-[12px] px-2 py-1">{copied ? "Copied!" : "Copy"}</button>
-              <button onClick={generate} className="apple-btn-primary shrink-0 text-[12px] px-3 py-1">Regenerate</button>
+              <button onClick={doCopy} className="cosmic-btn-ghost shrink-0 text-[12px] px-2 py-1">{copied ? "Copied!" : "Copy"}</button>
+              <button onClick={generate} className="cosmic-btn-primary shrink-0 text-[12px] px-3 py-1">Regenerate</button>
             </div>
             <div className="mt-2 h-1.5 rounded-full bg-[var(--color-surface-pearl)] overflow-hidden">
               <div className="h-full rounded-full transition-all duration-300" style={{ width: Math.min(password.length * 6.25, 100) + "%", backgroundColor: strength.color }} />
@@ -91,7 +91,7 @@ export default function PasswordGeneratorPage() {
           </div>
         )}
 
-        <div className="apple-card px-5 py-4 space-y-4">
+        <div className="cosmic-card px-5 py-4 space-y-4">
           <div>
             <label className="text-[11px] font-semibold uppercase text-[var(--color-ink-muted-48)]">Length: {length}</label>
             <input type="range" min="4" max="64" value={length} onChange={(e) => setLength(parseInt(e.target.value))} className="w-full accent-[var(--color-primary)] mt-1" />
@@ -107,7 +107,7 @@ export default function PasswordGeneratorPage() {
           </div>
         </div>
 
-        <button onClick={generate} disabled={!charset} className="apple-btn-primary w-full h-11 text-[14px] disabled:opacity-40">
+        <button onClick={generate} disabled={!charset} className="cosmic-btn-primary w-full h-11 text-[14px] disabled:opacity-40">
           {password ? "Regenerate" : "Generate Password"}
         </button>
       </div>

@@ -46,7 +46,7 @@ export default function SaranPage() {
         <ThemeToggle />
       </div>
 
-      <h1 className="apple-headline text-[32px] leading-[1.1] text-center mb-1">
+      <h1 className="cosmic-headline text-[32px] leading-[1.1] text-center mb-1">
         Kirim Saran
       </h1>
       <p className="text-[14px] text-[var(--color-ink-muted-48)] text-center mb-8 max-w-sm">
@@ -55,7 +55,7 @@ export default function SaranPage() {
 
       <form
         onSubmit={handleSubmit}
-        className="apple-card w-full max-w-md p-6 space-y-4"
+        className="cosmic-card w-full max-w-md p-6 space-y-4"
       >
         <div>
           <label className="text-[13px] font-medium block mb-1.5">
@@ -68,7 +68,7 @@ export default function SaranPage() {
             rows={5}
             maxLength={2000}
             required
-            className="apple-input w-full resize-none text-[14px] p-3"
+            className="cosmic-input w-full resize-none text-[14px] p-3"
           />
           <p className="text-[11px] text-[var(--color-ink-muted-48)] mt-1 text-right">
             {message.length}/2000
@@ -82,7 +82,7 @@ export default function SaranPage() {
         <button
           type="submit"
           disabled={status === "loading" || !message.trim()}
-          className="apple-btn-primary w-full h-10 text-[14px] disabled:opacity-50"
+          className="cosmic-btn-primary w-full h-10 text-[14px] disabled:opacity-50"
         >
           {status === "loading" ? "Mengirim…" : "Kirim Saran"}
         </button>

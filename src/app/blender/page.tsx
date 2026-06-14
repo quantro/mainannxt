@@ -110,11 +110,11 @@ export default function BlenderPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
         Name Blender
       </h1>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           Names
         </h2>
@@ -123,19 +123,19 @@ export default function BlenderPage() {
             value={nameA}
             onChange={(e) => setNameA(e.target.value)}
             placeholder="First name"
-            className="apple-input w-full h-10 text-[14px]"
+            className="cosmic-input w-full h-10 text-[14px]"
           />
           <input
             value={nameB}
             onChange={(e) => setNameB(e.target.value)}
             placeholder="Second name"
-            className="apple-input w-full h-10 text-[14px]"
+            className="cosmic-input w-full h-10 text-[14px]"
           />
         </div>
       </div>
 
       {nameA.trim() && nameB.trim() && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5">
           <p className="text-[12px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-4 uppercase">
             {blends.length} blend{blends.length !== 1 ? "s" : ""}
           </p>
@@ -158,7 +158,7 @@ export default function BlenderPage() {
       )}
 
       {(!nameA.trim() || !nameB.trim()) && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5">
           <p className="text-[14px] leading-[1.43] tracking-[-0.224px] text-[var(--color-ink-muted-48)] text-center">
             Enter two names to blend.
           </p>

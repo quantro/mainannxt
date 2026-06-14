@@ -33,9 +33,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <div className="flex min-h-screen">
-      <aside className="w-56 shrink-0 border-r border-[var(--color-divider-soft)] p-4 flex flex-col gap-1">
+      <aside className="w-56 shrink-0 border-r border-[var(--color-hairline)] p-4 flex flex-col gap-1">
         <div className="flex items-center justify-between mb-6">
-          <Link href="/admin" className="text-[15px] font-semibold no-underline">
+          <Link href="/admin" className="text-[15px] font-semibold no-underline text-[var(--color-ink)]">
             Admin
           </Link>
           <ThemeToggle />
@@ -49,7 +49,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               className={`flex items-center gap-2 px-3 py-2 rounded-lg text-[13px] no-underline transition-colors ${
                 active
                   ? "bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-medium"
-                  : "text-[var(--color-ink-muted-48)] hover:bg-[var(--color-divider-soft)]"
+                  : "text-[var(--color-ink-muted)] hover:bg-[var(--color-hairline)]"
               }`}
             >
               <span>{item.icon}</span>
@@ -59,7 +59,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         })}
         <button
           onClick={handleSignOut}
-          className="mt-auto flex items-center gap-2 px-3 py-2 rounded-lg text-[13px] text-[var(--color-ink-muted-48)] hover:bg-[var(--color-divider-soft)] transition-colors no-underline w-full text-left"
+          className="mt-auto flex items-center gap-2 px-3 py-2 rounded-lg text-[13px] text-[var(--color-ink-muted)] hover:bg-[var(--color-hairline)] transition-colors no-underline w-full text-left"
         >
           Sign Out
         </button>

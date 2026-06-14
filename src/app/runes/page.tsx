@@ -288,7 +288,7 @@ export default function RunesPage() {
         <ThemeToggle />
       </div>
 
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
         Rune Divination
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-8 text-center max-w-lg">
@@ -296,7 +296,7 @@ export default function RunesPage() {
       </p>
 
       {/* Spread selector */}
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <div className="flex gap-2">
           {(Object.entries(SPREADS) as [Spread, typeof SPREADS[Spread]][]).map(([key, s]) => (
             <button
@@ -316,7 +316,7 @@ export default function RunesPage() {
 
       <button
         onClick={deal}
-        className="apple-btn-primary h-12 px-10 text-[15px] font-semibold mb-6"
+        className="cosmic-btn-primary h-12 px-10 text-[15px] font-semibold mb-6"
       >
         Cast the Runes
       </button>
@@ -364,7 +364,7 @@ export default function RunesPage() {
 
           {/* Detailed readings */}
           {runes.map(({ rune, merkstave }, i) => (
-            <div key={`reading-${i}`} className="apple-card px-6 py-5">
+            <div key={`reading-${i}`} className="cosmic-card px-6 py-5">
               <div className="flex items-start justify-between mb-1">
                 <div>
                   <h3 className="text-[17px] font-bold text-[var(--color-ink)]">
@@ -407,7 +407,7 @@ export default function RunesPage() {
           ))}
 
           {/* Conclusion */}
-          <div className="apple-card px-6 py-5 border-l-4" style={{ borderLeftColor: "var(--color-primary)" }}>
+          <div className="cosmic-card px-6 py-5 border-l-4" style={{ borderLeftColor: "var(--color-primary)" }}>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-[18px]">ᚠ</span>
               <h3 className="text-[14px] font-bold uppercase tracking-wider text-[var(--color-ink)]">Reading Conclusion</h3>
@@ -420,7 +420,7 @@ export default function RunesPage() {
       {/* About section */}
       {!dealt && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">About the Elder Futhark</h2>
             <p className="text-[13px] leading-[1.6] text-[var(--color-ink)] mb-2">
               The Elder Futhark is the oldest known runic alphabet, used by Germanic and Norse peoples from the 2nd to 8th centuries CE. Its 24 characters are divided into three families of eight called <em>aettir</em> (singular: <em>aett</em>). Runes were carved into wood, stone, bone, and metal — serving both as a writing system and as tools for divination and ritual.
@@ -431,7 +431,7 @@ export default function RunesPage() {
           </div>
 
           {/* Aett reference */}
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">The Three Aettir</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {Object.entries(AETT_DESCS).map(([aett, desc]) => (

@@ -94,11 +94,11 @@ export default function LadderPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
         Word Ladder
       </h1>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <div className="grid grid-cols-2 gap-4">
           <div>
             <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
@@ -112,7 +112,7 @@ export default function LadderPage() {
                 )
               }
               placeholder="e.g. cold"
-              className="apple-input w-full h-10 text-[14px]"
+              className="cosmic-input w-full h-10 text-[14px]"
             />
           </div>
           <div>
@@ -127,20 +127,20 @@ export default function LadderPage() {
                 )
               }
               placeholder="e.g. warm"
-              className="apple-input w-full h-10 text-[14px]"
+              className="cosmic-input w-full h-10 text-[14px]"
             />
           </div>
         </div>
         <button
           onClick={handleSubmit}
-          className="apple-btn apple-btn-primary text-[14px] mt-4"
+          className="cosmic-btn cosmic-btn-primary text-[14px] mt-4"
         >
           Find Ladder
         </button>
       </div>
 
       {error && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
           <p className="text-[14px] leading-[1.43] tracking-[-0.224px] text-center text-[var(--color-primary)]">
             {error}
           </p>
@@ -148,7 +148,7 @@ export default function LadderPage() {
       )}
 
       {searched && path !== null && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5">
           <p className="text-[12px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-4 uppercase">
             {path.length - 1} step{path.length - 1 !== 1 ? "s" : ""}
           </p>
@@ -185,7 +185,7 @@ export default function LadderPage() {
       )}
 
       {searched && path === null && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5">
           <p className="text-[14px] leading-[1.43] tracking-[-0.224px] text-[var(--color-ink-muted-48)] text-center">
             No ladder found between those words.
           </p>

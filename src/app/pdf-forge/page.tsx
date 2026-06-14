@@ -270,7 +270,7 @@ export default function PdfForgePage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
         PDF Forge
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
@@ -295,7 +295,7 @@ export default function PdfForgePage() {
 
       {tab === "compress" && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Select PDF</h2>
             <input
               ref={compressInputRef}
@@ -314,7 +314,7 @@ export default function PdfForgePage() {
               </div>
             )}
           </div>
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Compression Level</h2>
             <div className="flex items-center gap-3">
               <span className="text-[11px] text-[var(--color-ink-muted-48)] w-10 text-right">Light</span>
@@ -340,12 +340,12 @@ export default function PdfForgePage() {
           <button
             onClick={doCompress}
             disabled={!compressFile || compressLoading}
-            className="apple-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
+            className="cosmic-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
           >
             {compressLoading ? "Compressing…" : "Compress PDF"}
           </button>
           {compressBlob && (
-            <div className="apple-card px-6 py-5 text-center">
+            <div className="cosmic-card px-6 py-5 text-center">
               <p className="text-[13px] font-semibold text-[var(--color-ink)] mb-1">
                 Compressed successfully
               </p>
@@ -356,7 +356,7 @@ export default function PdfForgePage() {
               <a
                 href={URL.createObjectURL(compressBlob)}
                 download={"compressed-" + compressFile?.name}
-                className="inline-block apple-btn-primary px-6 py-2 text-[13px]"
+                className="inline-block cosmic-btn-primary px-6 py-2 text-[13px]"
               >
                 Download compressed PDF
               </a>
@@ -367,7 +367,7 @@ export default function PdfForgePage() {
 
       {tab === "split" && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Select PDF</h2>
             <input
               ref={splitInputRef}
@@ -387,13 +387,13 @@ export default function PdfForgePage() {
               </div>
             )}
           </div>
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Page Range</h2>
             <input
               value={splitRange}
               onChange={(e) => setSplitRange(e.target.value)}
               placeholder='e.g. 1-3, 5, 7-9'
-              className="apple-input w-full h-9 text-[13px]"
+              className="cosmic-input w-full h-9 text-[13px]"
             />
             {splitTotalPages > 0 && (
               <p className="text-[11px] text-[var(--color-ink-muted-48)] mt-1">PDF has {splitTotalPages} pages. Enter page numbers or ranges separated by commas.</p>
@@ -402,17 +402,17 @@ export default function PdfForgePage() {
           <button
             onClick={doSplit}
             disabled={!splitFile || !splitRange.trim() || splitLoading}
-            className="apple-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
+            className="cosmic-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
           >
             {splitLoading ? "Splitting…" : "Split PDF"}
           </button>
           {splitBlob && (
-            <div className="apple-card px-6 py-5 text-center">
+            <div className="cosmic-card px-6 py-5 text-center">
               <p className="text-[13px] font-semibold text-[var(--color-ink)] mb-2">Extracted pages successfully</p>
               <a
                 href={URL.createObjectURL(splitBlob)}
                 download="split.pdf"
-                className="inline-block apple-btn-primary px-6 py-2 text-[13px]"
+                className="inline-block cosmic-btn-primary px-6 py-2 text-[13px]"
               >
                 Download split.pdf
               </a>
@@ -423,7 +423,7 @@ export default function PdfForgePage() {
 
       {tab === "merge" && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Select PDFs</h2>
             <input
               ref={mergeInputRef}
@@ -450,7 +450,7 @@ export default function PdfForgePage() {
           <button
             onClick={doMerge}
             disabled={!!mergeWarn || mergeLoading}
-            className="apple-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
+            className="cosmic-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
           >
             {mergeLoading ? "Merging…" : "Merge PDFs"}
           </button>
@@ -458,14 +458,14 @@ export default function PdfForgePage() {
             <p className="text-[12px] text-[var(--color-ink-muted-48)] text-center">{mergeWarn}</p>
           )}
           {mergeBlob && (
-            <div className="apple-card px-6 py-5 text-center">
+            <div className="cosmic-card px-6 py-5 text-center">
               <p className="text-[13px] font-semibold text-[var(--color-ink)] mb-2">
                 Merged {mergeFiles.length} files successfully
               </p>
               <a
                 href={URL.createObjectURL(mergeBlob)}
                 download="merged.pdf"
-                className="inline-block apple-btn-primary px-6 py-2 text-[13px]"
+                className="inline-block cosmic-btn-primary px-6 py-2 text-[13px]"
               >
                 Download merged.pdf
               </a>
@@ -476,7 +476,7 @@ export default function PdfForgePage() {
 
       {tab === "image" && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Select Images</h2>
             <input
               ref={imageInputRef}
@@ -504,19 +504,19 @@ export default function PdfForgePage() {
           <button
             onClick={doImageToPdf}
             disabled={imageFiles.length === 0 || imageLoading}
-            className="apple-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
+            className="cosmic-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
           >
             {imageLoading ? "Converting…" : "Convert to PDF"}
           </button>
           {imageBlob && (
-            <div className="apple-card px-6 py-5 text-center">
+            <div className="cosmic-card px-6 py-5 text-center">
               <p className="text-[13px] font-semibold text-[var(--color-ink)] mb-2">
                 Converted {imageFiles.length} image{imageFiles.length > 1 ? "s" : ""} to PDF
               </p>
               <a
                 href={URL.createObjectURL(imageBlob)}
                 download="images.pdf"
-                className="inline-block apple-btn-primary px-6 py-2 text-[13px]"
+                className="inline-block cosmic-btn-primary px-6 py-2 text-[13px]"
               >
                 Download images.pdf
               </a>
@@ -527,30 +527,30 @@ export default function PdfForgePage() {
 
       {tab === "text" && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Enter Text</h2>
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Type or paste your text here…"
               rows={10}
-              className="apple-input w-full resize-y text-[14px] leading-[1.6]"
+              className="cosmic-input w-full resize-y text-[14px] leading-[1.6]"
             />
           </div>
           <button
             onClick={doTextToPdf}
             disabled={!text.trim() || textLoading}
-            className="apple-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
+            className="cosmic-btn-primary w-full h-11 text-[14px] disabled:opacity-40"
           >
             {textLoading ? "Creating PDF…" : "Create PDF"}
           </button>
           {textBlob && (
-            <div className="apple-card px-6 py-5 text-center">
+            <div className="cosmic-card px-6 py-5 text-center">
               <p className="text-[13px] font-semibold text-[var(--color-ink)] mb-2">PDF created successfully</p>
               <a
                 href={URL.createObjectURL(textBlob)}
                 download="document.pdf"
-                className="inline-block apple-btn-primary px-6 py-2 text-[13px]"
+                className="inline-block cosmic-btn-primary px-6 py-2 text-[13px]"
               >
                 Download document.pdf
               </a>
@@ -559,7 +559,7 @@ export default function PdfForgePage() {
         </div>
       )}
 
-      <div className="w-full max-w-2xl mt-6 apple-card px-6 py-4">
+      <div className="w-full max-w-2xl mt-6 cosmic-card px-6 py-4">
         <p className="text-[12px] leading-[1.6] text-[var(--color-ink-muted-48)] text-center">
           Inspired by{" "}
           <a href="https://bentopdf.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] font-semibold hover:underline">

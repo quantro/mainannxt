@@ -135,23 +135,23 @@ export default function WheelPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
         Wheel of Names
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-8 text-center max-w-lg">
         Add names and spin to pick a random winner.
       </p>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <div className="flex items-center gap-2 mb-2">
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && addName()}
             placeholder="Enter a name..."
-            className="apple-input flex-1 h-10 text-[14px]"
+            className="cosmic-input flex-1 h-10 text-[14px]"
           />
-          <button onClick={addName} className="apple-btn-primary h-10 px-4 text-[13px] whitespace-nowrap">
+          <button onClick={addName} className="cosmic-btn-primary h-10 px-4 text-[13px] whitespace-nowrap">
             Add
           </button>
         </div>
@@ -200,14 +200,14 @@ export default function WheelPage() {
         <button
           onClick={spin}
           disabled={spinning || names.length < 2}
-          className="apple-btn-primary mt-6 h-12 px-10 text-[15px] font-semibold disabled:opacity-40"
+          className="cosmic-btn-primary mt-6 h-12 px-10 text-[15px] font-semibold disabled:opacity-40"
         >
           {spinning ? "Spinning..." : "Spin the Wheel!"}
         </button>
       </div>
 
       {winner && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5 text-center">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5 text-center">
           <div className="text-[36px] mb-2">🎉</div>
           <div className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-1">Winner</div>
           <div className="text-[28px] font-bold text-[var(--color-ink)]">{winner}</div>
@@ -215,7 +215,7 @@ export default function WheelPage() {
       )}
 
       {!winner && names.length >= 2 && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5">
           <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">How It Works</h2>
           <p className="text-[13px] leading-[1.6] text-[var(--color-ink-muted-48)]">
             Enter names above, then spin the wheel. The pointer at the top determines the winner. Each segment is colored for easy identification. You need at least 2 names to spin.

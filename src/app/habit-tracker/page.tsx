@@ -114,23 +114,23 @@ export default function HabitTrackerPage() {
         <ThemeToggle />
       </div>
 
-      <h1 className="apple-headline text-[32px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[32px] leading-[1.47] tracking-[-0.374px] mb-2">
         Habit Tracker
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-8 text-center max-w-lg">
         Lacak kebiasaan harianmu dan bangun rutinitas yang konsisten.
       </p>
 
-      <div className="w-full max-w-3xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-3xl cosmic-card px-6 py-5 mb-5">
         <div className="flex items-center gap-2 mb-4">
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && addHabit()}
             placeholder="Tambah kebiasaan baru..."
-            className="apple-input flex-1 h-10 text-[14px]"
+            className="cosmic-input flex-1 h-10 text-[14px]"
           />
-          <button onClick={addHabit} className="apple-btn-primary h-10 px-4 text-[13px] whitespace-nowrap">
+          <button onClick={addHabit} className="cosmic-btn-primary h-10 px-4 text-[13px] whitespace-nowrap">
             Tambah
           </button>
         </div>
@@ -217,7 +217,7 @@ export default function HabitTrackerPage() {
         )}
       </div>
 
-      <div className="w-full max-w-3xl apple-card px-6 py-5">
+      <div className="w-full max-w-3xl cosmic-card px-6 py-5">
         <p className="text-[11px] leading-[1.6] text-[var(--color-ink-muted-48)]">
           Konsep habit tracking terinspirasi dari Atomic Habits (James Clear, 2018) dan The Power of Habit (Charles Duhigg, 2012).
         </p>

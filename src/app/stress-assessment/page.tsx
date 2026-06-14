@@ -79,7 +79,7 @@ export default function StressAssessmentPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[32px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[32px] leading-[1.47] tracking-[-0.374px] mb-2">
         Stress &amp; Anxiety Assessment
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-8 text-center max-w-xl">
@@ -90,7 +90,7 @@ export default function StressAssessmentPage() {
         <>
           <div className="w-full max-w-2xl space-y-3 mb-6">
             {QUESTIONS.map((q, i) => (
-              <div key={i} className="apple-card px-5 py-4">
+              <div key={i} className="cosmic-card px-5 py-4">
                 <div className="flex items-start gap-3">
                   <span className="text-[11px] font-semibold text-[var(--color-ink-muted-48)] leading-[1.6] mt-0.5 shrink-0 w-6 text-right">
                     {i + 1}
@@ -120,20 +120,20 @@ export default function StressAssessmentPage() {
           <button
             onClick={handleSubmit}
             disabled={!allAnswered}
-            className="apple-btn-primary text-[14px] disabled:opacity-40"
+            className="cosmic-btn-primary text-[14px] disabled:opacity-40"
           >
             {allAnswered ? "Lihat Hasil" : `Jawab semua pertanyaan (${Object.keys(answers).length}/${QUESTIONS.length})`}
           </button>
         </>
       ) : (
         <div className="w-full max-w-2xl space-y-5">
-          <button onClick={handleReset} className="apple-btn-ghost text-[13px] mb-2">
+          <button onClick={handleReset} className="cosmic-btn-ghost text-[13px] mb-2">
             ← Kerjakan Ulang
           </button>
 
           {category && (
             <>
-              <div className="apple-card px-6 py-5 text-center">
+              <div className="cosmic-card px-6 py-5 text-center">
                 <h2 className="text-[14px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-4 tracking-[-0.224px]">
                   Hasil Assessment
                 </h2>
@@ -158,7 +158,7 @@ export default function StressAssessmentPage() {
                 </p>
               </div>
 
-              <div className="apple-card px-6 py-5">
+              <div className="cosmic-card px-6 py-5">
                 <p className="text-[12px] leading-[1.6] text-[var(--color-ink-muted-48)] italic mb-3">
                   <strong>Peringatan:</strong> Instrumen ini BUKAN alat diagnosis medis. Hasil ini hanya untuk tujuan edukatif dan refleksi pribadi. Jika Anda mengalami gejala stres atau kecemasan yang mengganggu aktivitas sehari-hari, segera konsultasikan dengan tenaga kesehatan mental profesional.
                 </p>

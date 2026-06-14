@@ -101,27 +101,27 @@ export function CommandPalette() {
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex items-start justify-center pt-[15vh] bg-black/20 backdrop-blur-sm"
+      className="cosmic-modal-overlay fixed inset-0 z-[200] flex items-start justify-center pt-[15vh]"
       onClick={() => setOpen(false)}
     >
       <div
-        className="apple-card w-full max-w-lg mx-4 p-0 overflow-hidden"
+        className="cosmic-card w-full max-w-lg mx-4 p-0 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center border-b border-[var(--color-divider-soft)]">
-          <svg className="w-4 h-4 ml-4 shrink-0 text-[var(--color-ink-muted-48)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <div className="flex items-center border-b border-[var(--color-hairline)]">
+          <svg className="w-4 h-4 ml-4 shrink-0 text-[var(--color-ink-muted)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           <input
             ref={inputRef}
             value={query}
             onChange={(e) => { setQuery(e.target.value); setSelected(0); }}
             placeholder="Search tools\u2026"
-            className="flex-1 h-12 px-3 text-[14px] bg-transparent border-none outline-none"
+            className="flex-1 h-12 px-3 text-[14px] bg-transparent border-none outline-none text-[var(--color-ink)] placeholder:text-[var(--color-ink-muted)]"
           />
-          <kbd className="mr-3 text-[10px] text-[var(--color-ink-muted-48)] border border-[var(--color-divider-soft)] rounded px-1.5 py-0.5">ESC</kbd>
+          <kbd className="mr-3 text-[10px] text-[var(--color-ink-muted)] border border-[var(--color-hairline)] rounded px-1.5 py-0.5">ESC</kbd>
         </div>
         <div className="max-h-72 overflow-y-auto p-2 space-y-0.5">
           {results.length === 0 ? (
-            <p className="text-[13px] text-[var(--color-ink-muted-48)] text-center py-4">
+            <p className="text-[13px] text-[var(--color-ink-muted)] text-center py-4">
               No tools found
             </p>
           ) : (
@@ -133,12 +133,12 @@ export function CommandPalette() {
                 className={`flex items-center gap-3 w-full px-3 py-2 rounded-lg text-left text-[13px] transition-colors ${
                   i === selected
                     ? "bg-[var(--color-primary)]/10 text-[var(--color-primary)]"
-                    : "text-[var(--color-ink)] hover:bg-[var(--color-divider-soft)]"
+                    : "text-[var(--color-ink)] hover:bg-[var(--color-hairline)]"
                 }`}
               >
                 <span className="text-[16px]">{t.icon}</span>
                 <span className="flex-1">{t.name}</span>
-                <span className="text-[11px] text-[var(--color-ink-muted-48)]">{t.category}</span>
+                <span className="text-[11px] text-[var(--color-ink-muted)]">{t.category}</span>
               </button>
             ))
           )}

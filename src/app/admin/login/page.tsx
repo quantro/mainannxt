@@ -43,7 +43,7 @@ function LoginForm() {
     <div className="flex items-center justify-center min-h-screen px-6">
       <form
         onSubmit={handleLogin}
-        className="apple-card w-full max-w-sm p-8 space-y-4"
+        className="cosmic-card w-full max-w-sm p-8 space-y-4"
       >
         <h1 className="text-[20px] font-semibold text-center">Admin Login</h1>
 
@@ -57,7 +57,7 @@ function LoginForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           required
-          className="apple-input w-full h-10 text-[14px]"
+          className="cosmic-input w-full h-10 text-[14px]"
         />
 
         <input
@@ -66,13 +66,13 @@ function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           required
-          className="apple-input w-full h-10 text-[14px]"
+          className="cosmic-input w-full h-10 text-[14px]"
         />
 
         <button
           type="submit"
           disabled={loading}
-          className="apple-btn-primary w-full h-10 text-[14px] disabled:opacity-50"
+          className="cosmic-btn-primary w-full h-10 text-[14px] disabled:opacity-50"
         >
           {loading ? "Signing in…" : "Sign In"}
         </button>

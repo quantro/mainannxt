@@ -142,7 +142,7 @@ export default function EmotionWheelPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
         Emotion Wheel
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-8 text-center max-w-lg">
@@ -198,7 +198,7 @@ export default function EmotionWheelPage() {
 
       <div className="w-full max-w-2xl space-y-3 mb-6">
         {!selected && (
-          <div className="apple-card px-6 py-5 text-center">
+          <div className="cosmic-card px-6 py-5 text-center">
             <p className="text-[14px] text-[var(--color-ink-muted-48)]">
               Klik salah satu emosi pada roda di atas untuk melihat deskripsi lengkap, lawan, dan kombinasinya.
             </p>
@@ -206,7 +206,7 @@ export default function EmotionWheelPage() {
         )}
         {selected && (
           <>
-            <div className="apple-card px-6 py-5" style={{ borderLeftColor: selected.color, borderLeftWidth: 4 }}>
+            <div className="cosmic-card px-6 py-5" style={{ borderLeftColor: selected.color, borderLeftWidth: 4 }}>
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-3 h-3 rounded-full" style={{ backgroundColor: selected.color }} />
                 <h2 className="text-[20px] font-bold text-[var(--color-ink)]">
@@ -237,7 +237,7 @@ export default function EmotionWheelPage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="apple-card px-6 py-4">
+              <div className="cosmic-card px-6 py-4">
                 <span className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)] tracking-wider">
                   Lawan
                 </span>
@@ -245,7 +245,7 @@ export default function EmotionWheelPage() {
                   {selected.opposite}
                 </p>
               </div>
-              <div className="apple-card px-6 py-4">
+              <div className="cosmic-card px-6 py-4">
                 <span className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)] tracking-wider">
                   Kombinasi
                 </span>
@@ -262,7 +262,7 @@ export default function EmotionWheelPage() {
         )}
       </div>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-4 mb-6">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-4 mb-6">
         <p className="text-[11px] leading-[1.6] text-[var(--color-ink-muted-48)] text-center italic">
           Berdasarkan <em>Wheel of Emotions</em> (Robert Plutchik, 1980)
         </p>

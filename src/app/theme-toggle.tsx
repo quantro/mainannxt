@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useState } from "react";
 
 function readTheme(): string {
-  if (typeof document === "undefined") return "light";
-  return document.documentElement.getAttribute("data-theme") || "light";
+  if (typeof document === "undefined") return "dark";
+  return document.documentElement.getAttribute("data-theme") || "dark";
 }
 
 export default function ThemeToggle() {
@@ -32,7 +32,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="apple-btn-utility text-[12px] leading-none flex items-center gap-1.5"
+      className="cosmic-btn-ghost text-[12px] leading-none flex items-center gap-1.5"
       aria-label="Toggle theme"
     >
       {isDark ? (

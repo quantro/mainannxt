@@ -117,11 +117,11 @@ export default function AcronymPage() {
         <ThemeToggle />
       </div>
 
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
         Acronym Builder
       </h1>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           Phrase
         </h2>
@@ -129,12 +129,12 @@ export default function AcronymPage() {
           value={phrase}
           onChange={(e) => setPhrase(e.target.value)}
           placeholder="e.g. North Atlantic Treaty Organization"
-          className="apple-input w-full h-10 text-[14px]"
+          className="cosmic-input w-full h-10 text-[14px]"
         />
       </div>
 
       {hasContent && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] uppercase">
               Mode
@@ -213,7 +213,7 @@ export default function AcronymPage() {
                         Math.max(0, Number(e.target.value) - 1)
                       )
                     }
-                    className="w-14 h-10 px-2 text-center apple-input text-[14px]"
+                    className="w-14 h-10 px-2 text-center cosmic-input text-[14px]"
                     title={`Position in "${w}"`}
                   />
                   <span className="text-[12px] text-[var(--color-ink-muted-48)] w-8">
@@ -227,7 +227,7 @@ export default function AcronymPage() {
       )}
 
       {hasContent && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
           <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
             Acronym
           </h2>
@@ -242,7 +242,7 @@ export default function AcronymPage() {
       )}
 
       {hasContent && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
           <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
             Real Word Acronyms
           </h2>
@@ -253,7 +253,7 @@ export default function AcronymPage() {
           <button
             onClick={findRealWords}
             disabled={finding}
-            className="apple-btn apple-btn-primary text-[14px]"
+            className="cosmic-btn cosmic-btn-primary text-[14px]"
           >
             {finding ? "Searching..." : "Find Real Word Acronyms"}
           </button>

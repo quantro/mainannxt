@@ -130,11 +130,11 @@ export default function CipherPage() {
         <ThemeToggle />
       </div>
 
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
         Cipher Tool
       </h1>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           Mode
         </h2>
@@ -145,8 +145,8 @@ export default function CipherPage() {
               onClick={() => setMode(m.value)}
               className={
                 mode === m.value
-                  ? "apple-btn apple-btn-primary text-[14px]"
-                  : "apple-btn-ghost text-[14px]"
+                  ? "cosmic-btn cosmic-btn-primary text-[14px]"
+                  : "cosmic-btn-ghost text-[14px]"
               }
             >
               {m.label}
@@ -155,7 +155,7 @@ export default function CipherPage() {
         </div>
       </div>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           Input
         </h2>
@@ -169,7 +169,7 @@ export default function CipherPage() {
       </div>
 
       {mode === "caesar" && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
           <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
             Shift Amount
           </h2>
@@ -190,7 +190,7 @@ export default function CipherPage() {
       )}
 
       {mode === "railfence" && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
           <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
             Rails
           </h2>
@@ -211,7 +211,7 @@ export default function CipherPage() {
       )}
 
       {mode === "vigenere" && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
           <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
             Keyword
           </h2>
@@ -219,12 +219,12 @@ export default function CipherPage() {
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
             placeholder="Enter keyword..."
-            className="apple-input w-full h-10 text-[14px]"
+            className="cosmic-input w-full h-10 text-[14px]"
           />
         </div>
       )}
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           Direction
         </h2>
@@ -233,8 +233,8 @@ export default function CipherPage() {
             onClick={() => setDecode(false)}
             className={
               !decode
-                ? "apple-btn apple-btn-primary text-[14px]"
-                : "apple-btn-ghost text-[14px]"
+                ? "cosmic-btn cosmic-btn-primary text-[14px]"
+                : "cosmic-btn-ghost text-[14px]"
             }
           >
             Encode
@@ -243,8 +243,8 @@ export default function CipherPage() {
             onClick={() => setDecode(true)}
             className={
               decode
-                ? "apple-btn apple-btn-primary text-[14px]"
-                : "apple-btn-ghost text-[14px]"
+                ? "cosmic-btn cosmic-btn-primary text-[14px]"
+                : "cosmic-btn-ghost text-[14px]"
             }
           >
             Decode
@@ -258,7 +258,7 @@ export default function CipherPage() {
         )}
       </div>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-6">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-6">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] uppercase">
             Output
@@ -266,7 +266,7 @@ export default function CipherPage() {
           <button
             onClick={copyResult}
             disabled={!result}
-            className="apple-btn-ghost text-[12px] disabled:opacity-40"
+            className="cosmic-btn-ghost text-[12px] disabled:opacity-40"
           >
             {copied ? "Copied!" : "Copy"}
           </button>

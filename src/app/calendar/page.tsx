@@ -258,14 +258,14 @@ export default function CalendarPage() {
         <ThemeToggle />
       </div>
 
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
         World Calendars
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
         Four calendars, one moment. Explore Chinese, Javanese, Islamic, and Hebrew dates.
       </p>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <div className="grid grid-cols-3 gap-2 mb-3">
           <div>
             <label className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)]">Year</label>
@@ -274,12 +274,12 @@ export default function CalendarPage() {
               onChange={(e) => setYearText(e.target.value.replace(/[^0-9-]/g, ""))}
               onKeyDown={(e) => e.key === "Enter" && setCalculated((c) => !c)}
               placeholder="e.g. 1985"
-              className="apple-input w-full h-9 text-[13px] mt-0.5"
+              className="cosmic-input w-full h-9 text-[13px] mt-0.5"
             />
           </div>
           <div>
             <label className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)]">Month</label>
-            <select value={month} onChange={(e) => setMonth(parseInt(e.target.value))} className="apple-input w-full h-9 text-[13px] mt-0.5">
+            <select value={month} onChange={(e) => setMonth(parseInt(e.target.value))} className="cosmic-input w-full h-9 text-[13px] mt-0.5">
               {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
                 <option key={m} value={m}>{new Date(2000, m - 1, 1).toLocaleDateString("en-US", { month: "long" })}</option>
               ))}
@@ -287,7 +287,7 @@ export default function CalendarPage() {
           </div>
           <div>
             <label className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)]">Day</label>
-            <select value={clampedDay} onChange={(e) => setDay(parseInt(e.target.value))} className="apple-input w-full h-9 text-[13px] mt-0.5">
+            <select value={clampedDay} onChange={(e) => setDay(parseInt(e.target.value))} className="cosmic-input w-full h-9 text-[13px] mt-0.5">
               {Array.from({ length: maxDay }, (_, i) => i + 1).map((d) => (
                 <option key={d} value={d}>{d}</option>
               ))}
@@ -297,7 +297,7 @@ export default function CalendarPage() {
         <div className="flex items-center justify-center gap-3">
           <button
             onClick={() => setCalculated((c) => !c)}
-            className="apple-btn-primary h-10 px-6 text-[13px]"
+            className="cosmic-btn-primary h-10 px-6 text-[13px]"
           >
             Calculate
           </button>
@@ -339,7 +339,7 @@ export default function CalendarPage() {
 
       {tab === "chinese" && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <div className="flex items-center gap-3 mb-1">
               <span className="text-[22px]">🐉</span>
               <h2 className="text-[17px] font-semibold text-[var(--color-ink)]">Chinese Calendar</h2>
@@ -355,7 +355,7 @@ export default function CalendarPage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Chinese Zodiac Animals</h3>
             <div className="grid grid-cols-6 gap-1.5 text-center">
               {CHINESE_ZODIAC.map((animal, i) => {
@@ -371,7 +371,7 @@ export default function CalendarPage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Chinese Festivals & Observances</h3>
             <div className="grid grid-cols-1 gap-1.5">
               {Object.entries(CHINESE_FESTIVALS).map(([key, fest]) => (
@@ -396,7 +396,7 @@ export default function CalendarPage() {
 
       {tab === "javanese" && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <div className="flex items-center gap-3 mb-1">
               <span className="text-[22px]">🌴</span>
               <h2 className="text-[17px] font-semibold text-[var(--color-ink)]">Javanese Calendar (Kalender Jawa)</h2>
@@ -412,7 +412,7 @@ export default function CalendarPage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Pasaran Cycle</h3>
             <div className="grid grid-cols-5 gap-1.5">
               {PASARAN.map((p, i) => (
@@ -424,7 +424,7 @@ export default function CalendarPage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Javanese Months</h3>
             <div className="grid grid-cols-3 gap-1.5">
               {JAVANESE_MONTHS.map((jm, i) => (
@@ -440,7 +440,7 @@ export default function CalendarPage() {
 
       {tab === "islamic" && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <div className="flex items-center gap-3 mb-1">
               <span className="text-[22px]">🌙</span>
               <h2 className="text-[17px] font-semibold text-[var(--color-ink)]">Islamic Calendar (Hijriyah)</h2>
@@ -458,7 +458,7 @@ export default function CalendarPage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Islamic Months</h3>
             <div className="grid grid-cols-3 gap-1.5">
               {HIJRI_MONTHS.map((hm, i) => (
@@ -470,7 +470,7 @@ export default function CalendarPage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Islamic Observances</h3>
             <div className="grid grid-cols-1 gap-1.5">
               {Object.entries(ISLAMIC_OBSERVANCES).map(([key, obs]) => (
@@ -492,7 +492,7 @@ export default function CalendarPage() {
 
       {tab === "hebrew" && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <div className="flex items-center gap-3 mb-1">
               <span className="text-[22px]">✡️</span>
               <h2 className="text-[17px] font-semibold text-[var(--color-ink)]">Hebrew Calendar (Luach)</h2>
@@ -510,7 +510,7 @@ export default function CalendarPage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Hebrew Months</h3>
             <div className="grid grid-cols-3 gap-1.5">
               {hebrewMonths.map((hm, i) => (
@@ -522,7 +522,7 @@ export default function CalendarPage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Jewish Holidays & Observances</h3>
             <div className="grid grid-cols-1 gap-1.5">
               {Object.entries(HEBREW_HOLIDAYS).map(([key, h]) => (
@@ -545,7 +545,7 @@ export default function CalendarPage() {
         </div>
       )}
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mt-4">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mt-4">
         <p className="text-[12px] leading-[1.6] text-[var(--color-ink-muted-48)]">
           The Hijri date shown is an approximate conversion. Exact Islamic dates depend on local moon sighting and may vary by one day depending on location. The Chinese calendar shown uses the year-based zodiac cycle; exact lunar dates in the Chinese calendar would require a full lunisolar conversion. The Javanese pasaran calculation is based on a fixed reference date. The Hebrew date uses the standard tabular calendar with postponement rules (dehiyot).
         </p>

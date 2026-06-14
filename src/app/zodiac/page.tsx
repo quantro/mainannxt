@@ -211,11 +211,11 @@ export default function ZodiacPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
         Star Sign Reader
       </h1>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           Birth Date
         </h2>
@@ -223,7 +223,7 @@ export default function ZodiacPage() {
           <select
             value={month}
             onChange={(e) => setMonth(e.target.value)}
-            className="apple-input w-full h-10 text-[14px]"
+            className="cosmic-input w-full h-10 text-[14px]"
           >
             <option value="">Month</option>
             {["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map((m, i) => (
@@ -233,7 +233,7 @@ export default function ZodiacPage() {
           <select
             value={day}
             onChange={(e) => setDay(e.target.value)}
-            className="apple-input w-full h-10 text-[14px]"
+            className="cosmic-input w-full h-10 text-[14px]"
           >
             <option value="">Day</option>
             {Array.from({ length: 31 }, (_, i) => (
@@ -244,14 +244,14 @@ export default function ZodiacPage() {
             value={year}
             onChange={(e) => setYear(e.target.value.replace(/\D/g, "").slice(0, 4))}
             placeholder="Year"
-            className="apple-input w-full h-10 text-[14px]"
+            className="cosmic-input w-full h-10 text-[14px]"
           />
         </div>
       </div>
 
       {result && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5 text-center">
+          <div className="cosmic-card px-6 py-5 text-center">
             <div className="text-[48px] mb-2">{result.sign.emoji}</div>
             <div className="text-[28px] font-bold text-[var(--color-ink)]">
               {result.sign.symbol} {result.sign.name}
@@ -264,13 +264,13 @@ export default function ZodiacPage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <p className="text-[14px] leading-[1.5] text-[var(--color-ink)]">
               {result.sign.description}
             </p>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Your Reading</h3>
             {result.sign.reading.split("\n\n").map((p, i) => (
               <p key={i} className="text-[14px] leading-[1.7] text-[var(--color-ink)] mb-2 last:mb-0">
@@ -279,7 +279,7 @@ export default function ZodiacPage() {
             ))}
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Details</h3>
             <div className="grid grid-cols-2 gap-3">
               {[
@@ -296,7 +296,7 @@ export default function ZodiacPage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Personality</h3>
             <div className="space-y-3">
               <div>
@@ -346,7 +346,7 @@ export default function ZodiacPage() {
 
       {!result && (!month || !day || !year) && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
               About Western Astrology
             </h2>
@@ -360,7 +360,7 @@ export default function ZodiacPage() {
               Beyond the Sun sign, a full natal chart maps the position of every planet at your exact moment of birth, revealing your Moon sign (emotions), Rising sign (outer personality), and the planetary placements that shape every facet of your character. This tool provides your core Sun sign reading &mdash; a window into the celestial blueprint you were born with.
             </p>
           </div>
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <p className="text-[14px] leading-[1.43] text-[var(--color-ink-muted-48)] text-center">
               Select your birth date above to reveal your star sign, its element, ruling planet, personality traits, strengths, weaknesses, and who you're most compatible with.
             </p>
@@ -369,7 +369,7 @@ export default function ZodiacPage() {
       )}
 
       {!result && month && day && year && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5">
           <p className="text-[14px] leading-[1.43] text-red-500 text-center">
             Invalid date. Please check your inputs.
           </p>

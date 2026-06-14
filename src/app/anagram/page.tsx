@@ -69,10 +69,10 @@ export default function AnagramPage() {
         <div className="absolute top-4 right-4">
           <ThemeToggle />
         </div>
-        <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
+        <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
           Anagram Finder
         </h1>
-        <div className="w-full max-w-2xl apple-card px-6 py-5 text-center">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5 text-center">
           <p className="text-[14px] leading-[1.43] tracking-[-0.224px] text-[var(--color-ink-muted-48)]">
             Loading dictionary...
           </p>
@@ -87,11 +87,11 @@ export default function AnagramPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
         Anagram Finder
       </h1>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-[14px] font-semibold uppercase text-[var(--color-ink-muted-48)]">
             Letters
@@ -118,12 +118,12 @@ export default function AnagramPage() {
             setInput(e.target.value.replace(/[^a-zA-Z]/g, "").toLowerCase())
           }
           placeholder="Type your letters..."
-          className="apple-input w-full h-10 text-[14px]"
+          className="cosmic-input w-full h-10 text-[14px]"
         />
       </div>
 
       {debouncedInput.length >= 3 && words.length > 0 && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5">
           <p className="text-[12px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-4 uppercase">
             {words.length} word{words.length !== 1 ? "s" : ""} found
           </p>
@@ -141,7 +141,7 @@ export default function AnagramPage() {
       )}
 
       {debouncedInput.length >= 3 && words.length === 0 && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5">
           <p className="text-[14px] leading-[1.43] tracking-[-0.224px] text-[var(--color-ink-muted-48)] text-center">
             No words found.
           </p>
@@ -149,7 +149,7 @@ export default function AnagramPage() {
       )}
 
       {debouncedInput.length < 3 && debouncedInput.length > 0 && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5">
           <p className="text-[14px] leading-[1.43] tracking-[-0.224px] text-[var(--color-ink-muted-48)] text-center">
             Type at least 3 letters to find words.
           </p>

@@ -52,6 +52,7 @@ const tools: Tool[] = [
   { slug: "/habit-tracker", icon: "\uD83D\uDD14", name: "Habit Tracker", desc: "Catat kebiasaan harian dan lihat streak Anda", category: "Psychology" },
   { slug: "/focus-timer", icon: "\u23F1\uFE0F", name: "Focus Timer", desc: "Teknik Pomodoro dengan timer melingkar dan sesi tracking", category: "Psychology" },
   { slug: "/cognitive-biases", icon: "\uD83E\uDDE0", name: "Cognitive Biases", desc: "Ensiklopedia bias kognitif lengkap dengan contoh", category: "Psychology" },
+  { slug: "/fallacies", icon: "\uD83D\uDD10", name: "Logical Fallacies", desc: "Ensiklopedia kesesatan logika dengan ilustrasi dan contoh", category: "Psychology" },
   { slug: "/emotion-wheel", icon: "\uD83C\uDF0D", name: "Emotion Wheel", desc: "Roda emosi Plutchik interaktif untuk memahami perasaan", category: "Psychology" },
 ];
 
@@ -83,13 +84,13 @@ export default function Home() {
       <div className="absolute top-4 right-4 flex items-center gap-2">
         <Link
           href="/saran"
-          className="apple-btn-ghost text-[13px] no-underline"
+          className="cosmic-btn-ghost text-[13px] no-underline"
         >
           Saran
         </Link>
         <button
           onClick={() => setShowStats(!showStats)}
-          className="apple-btn-ghost text-[13px]"
+          className="cosmic-btn-ghost text-[13px]"
         >
           {showStats ? "Close" : "Stats"}
         </button>
@@ -98,7 +99,7 @@ export default function Home() {
 
       {showStats && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm" onClick={() => setShowStats(false)}>
-          <div className="apple-card w-full max-w-sm mx-4 p-6" onClick={e => e.stopPropagation()}>
+          <div className="cosmic-card w-full max-w-sm mx-4 p-6" onClick={e => e.stopPropagation()}>
             <h2 className="text-[17px] font-semibold mb-4">Click Stats</h2>
             {totalClicks(counts) === 0 ? (
               <p className="text-[13px] text-[var(--color-ink-muted-48)]">No clicks yet.</p>
@@ -123,19 +124,22 @@ export default function Home() {
         </div>
       )}
 
-      <h1 className="apple-headline text-[40px] leading-[1.1] text-center mb-1">
-        Fun Tools
-      </h1>
-      <p className="text-[17px] leading-[1.47] tracking-[-0.374px] text-[var(--color-ink-muted-48)] mb-6">
-        Select a tool to use
-      </p>
+      <div className="text-center mb-8">
+        <span className="cosmic-badge mb-4">38 Interactive Tools</span>
+        <h1 className="text-[42px] sm:text-[52px] font-semibold tracking-[-0.03em] leading-[1.05] text-[var(--color-ink)] mb-3">
+          Cosmic Toolkit
+        </h1>
+        <p className="text-[16px] leading-[1.6] text-[var(--color-ink-muted)] max-w-md mx-auto">
+          Divination, psychology, utilities & calendars — all in one cosmic dashboard
+        </p>
+      </div>
 
       <div className="w-full max-w-xs mb-10">
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search tools…"
-          className="apple-input w-full h-10 text-[14px] text-center"
+          className="cosmic-input w-full h-10 text-[14px] text-center"
         />
       </div>
 
@@ -159,7 +163,7 @@ export default function Home() {
                     key={tool.slug}
                     href={tool.slug}
                     onClick={() => handleClick(tool.slug)}
-                    className="apple-card block px-5 py-4 hover:border-[var(--color-primary)] hover:shadow-sm transition-all no-underline"
+                    className="cosmic-card block px-5 py-4 hover:border-[var(--color-primary)] hover:shadow-sm transition-all no-underline"
                   >
                     <div className="text-[22px] mb-2">{tool.icon}</div>
                     <h3 className="text-[15px] font-semibold leading-[1.24] tracking-[-0.374px] text-[var(--color-ink)]">

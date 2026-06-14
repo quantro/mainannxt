@@ -238,14 +238,14 @@ export default function TarotPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
         Tarot Reading
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-8 text-center max-w-lg">
         A full 78-card deck with detailed readings for every card.
       </p>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <div className="flex gap-2">
           {(Object.entries(SPREADS) as [Spread, typeof SPREADS[Spread]][]).map(([key, s]) => (
             <button
@@ -265,7 +265,7 @@ export default function TarotPage() {
 
       <button
         onClick={deal}
-        className="apple-btn-primary h-12 px-10 text-[15px] font-semibold mb-6"
+        className="cosmic-btn-primary h-12 px-10 text-[15px] font-semibold mb-6"
       >
         Shuffle & Deal
       </button>
@@ -314,7 +314,7 @@ export default function TarotPage() {
 
           {/* Detailed readings for each card */}
           {cards.map(({ card, reversed }, i) => (
-            <div key={`reading-${i}`} className="apple-card px-6 py-5">
+            <div key={`reading-${i}`} className="cosmic-card px-6 py-5">
               <div className="flex items-start justify-between mb-1">
                 <div>
                   <h3 className="text-[17px] font-bold text-[var(--color-ink)]">{card.name}</h3>
@@ -354,7 +354,7 @@ export default function TarotPage() {
           ))}
 
           {/* Conclusion */}
-          <div className="apple-card px-6 py-5 border-l-4" style={{ borderLeftColor: "var(--color-primary)" }}>
+          <div className="cosmic-card px-6 py-5 border-l-4" style={{ borderLeftColor: "var(--color-primary)" }}>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-[18px]">📜</span>
               <h3 className="text-[14px] font-bold uppercase tracking-wider text-[var(--color-ink)]">Reading Conclusion</h3>
@@ -365,7 +365,7 @@ export default function TarotPage() {
       )}
 
       {!dealt && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5">
           <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">About Tarot</h2>
           <p className="text-[13px] leading-[1.6] text-[var(--color-ink)] mb-2">
             The tarot deck contains 78 cards: 22 Major Arcana representing life's major archetypal lessons, and 56 Minor Arcana divided into four suits — Wands (fire, creativity), Cups (water, emotions), Swords (air, intellect), and Pentacles (earth, material).

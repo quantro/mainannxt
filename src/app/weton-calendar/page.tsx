@@ -132,14 +132,14 @@ export default function WetonCalendarPage() {
         <ThemeToggle />
       </div>
 
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
         Weton Calendar
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
         View the Javanese weton (day + pasaran) for every day in any month.
       </p>
 
-      <div className="w-full max-w-3xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-3xl cosmic-card px-6 py-5 mb-5">
         <div className="grid grid-cols-2 gap-2 mb-3">
           <div>
             <label className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)]">Year</label>
@@ -148,12 +148,12 @@ export default function WetonCalendarPage() {
               onChange={(e) => setYearText(e.target.value.replace(/[^0-9-]/g, ""))}
               onKeyDown={(e) => e.key === "Enter" && setCalculated((c) => !c)}
               placeholder="e.g. 2025"
-              className="apple-input w-full h-9 text-[13px] mt-0.5"
+              className="cosmic-input w-full h-9 text-[13px] mt-0.5"
             />
           </div>
           <div>
             <label className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)]">Month</label>
-            <select value={month} onChange={(e) => setMonth(parseInt(e.target.value))} className="apple-input w-full h-9 text-[13px] mt-0.5">
+            <select value={month} onChange={(e) => setMonth(parseInt(e.target.value))} className="cosmic-input w-full h-9 text-[13px] mt-0.5">
               {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
                 <option key={m} value={m}>{new Date(2000, m - 1, 1).toLocaleDateString("en-US", { month: "long" })}</option>
               ))}
@@ -163,7 +163,7 @@ export default function WetonCalendarPage() {
         <div className="flex items-center justify-center gap-3">
           <button
             onClick={() => setCalculated((c) => !c)}
-            className="apple-btn-primary h-10 px-6 text-[13px]"
+            className="cosmic-btn-primary h-10 px-6 text-[13px]"
           >
             Calculate
           </button>
@@ -180,7 +180,7 @@ export default function WetonCalendarPage() {
         </div>
       </div>
 
-      <div className="w-full max-w-3xl apple-card px-4 py-4 mb-5">
+      <div className="w-full max-w-3xl cosmic-card px-4 py-4 mb-5">
         <div className="text-[15px] font-semibold text-[var(--color-ink)] text-center mb-3">{monthLabel}</div>
 
         <div className="grid grid-cols-7 gap-px">
@@ -218,7 +218,7 @@ export default function WetonCalendarPage() {
         </div>
       </div>
 
-      <div className="w-full max-w-3xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-3xl cosmic-card px-6 py-5 mb-5">
         <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">
           All 35 Weton Combinations &#8212; Legend
         </h3>
@@ -237,7 +237,7 @@ export default function WetonCalendarPage() {
         </div>
       </div>
 
-      <div className="w-full max-w-3xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-3xl cosmic-card px-6 py-5 mb-5">
         <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">
           The Significance of Weton in Javanese Culture
         </h3>

@@ -61,7 +61,7 @@ export default function TafsirMimpiPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
         Tafsir Mimpi
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-8 text-center max-w-lg">
@@ -69,13 +69,13 @@ export default function TafsirMimpiPage() {
         dan primbon Jawa.
       </p>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <div className="flex items-center gap-2">
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Cari simbol mimpi... (misal: air, ular, gigi)"
-            className="apple-input w-full h-10 text-[14px] flex-1"
+            className="cosmic-input w-full h-10 text-[14px] flex-1"
           />
           {search && (
             <button
@@ -100,14 +100,14 @@ export default function TafsirMimpiPage() {
 
       <div className="w-full max-w-2xl space-y-3">
         {filtered.length === 0 && (
-          <div className="apple-card px-6 py-8 text-center">
+          <div className="cosmic-card px-6 py-8 text-center">
             <p className="text-[14px] text-[var(--color-ink-muted-48)]">
               Tidak ada simbol mimpi yang cocok dengan &ldquo;{search}&rdquo;. Coba kata kunci lain.
             </p>
           </div>
         )}
         {filtered.map((dream) => (
-          <div key={dream.term} className="apple-card px-6 py-4">
+          <div key={dream.term} className="cosmic-card px-6 py-4">
             <button
               onClick={() => toggle(dream.term)}
               className="w-full text-left flex items-center justify-between gap-3"

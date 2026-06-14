@@ -1,11 +1,11 @@
 export function SkeletonCard({ lines = 2 }: { lines?: number }) {
   return (
-    <div className="apple-card px-5 py-4 space-y-2 animate-pulse">
-      <div className="h-3 bg-[var(--color-divider-soft)] rounded w-3/4" />
+    <div className="cosmic-card px-5 py-4 space-y-2 animate-pulse">
+      <div className="h-3 bg-[var(--color-hairline)] rounded w-3/4" />
       {Array.from({ length: lines }).map((_, i) => (
         <div
           key={i}
-          className="h-2.5 bg-[var(--color-divider-soft)] rounded"
+          className="h-2.5 bg-[var(--color-hairline)] rounded"
           style={{ width: `${50 + Math.random() * 40}%` }}
         />
       ))}
@@ -28,10 +28,10 @@ export function SkeletonTable({ rows = 5 }: { rows?: number }) {
     <div className="space-y-2 animate-pulse">
       {Array.from({ length: rows }).map((_, i) => (
         <div key={i} className="flex items-center gap-3 px-4 py-2.5">
-          <div className="h-4 w-4 bg-[var(--color-divider-soft)] rounded" />
-          <div className="h-3 bg-[var(--color-divider-soft)] rounded flex-1" />
-          <div className="h-3 w-20 bg-[var(--color-divider-soft)] rounded" />
-          <div className="h-3 w-32 bg-[var(--color-divider-soft)] rounded" />
+          <div className="h-4 w-4 bg-[var(--color-hairline)] rounded" />
+          <div className="h-3 bg-[var(--color-hairline)] rounded flex-1" />
+          <div className="h-3 w-20 bg-[var(--color-hairline)] rounded" />
+          <div className="h-3 w-32 bg-[var(--color-hairline)] rounded" />
         </div>
       ))}
     </div>

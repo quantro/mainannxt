@@ -153,13 +153,13 @@ export default function CountdownTimerPage() {
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
       <PageTitle title="Countdown Timer" />
       <div className="absolute top-4 right-4"><ThemeToggle /></div>
-      <h1 className="apple-headline text-[32px] leading-[1.1] text-center mb-1">Countdown Timer</h1>
+      <h1 className="cosmic-headline text-[32px] leading-[1.1] text-center mb-1">Countdown Timer</h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
         Count down to zero or track elapsed time.
       </p>
 
       <div className="w-full max-w-md space-y-4">
-        <div className="apple-card px-5 py-4">
+        <div className="cosmic-card px-5 py-4">
           <div className="flex gap-2 mb-4">
             <button
               onClick={() => { setMode("countdown"); resetCountdown(); resetStopwatch(); }}
@@ -193,7 +193,7 @@ export default function CountdownTimerPage() {
         {mode === "countdown" && (
           <>
             {!cdRunning && remaining === 0 && (
-              <div className="apple-card px-5 py-4">
+              <div className="cosmic-card px-5 py-4">
                 <div className="flex gap-2 justify-center">
                   <input
                     type="number"
@@ -201,7 +201,7 @@ export default function CountdownTimerPage() {
                     max="99"
                     value={hours}
                     onChange={(e) => setHours(e.target.value)}
-                    className="apple-input w-16 h-10 text-center text-[14px]"
+                    className="cosmic-input w-16 h-10 text-center text-[14px]"
                     placeholder="HH"
                   />
                   <span className="self-center text-[var(--color-ink-muted-48)] text-[20px] font-light">:</span>
@@ -211,7 +211,7 @@ export default function CountdownTimerPage() {
                     max="59"
                     value={minutes}
                     onChange={(e) => setMinutes(e.target.value)}
-                    className="apple-input w-16 h-10 text-center text-[14px]"
+                    className="cosmic-input w-16 h-10 text-center text-[14px]"
                     placeholder="MM"
                   />
                   <span className="self-center text-[var(--color-ink-muted-48)] text-[20px] font-light">:</span>
@@ -221,7 +221,7 @@ export default function CountdownTimerPage() {
                     max="59"
                     value={seconds}
                     onChange={(e) => setSeconds(e.target.value)}
-                    className="apple-input w-16 h-10 text-center text-[14px]"
+                    className="cosmic-input w-16 h-10 text-center text-[14px]"
                     placeholder="SS"
                   />
                 </div>
@@ -230,20 +230,20 @@ export default function CountdownTimerPage() {
 
             <div className="flex gap-2 justify-center">
               {!cdRunning ? (
-                <button onClick={startCountdown} className="apple-btn-primary h-11 px-8 text-[14px]">
+                <button onClick={startCountdown} className="cosmic-btn-primary h-11 px-8 text-[14px]">
                   Start
                 </button>
               ) : cdPaused ? (
-                <button onClick={resumeCountdown} className="apple-btn-primary h-11 px-8 text-[14px]">
+                <button onClick={resumeCountdown} className="cosmic-btn-primary h-11 px-8 text-[14px]">
                   Resume
                 </button>
               ) : (
-                <button onClick={pauseCountdown} className="apple-btn-primary h-11 px-8 text-[14px]">
+                <button onClick={pauseCountdown} className="cosmic-btn-primary h-11 px-8 text-[14px]">
                   Pause
                 </button>
               )}
               {(cdRunning || remaining > 0) && (
-                <button onClick={resetCountdown} className="apple-btn-primary h-11 px-8 text-[14px] !bg-[var(--color-surface-pearl)] !text-[var(--color-ink)]">
+                <button onClick={resetCountdown} className="cosmic-btn-primary h-11 px-8 text-[14px] !bg-[var(--color-surface-pearl)] !text-[var(--color-ink)]">
                   Reset
                 </button>
               )}
@@ -255,28 +255,28 @@ export default function CountdownTimerPage() {
           <>
             <div className="flex gap-2 justify-center">
               {!swRunning ? (
-                <button onClick={startStopwatch} className="apple-btn-primary h-11 px-8 text-[14px]">
+                <button onClick={startStopwatch} className="cosmic-btn-primary h-11 px-8 text-[14px]">
                   {elapsed === 0 ? "Start" : "Resume"}
                 </button>
               ) : (
-                <button onClick={pauseStopwatch} className="apple-btn-primary h-11 px-8 text-[14px]">
+                <button onClick={pauseStopwatch} className="cosmic-btn-primary h-11 px-8 text-[14px]">
                   Pause
                 </button>
               )}
               {elapsed > 0 && (
-                <button onClick={resetStopwatch} className="apple-btn-primary h-11 px-8 text-[14px] !bg-[var(--color-surface-pearl)] !text-[var(--color-ink)]">
+                <button onClick={resetStopwatch} className="cosmic-btn-primary h-11 px-8 text-[14px] !bg-[var(--color-surface-pearl)] !text-[var(--color-ink)]">
                   Reset
                 </button>
               )}
               {swRunning && (
-                <button onClick={recordLap} className="apple-btn-primary h-11 px-8 text-[14px]">
+                <button onClick={recordLap} className="cosmic-btn-primary h-11 px-8 text-[14px]">
                   Lap
                 </button>
               )}
             </div>
 
             {laps.length > 0 && (
-              <div className="apple-card px-5 py-4 max-h-48 overflow-y-auto">
+              <div className="cosmic-card px-5 py-4 max-h-48 overflow-y-auto">
                 <h2 className="text-[11px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Laps</h2>
                 <div className="space-y-1">
                   {laps.map((lap, i) => (

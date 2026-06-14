@@ -145,25 +145,25 @@ export default function PrimbonPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
         Primbon Jawa
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-8 text-center max-w-lg">
         The ancient Javanese art of divination through weton &mdash; the sacred combination of your birth day and pasaran cycle.
       </p>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           Your Weton
         </h2>
         <div className="grid grid-cols-2 gap-2">
-          <select value={dayIdx} onChange={(e) => setDayIdx(e.target.value)} className="apple-input w-full h-10 text-[14px]">
+          <select value={dayIdx} onChange={(e) => setDayIdx(e.target.value)} className="cosmic-input w-full h-10 text-[14px]">
             <option value="">Day</option>
             {WEEKDAYS.map((d) => (
               <option key={d.id} value={d.id}>{d.en} ({d.jv})</option>
             ))}
           </select>
-          <select value={pasaranIdx} onChange={(e) => setPasaranIdx(e.target.value)} className="apple-input w-full h-10 text-[14px]">
+          <select value={pasaranIdx} onChange={(e) => setPasaranIdx(e.target.value)} className="cosmic-input w-full h-10 text-[14px]">
             <option value="">Pasaran</option>
             {PASARAN_LIST.map((p) => (
               <option key={p.id} value={p.id}>{p.name}</option>
@@ -172,19 +172,19 @@ export default function PrimbonPage() {
         </div>
       </div>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           Love Compatibility
         </h2>
         <p className="text-[11px] text-[var(--color-ink-muted-48)] mb-2">Enter your partner's weton to see your match:</p>
         <div className="grid grid-cols-2 gap-2">
-          <select value={dayIdxB} onChange={(e) => setDayIdxB(e.target.value)} className="apple-input w-full h-10 text-[14px]">
+          <select value={dayIdxB} onChange={(e) => setDayIdxB(e.target.value)} className="cosmic-input w-full h-10 text-[14px]">
             <option value="">Day</option>
             {WEEKDAYS.map((d) => (
               <option key={d.id} value={d.id}>{d.en}</option>
             ))}
           </select>
-          <select value={pasaranIdxB} onChange={(e) => setPasaranIdxB(e.target.value)} className="apple-input w-full h-10 text-[14px]">
+          <select value={pasaranIdxB} onChange={(e) => setPasaranIdxB(e.target.value)} className="cosmic-input w-full h-10 text-[14px]">
             <option value="">Pasaran</option>
             {PASARAN_LIST.map((p) => (
               <option key={p.id} value={p.id}>{p.name}</option>
@@ -195,40 +195,40 @@ export default function PrimbonPage() {
 
       {weton && character && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5 text-center">
+          <div className="cosmic-card px-6 py-5 text-center">
             <div className="text-[36px] mb-1">☀️</div>
             <div className="text-[22px] font-bold text-[var(--color-ink)]">{weton.day.en} {weton.pasaran.name}</div>
             <div className="text-[15px] text-[var(--color-ink-muted-48)]">Neptu: {weton.neptu}</div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Your Archetype</h3>
             <div className="text-[17px] font-semibold text-[var(--color-ink)] mb-2">{character.archetype}</div>
             <p className="text-[14px] leading-[1.7] text-[var(--color-ink)]">{character.character}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="apple-card px-6 py-5">
+            <div className="cosmic-card px-6 py-5">
               <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Strength</h3>
               <p className="text-[14px] text-[var(--color-ink)]">{character.strength}</p>
             </div>
-            <div className="apple-card px-6 py-5">
+            <div className="cosmic-card px-6 py-5">
               <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Weakness</h3>
               <p className="text-[14px] text-[var(--color-ink)]">{character.weakness}</p>
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Wisdom</h3>
             <p className="text-[14px] leading-[1.7] italic text-[var(--color-ink)]">&ldquo;{character.advice}&rdquo;</p>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Your Pancasuda</h3>
             <p className="text-[14px] leading-[1.7] text-[var(--color-ink)]">{pancasuda}</p>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Neptu Reference</h3>
             <div className="grid grid-cols-2 gap-2 text-[13px]">
               <div className="px-3 py-2 rounded-[11px] bg-[var(--color-surface-pearl)]">
@@ -246,7 +246,7 @@ export default function PrimbonPage() {
 
       {loveMatch && (
         <div className="w-full max-w-2xl space-y-4 mt-4">
-          <div className="apple-card px-6 py-5 text-center">
+          <div className="cosmic-card px-6 py-5 text-center">
             <div className="text-[36px] mb-1">💞</div>
             <div className="text-[20px] font-bold text-[var(--color-ink)]">
               {loveMatch.a.day.en} {loveMatch.a.pasaran.name} &times; {loveMatch.b.day.en} {loveMatch.b.pasaran.name}
@@ -256,7 +256,7 @@ export default function PrimbonPage() {
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5 text-center">
+          <div className="cosmic-card px-6 py-5 text-center">
             <div className={`text-[28px] font-bold mb-1 ${loveMatch.match.result === "Ratu" || loveMatch.match.result === "Jodoh" ? "text-[var(--color-primary)]" : loveMatch.match.result === "Pegat" || loveMatch.match.result === "Padu" ? "text-red-500" : "text-[var(--color-ink)]"}`}>
               {loveMatch.match.result}
             </div>
@@ -269,7 +269,7 @@ export default function PrimbonPage() {
 
       {!weton && !loveMatch && (dayIdx === "" || pasaranIdx === "") && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
               About Primbon
             </h2>
@@ -298,7 +298,7 @@ export default function PrimbonPage() {
               Select your birth day and pasaran above to discover your Javanese archetype, and enter a partner's weton to check your love compatibility according to the ancient traditions passed down through generations of Javanese wisdom keepers.
             </p>
           </div>
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Pasaran Cycle Reference</h3>
             <div className="grid grid-cols-5 gap-2 text-center">
               {PASARAN_LIST.map((p) => (

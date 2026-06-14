@@ -249,7 +249,7 @@ export default function PranataMangsaPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
         Pranata Mangsa
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-8 text-center max-w-lg">
@@ -257,19 +257,19 @@ export default function PranataMangsaPage() {
       </p>
 
       {today && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5 text-center">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5 text-center">
           <div className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-1">
             Current Season
           </div>
           <div className="text-[24px] font-bold" style={{ color: today.color }}>{today.name}</div>
           <div className="text-[14px] text-[var(--color-ink-muted-48)] mb-2">{today.dates} &middot; {today.days} days</div>
-          <div className="apple-card px-4 py-3 text-left bg-[var(--color-surface-pearl)]">
+          <div className="cosmic-card px-4 py-3 text-left bg-[var(--color-surface-pearl)]">
             <p className="text-[13px] leading-[1.7] text-[var(--color-ink)]">{today.reading}</p>
           </div>
         </div>
       )}
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           The Twelve Seasons
         </h2>
@@ -305,38 +305,38 @@ export default function PranataMangsaPage() {
 
       {mangsa && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5 text-center">
+          <div className="cosmic-card px-6 py-5 text-center">
             <div className="text-[28px] font-bold mb-1" style={{ color: mangsa.color }}>{mangsa.name}</div>
             <div className="text-[15px] text-[var(--color-ink-muted-48)]">{mangsa.dates} &middot; {mangsa.days} days</div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Candra (Poetic Vision)</h3>
             <p className="text-[14px] leading-[1.8] italic text-[var(--color-ink)]">&ldquo;{mangsa.candra}&rdquo;</p>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Your Reading</h3>
             <p className="text-[14px] leading-[1.8] text-[var(--color-ink)]">{mangsa.reading}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="apple-card px-6 py-5">
+            <div className="cosmic-card px-6 py-5">
               <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Natural Signs</h3>
               <p className="text-[14px] leading-[1.6] text-[var(--color-ink)]" dangerouslySetInnerHTML={{ __html: mangsa.naturalSigns }} />
             </div>
-            <div className="apple-card px-6 py-5">
+            <div className="cosmic-card px-6 py-5">
               <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Spirit of the Season</h3>
               <p className="text-[14px] leading-[1.6] text-[var(--color-ink)]">{mangsa.spirit}</p>
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Farming Guidance</h3>
             <p className="text-[14px] leading-[1.6] text-[var(--color-ink)]">{mangsa.farming}</p>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Life Guidance</h3>
             <p className="text-[14px] leading-[1.6] text-[var(--color-ink)]">{mangsa.lifeGuidance}</p>
           </div>
@@ -345,7 +345,7 @@ export default function PranataMangsaPage() {
 
       {!mangsa && selected === null && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
               About Pranata Mangsa
             </h2>
@@ -366,7 +366,7 @@ export default function PranataMangsaPage() {
             </p>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">The Twelve Seasons at a Glance</h3>
             <div className="grid grid-cols-3 gap-2">
               {MANGSA.map((m) => (

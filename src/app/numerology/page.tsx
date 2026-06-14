@@ -212,11 +212,11 @@ export default function NumerologyPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-8">
         Numerology
       </h1>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           Birth Date
         </h2>
@@ -224,7 +224,7 @@ export default function NumerologyPage() {
           <select
             value={month}
             onChange={(e) => setMonth(e.target.value)}
-            className="apple-input w-full h-10 text-[14px]"
+            className="cosmic-input w-full h-10 text-[14px]"
           >
             <option value="">Month</option>
             {Array.from({ length: 12 }, (_, i) => (
@@ -234,7 +234,7 @@ export default function NumerologyPage() {
           <select
             value={day}
             onChange={(e) => setDay(e.target.value)}
-            className="apple-input w-full h-10 text-[14px]"
+            className="cosmic-input w-full h-10 text-[14px]"
           >
             <option value="">Day</option>
             {Array.from({ length: 31 }, (_, i) => (
@@ -245,12 +245,12 @@ export default function NumerologyPage() {
             value={year}
             onChange={(e) => setYear(e.target.value.replace(/\D/g, "").slice(0, 4))}
             placeholder="Year"
-            className="apple-input w-full h-10 text-[14px]"
+            className="cosmic-input w-full h-10 text-[14px]"
           />
         </div>
       </div>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
           Or Full Name
         </h2>
@@ -258,13 +258,13 @@ export default function NumerologyPage() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Enter your full name (e.g. John Doe)"
-          className="apple-input w-full h-10 text-[14px]"
+          className="cosmic-input w-full h-10 text-[14px]"
         />
       </div>
 
       {result && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5 text-center">
+          <div className="cosmic-card px-6 py-5 text-center">
             <div className="text-[48px] mb-1">{ELEMENTS[result.number] || "\uD83D\uDD22"}</div>
             <div className="text-[32px] font-bold text-[var(--color-ink)]">{result.number}</div>
             <div className="text-[15px] font-semibold text-[var(--color-ink-muted-48)]">{result.meaning.title}</div>
@@ -272,14 +272,14 @@ export default function NumerologyPage() {
             <div className="text-[11px] text-[var(--color-ink-muted-48)]">{result.dateStr}</div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Life Path Number</h3>
             <p className="text-[14px] leading-[1.6] text-[var(--color-ink)]">
               {result.meaning.description}
             </p>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Your Reading</h3>
             {result.meaning.reading.split("\n\n").map((p, i) => (
               <p key={i} className="text-[14px] leading-[1.7] text-[var(--color-ink)] mb-2 last:mb-0">
@@ -288,7 +288,7 @@ export default function NumerologyPage() {
             ))}
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Keywords</h3>
             <div className="flex flex-wrap gap-1.5">
               {result.meaning.keywords.map((k) => (
@@ -300,17 +300,17 @@ export default function NumerologyPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="apple-card px-6 py-5">
+            <div className="cosmic-card px-6 py-5">
               <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Positive</h3>
               <p className="text-[13px] leading-[1.5] text-[var(--color-ink)]">{result.meaning.positive}</p>
             </div>
-            <div className="apple-card px-6 py-5">
+            <div className="cosmic-card px-6 py-5">
               <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Challenge</h3>
               <p className="text-[13px] leading-[1.5] text-[var(--color-ink)]">{result.meaning.negative}</p>
             </div>
           </div>
 
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Ideal Careers</h3>
@@ -332,7 +332,7 @@ export default function NumerologyPage() {
       )}
 
       {nameDestiny && (
-        <div className="w-full max-w-2xl apple-card px-6 py-5 mt-4">
+        <div className="w-full max-w-2xl cosmic-card px-6 py-5 mt-4">
           <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Destiny Number</h3>
           <div className="flex items-center gap-3 mb-3">
             <span className="text-[36px]">{ELEMENTS[nameDestiny.number]}</span>
@@ -352,7 +352,7 @@ export default function NumerologyPage() {
 
       {!result && !nameDestiny && (!month || !day || !year) && !name.trim() && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
               About Numerology
             </h2>
@@ -369,7 +369,7 @@ export default function NumerologyPage() {
               Master Numbers (11, 22, 33) are the exceptions &mdash; they are never reduced to a single digit because they carry amplified energy and heightened spiritual significance. Those with Master Numbers often feel a greater sense of purpose and intensity in their lives.
             </p>
           </div>
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <p className="text-[14px] leading-[1.43] text-[var(--color-ink-muted-48)] text-center">
               Enter your birth date to calculate your Life Path Number, or type your name to discover your Destiny Number. Both reveal different dimensions of your numerological profile.
             </p>

@@ -82,16 +82,16 @@ export default function IndonesianHolidaysPage() {
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
       <PageTitle title="Indonesian Holidays" />
       <div className="absolute top-4 right-4"><ThemeToggle /></div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">Indonesian Holidays</h1>
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">Indonesian Holidays</h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-6 text-center max-w-lg">
         National, Islamic, Christian, Hindu/Buddhist, and cultural holidays for any year. Data sourced from api.co.id.
       </p>
 
-      <div className="w-full max-w-2xl apple-card px-6 py-5 mb-5">
+      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <div className="flex gap-3 items-end">
           <div className="flex-1">
             <label className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)]">Year</label>
-            <select value={year} onChange={(e) => setYear(parseInt(e.target.value))} className="apple-input w-full h-9 text-[13px] mt-0.5">
+            <select value={year} onChange={(e) => setYear(parseInt(e.target.value))} className="cosmic-input w-full h-9 text-[13px] mt-0.5">
               {Array.from({ length: 11 }, (_, i) => 2025 + i).map((y) => (
                 <option key={y} value={y}>{y}</option>
               ))}
@@ -99,7 +99,7 @@ export default function IndonesianHolidaysPage() {
           </div>
           <div className="flex-1">
             <label className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)]">Type</label>
-            <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} className="apple-input w-full h-9 text-[13px] mt-0.5">
+            <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} className="cosmic-input w-full h-9 text-[13px] mt-0.5">
               {allTypes.map((t) => (
                 <option key={t} value={t}>{t}</option>
               ))}
@@ -118,7 +118,7 @@ export default function IndonesianHolidaysPage() {
           const items = byMonth[m];
           if (!items || items.length === 0) return null;
           return (
-            <div key={m} className="apple-card px-6 py-4">
+            <div key={m} className="cosmic-card px-6 py-4">
               <h2 className="text-[14px] font-semibold text-[var(--color-ink)] mb-3">{monthName} <span className="text-[11px] font-normal text-[var(--color-ink-muted-48)]">({items.length})</span></h2>
               <div className="space-y-1.5">
                 {items
@@ -140,13 +140,13 @@ export default function IndonesianHolidaysPage() {
           );
         })}
         {filtered.length === 0 && (
-          <div className="apple-card px-6 py-5 text-center">
+          <div className="cosmic-card px-6 py-5 text-center">
             <p className="text-[13px] text-[var(--color-ink-muted-48)]">No holidays found for the selected filters.</p>
           </div>
         )}
       </div>
 
-      <div className="w-full max-w-2xl mt-6 apple-card px-6 py-3">
+      <div className="w-full max-w-2xl mt-6 cosmic-card px-6 py-3">
         <p className="text-[10px] leading-[1.6] text-[var(--color-ink-muted-48)] text-center">
           2025–2026 data sourced from <a href="https://api.co.id" target="_blank" rel="noopener noreferrer" className="underline">api.co.id</a>.
           Years 2027–2035 include fixed national holidays and approximate Islamic/cultural dates. Islamic holidays shift ~11 days earlier each year; exact dates depend on official moon sighting.

@@ -140,7 +140,7 @@ export default function NetworkPage() {
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
-      <h1 className="apple-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
+      <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
         Network Tools
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-8 text-center max-w-lg">
@@ -165,14 +165,14 @@ export default function NetworkPage() {
 
       {tab === "myip" && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5 text-center">
+          <div className="cosmic-card px-6 py-5 text-center">
             <div className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-1">Your Public IP</div>
             <div className="text-[28px] font-bold text-[var(--color-ink)] font-mono tracking-tight">
               {myIp || "Detecting..."}
             </div>
           </div>
           {ipGeo && (
-            <div className="apple-card px-6 py-5">
+            <div className="cosmic-card px-6 py-5">
               <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Geolocation & Network</h3>
               <div className="grid grid-cols-2 gap-2 text-[13px]">
                 {[
@@ -195,7 +195,7 @@ export default function NetworkPage() {
               </div>
             </div>
           )}
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <p className="text-[12px] leading-[1.6] text-[var(--color-ink-muted-48)]">
               Your public IP address is how the rest of the internet sees you. It is assigned by your Internet Service Provider (ISP) and can be static (fixed) or dynamic (changes periodically). Geolocation data is approximate and based on your ISP's registration, not your exact location.
             </p>
@@ -205,7 +205,7 @@ export default function NetworkPage() {
 
       {tab === "dns" && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">DNS Lookup</h3>
             <div className="flex items-center gap-2">
               <input
@@ -213,12 +213,12 @@ export default function NetworkPage() {
                 onChange={(e) => setDnsDomain(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && doDnsLookup()}
                 placeholder="example.com"
-                className="apple-input flex-1 h-10 text-[14px] font-mono"
+                className="cosmic-input flex-1 h-10 text-[14px] font-mono"
               />
               <button
                 onClick={doDnsLookup}
                 disabled={dnsLoading}
-                className="apple-btn-primary h-10 px-4 text-[13px] whitespace-nowrap"
+                className="cosmic-btn-primary h-10 px-4 text-[13px] whitespace-nowrap"
               >
                 {dnsLoading ? "..." : "Lookup"}
               </button>
@@ -226,13 +226,13 @@ export default function NetworkPage() {
           </div>
 
           {dnsError && (
-            <div className="apple-card px-6 py-5 border border-red-300">
+            <div className="cosmic-card px-6 py-5 border border-red-300">
               <p className="text-[13px] text-red-500">{dnsError}</p>
             </div>
           )}
 
           {dnsResult && (
-            <div className="apple-card px-6 py-5">
+            <div className="cosmic-card px-6 py-5">
               <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">
                 Records for {dnsDomain}
               </h3>
@@ -252,7 +252,7 @@ export default function NetworkPage() {
           )}
 
           {!dnsResult && !dnsError && (
-            <div className="apple-card px-6 py-5">
+            <div className="cosmic-card px-6 py-5">
               <p className="text-[12px] leading-[1.6] text-[var(--color-ink-muted-48)]">
                 DNS (Domain Name System) translates human-readable domain names like "example.com" into IP addresses that computers use to communicate. This tool performs a DNS lookup using Google's public DNS resolver (8.8.8.8) and returns all available record types including A (IPv4), AAAA (IPv6), MX (mail), CNAME (aliases), and NS (nameservers).
               </p>
@@ -263,7 +263,7 @@ export default function NetworkPage() {
 
       {tab === "port" && (
         <div className="w-full max-w-2xl space-y-4">
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Common Ports Reference</h3>
             <div className="grid grid-cols-2 gap-1.5">
               {portResults.map((p) => (
@@ -280,7 +280,7 @@ export default function NetworkPage() {
               ))}
             </div>
           </div>
-          <div className="apple-card px-6 py-5">
+          <div className="cosmic-card px-6 py-5">
             <p className="text-[12px] leading-[1.6] text-[var(--color-ink-muted-48)]">
               These are well-known ports assigned by the Internet Assigned Numbers Authority (IANA). Ports 0-1023 are system ports, 1024-49151 are registered ports, and 49152-65535 are dynamic/private. Each port number is associated with a specific protocol or service to standardize network communication.
             </p>
