@@ -131,47 +131,6 @@ const EMOTIONS: Emotion[] = [
   },
 ];
 
-const EmotionWedge = ({
-  emotion,
-  index,
-  selected,
-  onSelect,
-}: {
-  emotion: Emotion;
-  index: number;
-  selected: boolean;
-  onSelect: () => void;
-}) => {
-  const angle = (index * 360) / EMOTIONS.length;
-  const rotation = angle - 90;
-
-  return (
-    <button
-      onClick={onSelect}
-      className="absolute inset-0 w-full h-full cursor-pointer transition-transform duration-200 hover:scale-105"
-      style={{
-        clipPath: `polygon(50% 50%, ${50 + 50 * Math.cos(((angle - 22.5) * Math.PI) / 180)}% ${50 + 50 * Math.sin(((angle - 22.5) * Math.PI) / 180)}%, ${50 + 50 * Math.cos(((angle + 22.5) * Math.PI) / 180)}% ${50 + 50 * Math.sin(((angle + 22.5) * Math.PI) / 180)}%)`,
-      }}
-    >
-      <div
-        className="absolute w-full h-full flex items-center justify-center"
-        style={{ transform: `rotate(${rotation}deg)` }}
-      >
-        <span
-          className="text-white text-[10px] font-semibold leading-tight text-center drop-shadow-sm"
-          style={{
-            transform: `rotate(${-rotation}deg)`,
-            writingMode: "vertical-rl",
-            textOrientation: "mixed",
-          }}
-        >
-          {emotion.name}
-        </span>
-      </div>
-    </button>
-  );
-};
-
 export default function EmotionWheelPage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
@@ -193,38 +152,41 @@ export default function EmotionWheelPage() {
       <div className="w-full max-w-[500px] mx-auto mb-8">
         <div className="relative w-full aspect-square">
           <div className="absolute inset-0 rounded-full border-2 border-[var(--color-hairline)] overflow-hidden">
-            {EMOTIONS.map((emotion, i) => (
-              <div
-                key={emotion.id}
-                className="absolute inset-0"
-                style={{
-                  background: `conic-gradient(from ${(i * 360) / EMOTIONS.length - 22.5}deg, ${emotion.color}88 0deg, ${emotion.color}88 45deg, transparent 45deg)`,
-                  clipPath: `polygon(50% 50%, ${50 + 50 * Math.cos((((i * 360) / EMOTIONS.length - 22.5) * Math.PI) / 180)}% ${50 + 50 * Math.sin((((i * 360) / EMOTIONS.length - 22.5) * Math.PI) / 180)}%, ${50 + 50 * Math.cos((((i * 360) / EMOTIONS.length + 22.5) * Math.PI) / 180)}% ${50 + 50 * Math.sin((((i * 360) / EMOTIONS.length + 22.5) * Math.PI) / 180)}%)`,
-                }}
-              >
-                <button
-                  onClick={() => setSelectedId(emotion.id)}
-                  className="w-full h-full cursor-pointer transition-opacity hover:opacity-80"
+            {EMOTIONS.map((emotion, i) => {
+              const midAngle = ((i + 0.5) * 360) / EMOTIONS.length;
+              const midRad = (midAngle * Math.PI) / 180;
+              const labelR = 0.65;
+              const lx = 50 + labelR * 50 * Math.cos(midRad);
+              const ly = 50 + labelR * 50 * Math.sin(midRad);
+              return (
+                <div
+                  key={emotion.id}
+                  className="absolute inset-0"
+                  style={{
+                    backgroundColor: emotion.color,
+                    clipPath: `polygon(50% 50%, ${50 + 50 * Math.cos((((i * 360) / EMOTIONS.length - 22.5) * Math.PI) / 180)}% ${50 + 50 * Math.sin((((i * 360) / EMOTIONS.length - 22.5) * Math.PI) / 180)}%, ${50 + 50 * Math.cos((((i * 360) / EMOTIONS.length + 22.5) * Math.PI) / 180)}% ${50 + 50 * Math.sin((((i * 360) / EMOTIONS.length + 22.5) * Math.PI) / 180)}%)`,
+                  }}
                 >
-                  <div
-                    className="w-full h-full flex items-center justify-center"
-                    style={{
-                      transform: `rotate(${(i * 360) / EMOTIONS.length}deg)`,
-                    }}
+                  <button
+                    onClick={() => setSelectedId(emotion.id)}
+                    className="w-full h-full cursor-pointer transition-opacity hover:opacity-80 flex items-center justify-center"
                   >
                     <span
                       className="text-white text-[10px] sm:text-[11px] font-semibold leading-tight text-center px-1 drop-shadow-sm"
                       style={{
-                        transform: `rotate(${-(i * 360) / EMOTIONS.length}deg)`,
-                        textShadow: "0 1px 3px rgba(0,0,0,0.5)",
+                        position: "absolute",
+                        left: `${lx}%`,
+                        top: `${ly}%`,
+                        transform: "translate(-50%, -50%)",
+                        textShadow: "0 1px 4px rgba(0,0,0,0.6)",
                       }}
                     >
                       {emotion.name}
                     </span>
-                  </div>
-                </button>
-              </div>
-            ))}
+                  </button>
+                </div>
+              );
+            })}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30%] h-[30%] rounded-full bg-[var(--color-canvas)] border-2 border-[var(--color-hairline)] flex items-center justify-center z-10">
               <span className="text-[10px] font-semibold text-[var(--color-ink-muted-48)] text-center leading-tight">
                 Emosi<br/>Dasar
