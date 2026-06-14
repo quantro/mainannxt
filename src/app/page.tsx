@@ -38,7 +38,6 @@ const tools: Tool[] = [
   { slug: "/primbon", icon: "\uD83C\uDF19", name: "Primbon Jawa", desc: "Javanese weton personality and love match", category: "Divination" },
   { slug: "/pranata-mangsa", icon: "\uD83C\uDF3E", name: "Pranata Mangsa", desc: "Javanese seasonal calendar and wisdom", category: "Calendars" },
   { slug: "/calendar", icon: "\uD83D\uDCC5", name: "World Calendars", desc: "Chinese, Javanese, and Islamic calendars", category: "Calendars" },
-  { slug: "/click-history", icon: "\uD83D\uDCCA", name: "Click History", desc: "View IP-tracked click logs for all tools", category: "Utilities" },
 ];
 
 const CATEGORIES = [
