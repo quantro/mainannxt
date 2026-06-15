@@ -1,228 +1,285 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useState } from "react";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
 import { PageTitle } from "../page-title";
 
-const COLORS = [
-  "#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEAA7",
-  "#DDA0DD", "#98D8C8", "#F7DC6F", "#BB8FCE", "#85C1E9",
-  "#F8C471", "#82E0AA", "#F1948A", "#85929E", "#73C6B6",
-  "#E59866", "#AED6F1", "#D7BDE2", "#A3E4D7", "#FAD7A0",
-  "#A9CCE3", "#D5F5E3", "#FADBD8", "#D4E6F1", "#F5CBA7",
-  "#ABEBC6", "#F2D7D5", "#AEB6BF", "#A9DFBF", "#F9E79F",
-];
-
-function isDark(hex: string) {
-  const c = hex.replace("#", "");
-  const r = parseInt(c.slice(0, 2), 16);
-  const g = parseInt(c.slice(2, 4), 16);
-  const b = parseInt(c.slice(4, 6), 16);
-  return r * 0.299 + g * 0.587 + b * 0.114 < 140;
+interface Emotion {
+  id: string;
+  name: string;
+  nameEn: string;
+  description: string;
+  opposite: string;
+  combinations: { with: string; produces: string }[];
+  lowIntensity: string;
+  highIntensity: string;
+  color: string;
 }
 
+const EMOTIONS: Emotion[] = [
+  {
+    id: "joy",
+    name: "Kegembiraan",
+    nameEn: "Joy",
+    description:
+      "Perasaan positif yang muncul saat mencapai sesuatu yang berharga, mendapatkan pengakuan, atau mengalami hal yang menyenangkan. Membawa energi, keterbukaan, dan keinginan untuk berbagi.",
+    opposite: "Kesedihan (Sadness)",
+    combinations: [
+      { with: "Kepercayaan (Trust)", produces: "Cinta (Love)" },
+      { with: "Antisipasi (Anticipation)", produces: "Optimisme (Optimism)" },
+    ],
+    lowIntensity: "Ketenangan (Serenity)",
+    highIntensity: "Ekstasi (Ecstasy)",
+    color: "#FFD700",
+  },
+  {
+    id: "trust",
+    name: "Kepercayaan",
+    nameEn: "Trust",
+    description:
+      "Perasaan aman dan yakin terhadap seseorang, ide, atau situasi. Memungkinkan kerja sama, keintiman, dan ikatan sosial yang kuat. Fondasi dari hubungan yang sehat.",
+    opposite: "Kejijikan (Disgust)",
+    combinations: [
+      { with: "Kegembiraan (Joy)", produces: "Cinta (Love)" },
+      { with: "Ketakutan (Fear)", produces: "Ketundukan (Submission)" },
+    ],
+    lowIntensity: "Penerimaan (Acceptance)",
+    highIntensity: "Kekaguman (Admiration)",
+    color: "#4CAF50",
+  },
+  {
+    id: "fear",
+    name: "Ketakutan",
+    nameEn: "Fear",
+    description:
+      "Respons terhadap ancaman atau bahaya yang dirasakan. Mengaktifkan mekanisme 'fight or flight' — melindungi kita dari risiko, tetapi juga bisa membatasi jika berlebihan.",
+    opposite: "Kemarahan (Anger)",
+    combinations: [
+      { with: "Kepercayaan (Trust)", produces: "Ketundukan (Submission)" },
+      { with: "Kejutan (Surprise)", produces: "Kengerian (Awe)" },
+    ],
+    lowIntensity: "Kekhawatiran (Apprehension)",
+    highIntensity: "Teror (Terror)",
+    color: "#9C27B0",
+  },
+  {
+    id: "surprise",
+    name: "Kejutan",
+    nameEn: "Surprise",
+    description:
+      "Respons singkat terhadap peristiwa yang tidak terduga. Dapat bersifat positif atau negatif. Membantu kita fokus pada situasi baru dan mempersiapkan respons yang sesuai.",
+    opposite: "Antisipasi (Anticipation)",
+    combinations: [
+      { with: "Ketakutan (Fear)", produces: "Kengerian (Awe)" },
+      { with: "Kesedihan (Sadness)", produces: "Kekecewaan (Disapproval)" },
+    ],
+    lowIntensity: "Gangguan (Distraction)",
+    highIntensity: "Keheranan (Amazement)",
+    color: "#FF9800",
+  },
+  {
+    id: "sadness",
+    name: "Kesedihan",
+    nameEn: "Sadness",
+    description:
+      "Perasaan kehilangan, kekecewaan, atau ketidakberdayaan. Meskipun terasa berat, kesedihan memiliki fungsi penting — memberi waktu untuk memproses kehilangan dan mendapatkan dukungan sosial.",
+    opposite: "Kegembiraan (Joy)",
+    combinations: [
+      { with: "Kejutan (Surprise)", produces: "Kekecewaan (Disapproval)" },
+      { with: "Kejijikan (Disgust)", produces: "Penyesalan (Remorse)" },
+    ],
+    lowIntensity: "Kesuraman (Pensiveness)",
+    highIntensity: "Duka Cita (Grief)",
+    color: "#2196F3",
+  },
+  {
+    id: "disgust",
+    name: "Kejijikan",
+    nameEn: "Disgust",
+    description:
+      "Respons penolakan terhadap sesuatu yang dianggap menjijikkan, berbahaya, atau tidak bermoral. Melindungi kita dari hal-hal yang dapat membahayakan secara fisik maupun sosial.",
+    opposite: "Kepercayaan (Trust)",
+    combinations: [
+      { with: "Kesedihan (Sadness)", produces: "Penyesalan (Remorse)" },
+      { with: "Kemarahan (Anger)", produces: "Kebencian (Contempt)" },
+    ],
+    lowIntensity: "Ketidaksukaan (Dislike)",
+    highIntensity: "Kebencian (Loathing)",
+    color: "#795548",
+  },
+  {
+    id: "anger",
+    name: "Kemarahan",
+    nameEn: "Anger",
+    description:
+      "Respons terhadap ketidakadilan, hambatan, atau penghinaan. Memberikan energi untuk mengatasi rintangan dan menegakkan batasan. Bermasalah saat tidak terkendali.",
+    opposite: "Ketakutan (Fear)",
+    combinations: [
+      { with: "Kejijikan (Disgust)", produces: "Kebencian (Contempt)" },
+      { with: "Antisipasi (Anticipation)", produces: "Agresivitas (Aggressiveness)" },
+    ],
+    lowIntensity: "Kekesalan (Annoyance)",
+    highIntensity: "Kemarahan (Rage)",
+    color: "#F44336",
+  },
+  {
+    id: "anticipation",
+    name: "Antisipasi",
+    nameEn: "Anticipation",
+    description:
+      "Perasaan menanti sesuatu yang akan terjadi. Melibatkan pemikiran ke depan, perencanaan, dan harapan. Bisa terasa menyenangkan (menanti liburan) atau mencemaskan (menanti hasil tes).",
+    opposite: "Kejutan (Surprise)",
+    combinations: [
+      { with: "Kegembiraan (Joy)", produces: "Optimisme (Optimism)" },
+      { with: "Kemarahan (Anger)", produces: "Agresivitas (Aggressiveness)" },
+    ],
+    lowIntensity: "Minat (Interest)",
+    highIntensity: "Kewaspadaan (Vigilance)",
+    color: "#00BCD4",
+  },
+];
+
 export default function WheelPage() {
-  const [names, setNames] = useState<string[]>(["Alice", "Bob", "Charlie", "Diana"]);
-  const [input, setInput] = useState("");
-  const [spinning, setSpinning] = useState(false);
-  const [winner, setWinner] = useState<string | null>(null);
-  const [rotation, setRotation] = useState(0);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const radius = 180;
-
-  const segAngle = useMemo(() => 360 / names.length, [names]);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas || names.length === 0) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const cx = radius;
-    const cy = radius;
-    const seg = (2 * Math.PI) / names.length;
-
-    ctx.clearRect(0, 0, radius * 2, radius * 2);
-
-    names.forEach((name, i) => {
-      const startAngle = i * seg - Math.PI / 2;
-      const endAngle = startAngle + seg;
-
-      // Segment fill
-      ctx.beginPath();
-      ctx.moveTo(cx, cy);
-      ctx.arc(cx, cy, radius - 4, startAngle, endAngle);
-      ctx.closePath();
-      ctx.fillStyle = COLORS[i % COLORS.length];
-      ctx.fill();
-
-      // Segment border
-      ctx.strokeStyle = "rgba(255,255,255,0.6)";
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
-      // Text
-      const midAngle = startAngle + seg / 2;
-      const textR = radius * 0.62;
-      const tx = cx + Math.cos(midAngle) * textR;
-      const ty = cy + Math.sin(midAngle) * textR;
-
-      ctx.save();
-      ctx.translate(tx, ty);
-      ctx.rotate(midAngle + Math.PI / 2);
-      ctx.fillStyle = isDark(COLORS[i % COLORS.length]) ? "#fff" : "#1a1a1a";
-      ctx.font = `bold ${Math.max(10, Math.min(14, 200 / names.length))}px -apple-system, system-ui, sans-serif`;
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-
-      const maxLen = Math.max(3, Math.floor((radius * 0.35) / (5 + names.length * 0.4)));
-      const label = name.length > maxLen ? name.slice(0, maxLen - 1) + "…" : name;
-      ctx.fillText(label, 0, 0);
-      ctx.restore();
-    });
-
-    // Center hub with ring
-    ctx.beginPath();
-    ctx.arc(cx, cy, 16, 0, 2 * Math.PI);
-    const g = ctx.createRadialGradient(cx - 4, cy - 4, 2, cx, cy, 16);
-    g.addColorStop(0, "#fff");
-    g.addColorStop(1, "#e0e0e0");
-    ctx.fillStyle = g;
-    ctx.fill();
-    ctx.strokeStyle = "#ccc";
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-  }, [names, radius]);
-
-  function addName() {
-    const trimmed = input.trim();
-    if (trimmed && !names.includes(trimmed)) {
-      setNames([...names, trimmed]);
-      setInput("");
-    }
-  }
-
-  function removeName(name: string) {
-    if (names.length <= 2) return;
-    setNames(names.filter((n) => n !== name));
-    setWinner(null);
-  }
-
-  function spin() {
-    if (spinning || names.length < 2) return;
-    setSpinning(true);
-    setWinner(null);
-
-    const extraSpins = 5 + Math.floor(Math.random() * 3);
-    const spinDeg = extraSpins * 360 + Math.random() * 360;
-    const totalRotation = rotation + spinDeg;
-    setRotation(totalRotation);
-
-    const normalized = ((totalRotation % 360) + 360) % 360;
-    const winIdx = Math.floor((360 - normalized) / segAngle) % names.length;
-    const picked = names[winIdx];
-
-    setTimeout(() => {
-      setWinner(picked);
-      setSpinning(false);
-    }, 4500);
-  }
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const selected = EMOTIONS.find((e) => e.id === selectedId) ?? null;
 
   return (
     <div className="flex flex-col items-center min-h-screen px-4 py-12">
-      <PageTitle title="Wheel of Names" />
+      <PageTitle title="Emotion Wheel" />
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
       <h1 className="cosmic-headline text-[34px] leading-[1.47] tracking-[-0.374px] mb-2">
-        Wheel of Names
+        Emotion Wheel
       </h1>
       <p className="text-[13px] text-[var(--color-ink-muted-48)] mb-8 text-center max-w-lg">
-        Add names and spin to pick a random winner.
+        Roda Emosi Plutchik &mdash; Jelajahi 8 emosi dasar dan hubungannya. Klik emosi untuk detail.
       </p>
 
-      <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
-        <div className="flex items-center gap-2 mb-2">
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && addName()}
-            placeholder="Enter a name..."
-            className="cosmic-input flex-1 h-10 text-[14px]"
-          />
-          <button onClick={addName} className="cosmic-btn-primary h-10 px-4 text-[13px] whitespace-nowrap">
-            Add
-          </button>
+      <div className="w-full max-w-[500px] mx-auto mb-8">
+        <div className="relative w-full aspect-square">
+          <div className="absolute inset-0 rounded-full border-2 border-[var(--color-hairline)] overflow-hidden">
+            {EMOTIONS.map((emotion, i) => {
+              const wedgeAngle = 360 / EMOTIONS.length;
+              const midAngle = i * wedgeAngle + wedgeAngle / 2;
+              const midRad = (midAngle * Math.PI) / 180;
+              const labelR = 0.62;
+              const lx = 50 + labelR * 50 * Math.cos(midRad);
+              const ly = 50 + labelR * 50 * Math.sin(midRad);
+              const startAngle = i * wedgeAngle;
+              const endAngle = (i + 1) * wedgeAngle;
+              return (
+                <div
+                  key={emotion.id}
+                  className="absolute inset-0"
+                  style={{
+                    backgroundColor: emotion.color,
+                    clipPath: `polygon(50% 50%, ${50 + 50 * Math.cos((startAngle * Math.PI) / 180)}% ${50 + 50 * Math.sin((startAngle * Math.PI) / 180)}%, ${50 + 50 * Math.cos((endAngle * Math.PI) / 180)}% ${50 + 50 * Math.sin((endAngle * Math.PI) / 180)}%)`,
+                  }}
+                >
+                  <button
+                    onClick={() => setSelectedId(emotion.id)}
+                    className="w-full h-full cursor-pointer transition-opacity hover:opacity-80"
+                  >
+                    <span
+                      className="text-white text-[10px] sm:text-[11px] font-semibold leading-tight text-center px-1 drop-shadow-sm"
+                      style={{
+                        position: "absolute",
+                        left: `${lx}%`,
+                        top: `${ly}%`,
+                        transform: "translate(-50%, -50%)",
+                        textShadow: "0 1px 4px rgba(0,0,0,0.6)",
+                      }}
+                    >
+                      {emotion.name}
+                    </span>
+                  </button>
+                </div>
+              );
+            })}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30%] h-[30%] rounded-full bg-[var(--color-canvas)] border-2 border-[var(--color-hairline)] flex items-center justify-center z-10">
+              <span className="text-[10px] font-semibold text-[var(--color-ink-muted-48)] text-center leading-tight">
+                Emosi<br/>Dasar
+              </span>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-wrap gap-1.5">
-          {names.map((name) => (
-            <span
-              key={name}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-[8px] text-[12px] bg-[var(--color-surface-pearl)] text-[var(--color-ink)]"
-            >
-              {name}
-              <button
-                onClick={() => removeName(name)}
-                className="text-[var(--color-ink-muted-48)] hover:text-red-500 leading-none text-[14px]"
-                disabled={names.length <= 2}
-              >
-                &times;
-              </button>
-            </span>
-          ))}
-        </div>
-        {names.length < 2 && (
-          <p className="text-[11px] text-red-400 mt-2">Add at least 2 names to spin.</p>
+      </div>
+
+      <div className="w-full max-w-2xl space-y-3 mb-6">
+        {!selected && (
+          <div className="cosmic-card px-6 py-5 text-center">
+            <p className="text-[14px] text-[var(--color-ink-muted-48)]">
+              Klik salah satu emosi pada roda di atas untuk melihat deskripsi lengkap, lawan, dan kombinasinya.
+            </p>
+          </div>
+        )}
+        {selected && (
+          <>
+            <div className="cosmic-card px-6 py-5" style={{ borderLeftColor: selected.color, borderLeftWidth: 4 }}>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: selected.color }} />
+                <h2 className="text-[20px] font-bold text-[var(--color-ink)]">
+                  {selected.name} ({selected.nameEn})
+                </h2>
+              </div>
+              <p className="text-[14px] leading-[1.7] text-[var(--color-ink)] mb-3">
+                {selected.description}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="bg-[var(--color-surface-pearl)] rounded-[11px] px-4 py-3">
+                  <span className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)] tracking-wider">
+                    Intensitas Rendah
+                  </span>
+                  <p className="text-[13px] font-semibold text-[var(--color-ink)] mt-1">
+                    {selected.lowIntensity}
+                  </p>
+                </div>
+                <div className="bg-[var(--color-surface-pearl)] rounded-[11px] px-4 py-3">
+                  <span className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)] tracking-wider">
+                    Intensitas Tinggi
+                  </span>
+                  <p className="text-[13px] font-semibold text-[var(--color-ink)] mt-1">
+                    {selected.highIntensity}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="cosmic-card px-6 py-4">
+                <span className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)] tracking-wider">
+                  Lawan
+                </span>
+                <p className="text-[15px] font-semibold text-[var(--color-ink)] mt-1">
+                  {selected.opposite}
+                </p>
+              </div>
+              <div className="cosmic-card px-6 py-4">
+                <span className="text-[10px] font-semibold uppercase text-[var(--color-ink-muted-48)] tracking-wider">
+                  Kombinasi
+                </span>
+                <div className="mt-1 space-y-0.5">
+                  {selected.combinations.map((c) => (
+                    <p key={c.with} className="text-[13px] text-[var(--color-ink)]">
+                      {c.with} &rarr; {c.produces}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </>
         )}
       </div>
 
-      <div className="relative w-full max-w-[400px] mx-auto mb-6 flex flex-col items-center">
-        <div className="w-[360px] h-[360px] relative touch-none">
-          <div className="absolute top-[-8px] left-1/2 -translate-x-1/2 z-10">
-            <svg width="28" height="32" viewBox="0 0 28 32">
-              <polygon points="14,32 0,0 28,0" fill="#FF3B30" stroke="#fff" strokeWidth="2" />
-            </svg>
-          </div>
-          <canvas
-            ref={canvasRef}
-            width={radius * 2}
-            height={radius * 2}
-            className="w-[360px] h-[360px] rounded-full shadow-xl"
-            style={{
-              transform: `rotate(${rotation}deg)`,
-              transition: spinning
-                ? "transform 4.5s cubic-bezier(0.13, 0.72, 0.14, 1)"
-                : "none",
-            }}
-          />
-        </div>
-        <button
-          onClick={spin}
-          disabled={spinning || names.length < 2}
-          className="cosmic-btn-primary mt-6 h-12 px-10 text-[15px] font-semibold disabled:opacity-40"
-        >
-          {spinning ? "Spinning..." : "Spin the Wheel!"}
-        </button>
+      <div className="w-full max-w-2xl cosmic-card px-6 py-4 mb-6">
+        <p className="text-[11px] leading-[1.6] text-[var(--color-ink-muted-48)] text-center italic">
+          Berdasarkan <em>Wheel of Emotions</em> (Robert Plutchik, 1980)
+        </p>
       </div>
 
-      {winner && (
-        <div className="w-full max-w-2xl cosmic-card px-6 py-5 text-center">
-          <div className="text-[36px] mb-2">🎉</div>
-          <div className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-1">Winner</div>
-          <div className="text-[28px] font-bold text-[var(--color-ink)]">{winner}</div>
-        </div>
-      )}
-
-      {!winner && names.length >= 2 && (
-        <div className="w-full max-w-2xl cosmic-card px-6 py-5">
-          <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">How It Works</h2>
-          <p className="text-[13px] leading-[1.6] text-[var(--color-ink-muted-48)]">
-            Enter names above, then spin the wheel. The pointer at the top determines the winner. Each segment is colored for easy identification. You need at least 2 names to spin.
-          </p>
-        </div>
-      )}
-          <Disclaimer type="utility" />
+      <Disclaimer type="divination" />
     </div>
   );
 }

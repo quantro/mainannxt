@@ -217,15 +217,15 @@ export default function ZodiacPage() {
 
       <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
-          Birth Date
-        </h2>
+Tanggal Lahir (Birth Date)
+         </h2>
         <div className="grid grid-cols-3 gap-2">
           <select
             value={month}
             onChange={(e) => setMonth(e.target.value)}
             className="cosmic-input w-full h-10 text-[14px]"
           >
-            <option value="">Month</option>
+            <option value="">Bulan (Month)</option>
             {["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map((m, i) => (
               <option key={m} value={i + 1}>{m}</option>
             ))}
@@ -235,7 +235,7 @@ export default function ZodiacPage() {
             onChange={(e) => setDay(e.target.value)}
             className="cosmic-input w-full h-10 text-[14px]"
           >
-            <option value="">Day</option>
+            <option value="">Hari (Day)</option>
             {Array.from({ length: 31 }, (_, i) => (
               <option key={i + 1} value={i + 1}>{i + 1}</option>
             ))}
@@ -243,7 +243,7 @@ export default function ZodiacPage() {
           <input
             value={year}
             onChange={(e) => setYear(e.target.value.replace(/\D/g, "").slice(0, 4))}
-            placeholder="Year"
+            placeholder="Tahun (Year)"
             className="cosmic-input w-full h-10 text-[14px]"
           />
         </div>
@@ -271,7 +271,7 @@ export default function ZodiacPage() {
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Your Reading</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Pembacaan Anda (Your Reading)</h3>
             {result.sign.reading.split("\n\n").map((p, i) => (
               <p key={i} className="text-[14px] leading-[1.7] text-[var(--color-ink)] mb-2 last:mb-0">
                 {p}
@@ -280,13 +280,13 @@ export default function ZodiacPage() {
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Details</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Detail (Details)</h3>
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: "Element", value: result.sign.element },
-                { label: "Quality", value: result.sign.quality },
-                { label: "Ruling Planet", value: result.sign.rulingPlanet },
-                { label: "Symbol", value: `${result.sign.symbol} ${result.sign.name}` },
+                { label: "Elemen (Element)", value: result.sign.element },
+                { label: "Sifat (Quality)", value: result.sign.quality },
+                { label: "Planet Penguasa (Ruling Planet)", value: result.sign.rulingPlanet },
+                { label: "Simbol (Symbol)", value: `${result.sign.symbol} ${result.sign.name}` },
               ].map((d) => (
                 <div key={d.label} className="px-3 py-2 rounded-[11px] bg-[var(--color-surface-pearl)]">
                   <div className="text-[10px] uppercase text-[var(--color-ink-muted-48)] tracking-wider">{d.label}</div>
@@ -297,10 +297,10 @@ export default function ZodiacPage() {
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Personality</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Kepribadian (Personality)</h3>
             <div className="space-y-3">
               <div>
-                <div className="text-[11px] uppercase text-[var(--color-ink-muted-48)] mb-1.5">Traits</div>
+                <div className="text-[11px] uppercase text-[var(--color-ink-muted-48)] mb-1.5">Sifat (Traits)</div>
                 <div className="flex flex-wrap gap-1.5">
                   {result.sign.traits.map((t) => (
                     <span key={t} className="px-2.5 py-1 rounded-[9999px] text-[12px] bg-[var(--color-surface-pearl)] text-[var(--color-ink)]">
@@ -310,7 +310,7 @@ export default function ZodiacPage() {
                 </div>
               </div>
               <div>
-                <div className="text-[11px] uppercase text-[var(--color-ink-muted-48)] mb-1.5">Strengths</div>
+                <div className="text-[11px] uppercase text-[var(--color-ink-muted-48)] mb-1.5">Kelebihan (Strengths)</div>
                 <div className="flex flex-wrap gap-1.5">
                   {result.sign.strengths.map((s) => (
                     <span key={s} className="px-2.5 py-1 rounded-[9999px] text-[12px] bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -320,7 +320,7 @@ export default function ZodiacPage() {
                 </div>
               </div>
               <div>
-                <div className="text-[11px] uppercase text-[var(--color-ink-muted-48)] mb-1.5">Weaknesses</div>
+                <div className="text-[11px] uppercase text-[var(--color-ink-muted-48)] mb-1.5">Kelemahan (Weaknesses)</div>
                 <div className="flex flex-wrap gap-1.5">
                   {result.sign.weaknesses.map((w) => (
                     <span key={w} className="px-2.5 py-1 rounded-[9999px] text-[12px] bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400">
@@ -330,7 +330,7 @@ export default function ZodiacPage() {
                 </div>
               </div>
               <div>
-                <div className="text-[11px] uppercase text-[var(--color-ink-muted-48)] mb-1.5">Compatible With</div>
+                <div className="text-[11px] uppercase text-[var(--color-ink-muted-48)] mb-1.5">Cocok Dengan (Compatible With)</div>
                 <div className="flex flex-wrap gap-1.5">
                   {result.sign.compatibility.map((c) => (
                     <span key={c} className="px-2.5 py-1 rounded-[9999px] text-[12px] bg-[var(--color-surface-pearl)] text-[var(--color-ink)]">
@@ -348,7 +348,7 @@ export default function ZodiacPage() {
         <div className="w-full max-w-2xl space-y-4">
           <div className="cosmic-card px-6 py-5">
             <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
-              About Western Astrology
+              Tentang Astrologi Barat (About Western Astrology)
             </h2>
             <p className="text-[14px] leading-[1.6] text-[var(--color-ink)] mb-3">
               Western astrology is one of the oldest divination systems in the world, with roots tracing back to Babylonian civilization around the 2nd millennium BCE. It was later refined by the Greeks and Romans, and formalized by Ptolemy in his seminal work, the <em>Tetrabiblos</em>. The fundamental premise is that the positions of the Sun, Moon, and planets at the moment of your birth influence your personality, strengths, challenges, and life path.
@@ -362,7 +362,7 @@ export default function ZodiacPage() {
           </div>
           <div className="cosmic-card px-6 py-5">
             <p className="text-[14px] leading-[1.43] text-[var(--color-ink-muted-48)] text-center">
-              Select your birth date above to reveal your star sign, its element, ruling planet, personality traits, strengths, weaknesses, and who you're most compatible with.
+              Pilih tanggal lahir Anda di atas untuk mengetahui zodiak, elemen, planet penguasa, sifat kepribadian, kelebihan, kelemahan, dan kecocokan Anda. (Select your birth date above to reveal your star sign, its element, ruling planet, personality traits, strengths, weaknesses, and who you're most compatible with.)
             </p>
           </div>
         </div>
@@ -370,8 +370,8 @@ export default function ZodiacPage() {
 
       {!result && month && day && year && (
         <div className="w-full max-w-2xl cosmic-card px-6 py-5">
-          <p className="text-[14px] leading-[1.43] text-red-500 text-center">
-            Invalid date. Please check your inputs.
+            <p className="text-[14px] leading-[1.43] text-red-500 text-center">
+            Tanggal tidak valid. Periksa kembali input Anda. (Invalid date. Please check your inputs.)
           </p>
         </div>
       )}

@@ -154,11 +154,11 @@ export default function PrimbonPage() {
 
       <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
-          Your Weton
+          Weton Anda (Your Weton)
         </h2>
         <div className="grid grid-cols-2 gap-2">
           <select value={dayIdx} onChange={(e) => setDayIdx(e.target.value)} className="cosmic-input w-full h-10 text-[14px]">
-            <option value="">Day</option>
+            <option value="">Hari (Day)</option>
             {WEEKDAYS.map((d) => (
               <option key={d.id} value={d.id}>{d.en} ({d.jv})</option>
             ))}
@@ -174,12 +174,12 @@ export default function PrimbonPage() {
 
       <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
-          Love Compatibility
+          Kecocokan Cinta (Love Compatibility)
         </h2>
-        <p className="text-[11px] text-[var(--color-ink-muted-48)] mb-2">Enter your partner's weton to see your match:</p>
+        <p className="text-[11px] text-[var(--color-ink-muted-48)] mb-2">Masukkan weton pasangan untuk melihat kecocokan: (Enter your partner's weton to see your match:)</p>
         <div className="grid grid-cols-2 gap-2">
           <select value={dayIdxB} onChange={(e) => setDayIdxB(e.target.value)} className="cosmic-input w-full h-10 text-[14px]">
-            <option value="">Day</option>
+            <option value="">Hari (Day)</option>
             {WEEKDAYS.map((d) => (
               <option key={d.id} value={d.id}>{d.en}</option>
             ))}
@@ -202,34 +202,34 @@ export default function PrimbonPage() {
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Your Archetype</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Arketipe Anda (Your Archetype)</h3>
             <div className="text-[17px] font-semibold text-[var(--color-ink)] mb-2">{character.archetype}</div>
             <p className="text-[14px] leading-[1.7] text-[var(--color-ink)]">{character.character}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="cosmic-card px-6 py-5">
-              <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Strength</h3>
+              <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Kekuatan (Strength)</h3>
               <p className="text-[14px] text-[var(--color-ink)]">{character.strength}</p>
             </div>
             <div className="cosmic-card px-6 py-5">
-              <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Weakness</h3>
+              <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Kelemahan (Weakness)</h3>
               <p className="text-[14px] text-[var(--color-ink)]">{character.weakness}</p>
             </div>
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Wisdom</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Kebijaksanaan (Wisdom)</h3>
             <p className="text-[14px] leading-[1.7] italic text-[var(--color-ink)]">&ldquo;{character.advice}&rdquo;</p>
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Your Pancasuda</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Pancasuda Anda (Your Pancasuda)</h3>
             <p className="text-[14px] leading-[1.7] text-[var(--color-ink)]">{pancasuda}</p>
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Neptu Reference</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Referensi Neptu (Neptu Reference)</h3>
             <div className="grid grid-cols-2 gap-2 text-[13px]">
               <div className="px-3 py-2 rounded-[11px] bg-[var(--color-surface-pearl)]">
                 <span className="text-[var(--color-ink-muted-48)]">{weton.day.en}</span>
@@ -271,7 +271,7 @@ export default function PrimbonPage() {
         <div className="w-full max-w-2xl space-y-4">
           <div className="cosmic-card px-6 py-5">
             <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
-              About Primbon
+              Tentang Primbon (About Primbon)
             </h2>
             <p className="text-[14px] leading-[1.6] text-[var(--color-ink)] mb-3">
               <strong>Primbon</strong> is the ancient Javanese system of divination, cosmology, and traditional wisdom — a body of knowledge recorded over centuries in handwritten manuscripts (<em>naskah kuna</em>) passed between palace scholars of the Mataram, Kartasura, and Surakarta courts and the village mystics (<em>dukun</em> or <em>sesepuh</em>) who preserved the oral traditions. The word <em>primbon</em> derives from the Old Javanese root <em>imbu</em> or <em>ngimbu</em>, meaning to store, collect, compile, or combine — making it literally "a collected compendium" of traditional Javanese knowledge spanning astronomy, agriculture, architecture, dream interpretation, character analysis, medicine, and spiritual philosophy.
@@ -299,7 +299,7 @@ export default function PrimbonPage() {
             </p>
           </div>
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Pasaran Cycle Reference</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Referensi Siklus Pasaran (Pasaran Cycle Reference)</h3>
             <div className="grid grid-cols-5 gap-2 text-center">
               {PASARAN_LIST.map((p) => (
                 <div key={p.id} className="px-2 py-2 rounded-[11px] bg-[var(--color-surface-pearl)]">

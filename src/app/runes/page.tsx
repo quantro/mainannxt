@@ -224,9 +224,9 @@ function getRuneImage(name: string): string {
 type Spread = "single" | "three" | "five";
 
 const SPREADS: Record<Spread, { label: string; positions: string[] }> = {
-  single: { label: "Single Rune", positions: ["Your Guidance"] },
-  three: { label: "Three Rune", positions: ["Past — Foundation", "Present — Challenge", "Future — Path Forward"] },
-  five: { label: "Five Rune", positions: ["Present Situation", "Challenge", "What Is Hidden", "Advice", "Outcome"] },
+  single: { label: "Satu Rune (Single Rune)", positions: ["Panduan Anda (Your Guidance)"] },
+  three: { label: "Tiga Rune (Three Rune)", positions: ["Masa Lalu — Fondasi (Past — Foundation)", "Sekarang — Tantangan (Present — Challenge)", "Masa Depan — Jalan Ke Depan (Future — Path Forward)"] },
+  five: { label: "Lima Rune (Five Rune)", positions: ["Situasi Saat Ini (Present Situation)", "Challenge", "Yang Tersembunyi (What Is Hidden)", "Advice", "Hasil (Outcome)"] },
 };
 
 const AETTS = ["First (Freyr)", "Second (Hagal)", "Third (Tyr)"] as const;
@@ -318,7 +318,7 @@ export default function RunesPage() {
         onClick={deal}
         className="cosmic-btn-primary h-12 px-10 text-[15px] font-semibold mb-6"
       >
-        Cast the Runes
+        Lemparkan Rune (Cast the Runes)
       </button>
 
       {/* Dealt runes */}
@@ -351,7 +351,7 @@ export default function RunesPage() {
                   </div>
                   {merkstave && (
                     <div className="text-[9px] text-red-500 font-semibold mt-1 uppercase tracking-wider">
-                      Merkstave (Reversed)
+                      Merkstave (Terbalik / Reversed)
                     </div>
                   )}
                 </div>
@@ -372,7 +372,7 @@ export default function RunesPage() {
                   </h3>
                   <div className="text-[11px] text-[var(--color-ink-muted-48)]">
                     {SPREADS[spread].positions[i]}
-                    {merkstave && <span className="text-red-500 ml-2 font-semibold">Merkstave (Reversed)</span>}
+                    {merkstave && <span className="text-red-500 ml-2 font-semibold">Merkstave (Terbalik / Reversed)</span>}
                   </div>
                 </div>
                 <div className="text-[11px] text-right shrink-0 text-[var(--color-ink-muted-48)]">
@@ -394,13 +394,13 @@ export default function RunesPage() {
 
               <div className="mt-3 px-4 py-3 rounded-[11px]" style={{ background: `${merkstave ? "#c0392b" : "#5a4a3a"}0D` }}>
                 <div className="text-[10px] font-semibold uppercase tracking-wider mb-1" style={{ color: merkstave ? "#c0392b" : "#5a4a3a" }}>
-                  {merkstave ? "Merkstave (Reversed) Meaning" : "Upright Meaning"}
+                  {merkstave ? "Makna Merkstave (Terbalik / Reversed Meaning)" : "Makna Tegak (Upright Meaning)"}
                 </div>
                 <p className="text-[13px] leading-[1.6] text-[var(--color-ink)]">{merkstave ? rune.merkstave : rune.upright}</p>
               </div>
 
               <div className="mt-3 px-4 py-3 rounded-[11px] bg-[var(--color-surface-pearl)]">
-                <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-ink-muted-48)] mb-1">Wisdom</div>
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-ink-muted-48)] mb-1">Kebijaksanaan (Wisdom)</div>
                 <p className="text-[13px] leading-[1.6] italic text-[var(--color-ink)]">&ldquo;{rune.advice}&rdquo;</p>
               </div>
             </div>
@@ -410,7 +410,7 @@ export default function RunesPage() {
           <div className="cosmic-card px-6 py-5 border-l-4" style={{ borderLeftColor: "var(--color-primary)" }}>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-[18px]">ᚠ</span>
-              <h3 className="text-[14px] font-bold uppercase tracking-wider text-[var(--color-ink)]">Reading Conclusion</h3>
+              <h3 className="text-[14px] font-bold uppercase tracking-wider text-[var(--color-ink)]">Kesimpulan (Reading Conclusion)</h3>
             </div>
             <p className="text-[13px] leading-[1.8] text-[var(--color-ink)]">{conclusion}</p>
           </div>
@@ -421,7 +421,7 @@ export default function RunesPage() {
       {!dealt && (
         <div className="w-full max-w-2xl space-y-4">
           <div className="cosmic-card px-6 py-5">
-            <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">About the Elder Futhark</h2>
+            <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Tentang Elder Futhark (About the Elder Futhark)</h2>
             <p className="text-[13px] leading-[1.6] text-[var(--color-ink)] mb-2">
               The Elder Futhark is the oldest known runic alphabet, used by Germanic and Norse peoples from the 2nd to 8th centuries CE. Its 24 characters are divided into three families of eight called <em>aettir</em> (singular: <em>aett</em>). Runes were carved into wood, stone, bone, and metal — serving both as a writing system and as tools for divination and ritual.
             </p>
@@ -432,7 +432,7 @@ export default function RunesPage() {
 
           {/* Aett reference */}
           <div className="cosmic-card px-6 py-5">
-            <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">The Three Aettir</h2>
+            <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Tiga Aettir (The Three Aettir)</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {Object.entries(AETT_DESCS).map(([aett, desc]) => (
                 <button

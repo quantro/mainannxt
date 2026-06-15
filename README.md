@@ -56,7 +56,7 @@ Open [http://localhost:3000](http://localhost:3000) to see the result.
 | `/habit-tracker` | `src/app/habit-tracker/page.tsx` | **Habit Tracker** — Catat kebiasaan harian dan lihat streak Anda. |
 | `/focus-timer` | `src/app/focus-timer/page.tsx` | **Focus Timer** — Teknik Pomodoro dengan timer melingkar dan sesi tracking. |
 | `/cognitive-biases` | `src/app/cognitive-biases/page.tsx` | **Cognitive Biases** — Ensiklopedia bias kognitif lengkap dengan contoh. |
-| `/emotion-wheel` | `src/app/emotion-wheel/page.tsx` | **Emotion Wheel** — Roda emosi Plutchik interaktif untuk memahami perasaan. |
+| `/emotion-wheel` | `src/app/emotion-wheel/page.tsx` | **Emotion Wheel** — Roda perasaan interaktif berdasarkan Feelings Wheel (Willcox/Roberts). |
 | `/saran` | `src/app/saran/page.tsx` | **Kirim Saran** — Form untuk mengirim saran atau ide alat baru. Bahasa Indonesia. |
 | `/admin` | `src/app/admin/page.tsx` | **Admin Dashboard** — Click summary overview. Auth required. |
 | `/admin/clicks` | `src/app/admin/clicks/page.tsx` | **Click Log** — IP-tracked click history, grouped by day with search. Auth required. |

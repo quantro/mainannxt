@@ -225,28 +225,28 @@ export default function ChineseZodiacPage() {
 
       <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
-          Birth Year
+          Tahun Lahir (Birth Year)
         </h2>
         <input
           value={year}
           onChange={(e) => setYear(e.target.value.replace(/\D/g, "").slice(0, 4))}
-          placeholder="Enter your birth year (e.g. 1990)"
+          placeholder="Masukkan tahun lahir (contoh: 1990 / Enter your birth year)"
           className="cosmic-input w-full h-10 text-[14px]"
         />
       </div>
 
       <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
-          Or Your Name
+          Atau Nama Anda (Or Your Name)
         </h2>
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Enter your name"
+          placeholder="Masukkan nama Anda (Enter your name)"
           className="cosmic-input w-full h-10 text-[14px]"
         />
         <p className="text-[11px] text-[var(--color-ink-muted-48)] mt-1.5">
-          Based on the mystical numerology of vowel and consonant harmony.
+           Berdasarkan numerologi mistis dari harmoni vokal dan konsonan. (Based on the mystical numerology of vowel and consonant harmony.)
         </p>
       </div>
 
@@ -269,7 +269,7 @@ export default function ChineseZodiacPage() {
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Your Reading</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Pembacaan Anda (Your Reading)</h3>
             {result.animal.reading.split("\n\n").map((p, i) => (
               <p key={i} className="text-[14px] leading-[1.7] text-[var(--color-ink)] mb-2 last:mb-0">
                 {p}
@@ -278,7 +278,7 @@ export default function ChineseZodiacPage() {
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Traits</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Sifat (Traits)</h3>
             <div className="flex flex-wrap gap-1.5 mb-4">
               {result.animal.traits.map((t) => (
                 <span key={t} className="px-2.5 py-1 rounded-[9999px] text-[12px] bg-[var(--color-surface-pearl)] text-[var(--color-ink)]">
@@ -288,7 +288,7 @@ export default function ChineseZodiacPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
-                <div className="text-[11px] uppercase text-[var(--color-ink-muted-48)] mb-1.5">Strengths</div>
+                <div className="text-[11px] uppercase text-[var(--color-ink-muted-48)] mb-1.5">Kelebihan (Strengths)</div>
                 <div className="flex flex-wrap gap-1.5">
                   {result.animal.strengths.map((s) => (
                     <span key={s} className="px-2.5 py-1 rounded-[9999px] text-[12px] bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -298,7 +298,7 @@ export default function ChineseZodiacPage() {
                 </div>
               </div>
               <div>
-                <div className="text-[11px] uppercase text-[var(--color-ink-muted-48)] mb-1.5">Weaknesses</div>
+                <div className="text-[11px] uppercase text-[var(--color-ink-muted-48)] mb-1.5">Kelemahan (Weaknesses)</div>
                 <div className="flex flex-wrap gap-1.5">
                   {result.animal.weaknesses.map((w) => (
                     <span key={w} className="px-2.5 py-1 rounded-[9999px] text-[12px] bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400">
@@ -312,7 +312,7 @@ export default function ChineseZodiacPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="cosmic-card px-6 py-5">
-              <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Best Matches</h3>
+              <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Pasangan Terbaik (Best Matches)</h3>
               <div className="flex flex-wrap gap-1.5">
                 {result.animal.compatibility.map((c) => (
                   <span key={c} className="px-2.5 py-1 rounded-[9999px] text-[12px] bg-[var(--color-surface-pearl)] text-[var(--color-ink)]">
@@ -322,15 +322,15 @@ export default function ChineseZodiacPage() {
               </div>
             </div>
             <div className="cosmic-card px-6 py-5">
-              <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Lucky Numbers</h3>
+              <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Angka Keberuntungan (Lucky Numbers)</h3>
               <div className="text-[28px] font-bold text-[var(--color-ink)]">{result.animal.luckyNumbers}</div>
-              <div className="text-[10px] uppercase text-[var(--color-ink-muted-48)] mt-1">Colors</div>
+              <div className="text-[10px] uppercase text-[var(--color-ink-muted-48)] mt-1">Warna (Colors)</div>
               <div className="text-[14px] text-[var(--color-ink)]">{result.animal.luckyColors}</div>
             </div>
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Also born in</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Juga lahir di tahun (Also born in)</h3>
             <p className="text-[13px] text-[var(--color-ink)]">{result.animal.years}</p>
           </div>
         </div>
@@ -343,7 +343,7 @@ export default function ChineseZodiacPage() {
             <div className="text-[28px] font-bold text-[var(--color-ink)]">{nameResult.animal}</div>
           </div>
           <p className="text-[13px] leading-[1.5] text-[var(--color-ink)]">
-            Based on the mystical harmony of your name's vowels and consonants, your spirit animal is the {nameResult.animal}.
+            Berdasarkan harmoni mistis dari vokal dan konsonan nama Anda, hewan spiritual Anda adalah {nameResult.animal}. (Based on the mystical harmony of your name's vowels and consonants, your spirit animal is the {nameResult.animal}.)
           </p>
           <div className="flex flex-wrap gap-1.5 mt-3">
             {nameResult.traits.map((t) => (
@@ -359,7 +359,7 @@ export default function ChineseZodiacPage() {
         <div className="w-full max-w-2xl space-y-4">
           <div className="cosmic-card px-6 py-5">
             <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
-              About Chinese Astrology
+              Tentang Astrologi Cina (About Chinese Astrology)
             </h2>
             <p className="text-[14px] leading-[1.6] text-[var(--color-ink)] mb-3">
               The Chinese zodiac (生肖, shēngxiào) is a 2,000-year-old system of astrology rooted in ancient Chinese cosmology and timekeeping. According to legend, the Jade Emperor invited all the animals of the kingdom to a great race, and the first twelve to cross the finish line were awarded a place in the zodiac calendar. The clever Rat hitched a ride on the powerful Ox and jumped off at the last second to claim first place, setting the order of the twelve animals for all time.
@@ -376,7 +376,7 @@ export default function ChineseZodiacPage() {
           </div>
           <div className="cosmic-card px-6 py-5">
             <p className="text-[14px] leading-[1.43] text-[var(--color-ink-muted-48)] text-center">
-              Enter your birth year to discover your Chinese zodiac animal, element, lucky numbers, compatibility matches, and detailed personality traits. Or enter your name for a mystical spirit animal reading.
+              Masukkan tahun lahir untuk menemukan shio Cina, elemen, angka keberuntungan, kecocokan, dan sifat kepribadian. Atau masukkan nama untuk pembacaan hewan spiritual mistis. (Enter your birth year to discover your Chinese zodiac animal, element, lucky numbers, compatibility matches, and detailed personality traits. Or enter your name for a mystical spirit animal reading.)
             </p>
           </div>
         </div>

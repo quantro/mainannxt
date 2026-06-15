@@ -82,7 +82,7 @@ export default function TafsirMimpiPage() {
               onClick={() => setSearch("")}
               className="text-[12px] leading-[1] px-3 py-2 rounded-[11px] bg-[var(--color-surface-pearl)] text-[var(--color-ink-muted-48)] hover:text-[var(--color-ink)] transition-colors"
             >
-              Clear
+              Hapus (Clear)
             </button>
           )}
         </div>
