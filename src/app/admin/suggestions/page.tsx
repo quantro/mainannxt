@@ -6,7 +6,9 @@ import { SkeletonList } from "../../skeleton";
 
 interface Suggestion {
   id: number;
+  name: string | null;
   message: string;
+  ip: string | null;
   created_at: string;
 }
 
@@ -61,13 +63,17 @@ export default function AdminSuggestions() {
         <div className="space-y-3 max-w-2xl">
           {filtered.map((s) => (
             <div key={s.id} className="cosmic-card px-5 py-4">
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex items-start justify-between gap-4 mb-2">
                 <p className="text-[14px] leading-[1.6] whitespace-pre-wrap">
                   {s.message}
                 </p>
-                <span className="text-[11px] text-[var(--color-ink-muted-48)] shrink-0 tabular-nums pt-0.5">
+                <span className="text-[11px] text-[var(--color-ink-muted)] shrink-0 tabular-nums pt-0.5">
                   {formatTime(s.created_at)}
                 </span>
+              </div>
+              <div className="flex items-center gap-3 text-[11px] text-[var(--color-ink-muted)]">
+                {s.name && <span>{s.name}</span>}
+                {s.ip && <span className="font-mono">{s.ip}</span>}
               </div>
             </div>
           ))}

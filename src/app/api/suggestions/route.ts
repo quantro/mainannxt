@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
   try {
-    const { message } = await req.json();
+    const { name, message } = await req.json();
     if (!message || typeof message !== "string" || !message.trim()) {
       return NextResponse.json({ error: "Pesan tidak boleh kosong" }, { status: 400 });
     }
@@ -13,12 +13,19 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Pesan maksimal 2000 karakter" }, { status: 400 });
     }
 
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      req.headers.get("x-real-ip") ||
+      "unknown";
+
     if (!supabase) {
       return NextResponse.json({ error: "Database tidak tersedia" }, { status: 500 });
     }
 
     const { error } = await supabase.from("suggestions").insert({
+      name: typeof name === "string" && name.trim() ? name.trim() : null,
       message: message.trim(),
+      ip,
     });
 
     if (error) throw error;

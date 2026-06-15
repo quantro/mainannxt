@@ -7,6 +7,7 @@ import { useToast } from "../toast";
 
 export default function SaranPage() {
   const { toast } = useToast();
+  const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -22,7 +23,7 @@ export default function SaranPage() {
       const res = await fetch("/api/suggestions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: message.trim() }),
+        body: JSON.stringify({ name: name.trim() || null, message: message.trim() }),
       });
 
       if (!res.ok) {
@@ -57,6 +58,19 @@ export default function SaranPage() {
         onSubmit={handleSubmit}
         className="cosmic-card w-full max-w-md p-6 space-y-4"
       >
+        <div>
+          <label className="text-[13px] font-medium block mb-1.5">
+            Nama <span className="text-[var(--color-ink-muted)]">(opsional)</span>
+          </label>
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Nama kamu…"
+            maxLength={100}
+            className="cosmic-input w-full h-10 text-[14px]"
+          />
+        </div>
+
         <div>
           <label className="text-[13px] font-medium block mb-1.5">
             Saran atau ide kamu
