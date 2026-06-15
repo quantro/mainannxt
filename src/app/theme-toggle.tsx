@@ -9,7 +9,7 @@ function readTheme(): string {
 
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
     setMounted(true);
