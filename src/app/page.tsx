@@ -39,7 +39,7 @@ const tools: Tool[] = [
   { slug: "/primbon", icon: "\uD83C\uDF19", name: "Primbon Jawa", desc: "Javanese weton personality and love match", category: "Divination" },
   { slug: "/pranata-mangsa", icon: "\uD83C\uDF3E", name: "Pranata Mangsa", desc: "Javanese seasonal calendar and wisdom", category: "Calendars" },
   { slug: "/calendar", icon: "\uD83D\uDCC5", name: "World Calendars", desc: "Chinese, Javanese, and Islamic calendars", category: "Calendars" },
-  { slug: "/unit-converter", icon: "\uD83D\uDCF0", name: "Unit Converter", desc: "Convert length, weight, temperature, and volume units", category: "Utilities" },
+  { slug: "/unit-converter", icon: "\uD83D\uDCF0", name: "Unit Converter", desc: "Convert length, weight, temperature, volume, and area units", category: "Utilities" },
   { slug: "/color-picker", icon: "\uD83C\uDFA8", name: "Color Picker", desc: "Convert between HEX, RGB, and HSL color formats", category: "Utilities" },
   { slug: "/json-formatter", icon: "\uD83D\uDCCB", name: "JSON Formatter", desc: "Format, validate, and minify JSON", category: "Utilities" },
   { slug: "/text-diff", icon: "\uD83D\uDCDD", name: "Text Diff", desc: "Compare two texts and see added/removed lines", category: "Utilities" },

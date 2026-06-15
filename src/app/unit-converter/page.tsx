@@ -62,6 +62,36 @@ const categories: Record<string, CategoryDef> = {
     toBase: { liter: 1, gallon: 3.78541, cup: 0.236588, milliliter: 0.001 },
     convert: factorCategory({ liter: 1, gallon: 3.78541, cup: 0.236588, milliliter: 0.001 }),
   },
+  area: {
+    label: "Area",
+    units: {
+      squareMeter: "Square Meter",
+      squareKilometer: "Square Kilometer",
+      squareMile: "Square Mile",
+      squareFoot: "Square Foot",
+      squareInch: "Square Inch",
+      hectare: "Hectare",
+      acre: "Acre",
+    },
+    toBase: {
+      squareMeter: 1,
+      squareKilometer: 1_000_000,
+      squareMile: 2_589_988.11,
+      squareFoot: 0.092903,
+      squareInch: 0.00064516,
+      hectare: 10_000,
+      acre: 4046.856,
+    },
+    convert: factorCategory({
+      squareMeter: 1,
+      squareKilometer: 1_000_000,
+      squareMile: 2_589_988.11,
+      squareFoot: 0.092903,
+      squareInch: 0.00064516,
+      hectare: 10_000,
+      acre: 4046.856,
+    }),
+  },
 };
 
 function formatResult(value: number): string {
