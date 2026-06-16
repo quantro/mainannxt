@@ -1,0 +1,47 @@
+name: Update Indonesian Holidays
+
+on:
+  schedule:
+    - cron: "0 0 1 * *"
+  workflow_dispatch:
+
+jobs:
+  update-holidays:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Determine year range
+        id: years
+        run: |
+          CURRENT_YEAR=$(date +%Y)
+          CURRENT_MONTH=$(date +%m)
+          if [ "$CURRENT_MONTH" = "01" ]; then
+            echo "from=$CURRENT_YEAR" >> "$GITHUB_OUTPUT"
+            echo "to=$((CURRENT_YEAR + 10))" >> "$GITHUB_OUTPUT"
+          else
+            echo "from=$CURRENT_YEAR" >> "$GITHUB_OUTPUT"
+            echo "to=$CURRENT_YEAR" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Fetch and update holidays
+        run: node scripts/update-indonesian-holidays.mjs --from ${{ steps.years.outputs.from }} --to ${{ steps.years.outputs.to }}
+        env:
+          API_CO_ID_KEY: ${{ secrets.API_CO_ID_KEY }}
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/lib/indonesian-holidays.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update indonesian-holidays.json [skip ci]"
+            git push
+          fi
