@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Database tidak tersedia" }, { status: 500 });
     }
 
-    const { error } = await supabase.from("suggestions").insert({
+    const { error } = await supabase.from("tools_suggestions").insert({
       name: typeof name === "string" && name.trim() ? name.trim() : null,
       message: message.trim(),
       ip,
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
 export async function GET() {
   if (!supabase) return NextResponse.json([]);
   const { data } = await supabase
-    .from("suggestions")
+    .from("tools_suggestions")
     .select("*")
     .order("created_at", { ascending: false })
     .limit(500);
