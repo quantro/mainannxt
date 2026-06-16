@@ -14,8 +14,7 @@ import DeletePages from "./components/DeletePages";
 import ReorderPages from "./components/ReorderPages";
 import ReversePages from "./components/ReversePages";
 import AddBlankPage from "./components/AddBlankPage";
-import EncryptPdf from "./components/EncryptPdf";
-import DecryptPdf from "./components/DecryptPdf";
+
 import EditMetadata from "./components/EditMetadata";
 import PageNumbers from "./components/PageNumbers";
 import AddWatermark from "./components/AddWatermark";
@@ -47,8 +46,7 @@ const TOOL_MAP: Record<ToolKey, React.ReactNode> = {
   reorder: <ReorderPages />,
   reverse: <ReversePages />,
   blank: <AddBlankPage />,
-  encrypt: <EncryptPdf />,
-  decrypt: <DecryptPdf />,
+
   metadata: <EditMetadata />,
   numbers: <PageNumbers />,
   watermark: <AddWatermark />,

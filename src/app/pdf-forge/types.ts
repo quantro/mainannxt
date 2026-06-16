@@ -1,7 +1,7 @@
 export type ToolKey =
   | "compress" | "merge" | "split" | "image" | "text"
   | "rotate" | "delete" | "reorder" | "reverse" | "blank"
-  | "encrypt" | "decrypt" | "metadata" | "numbers" | "watermark"
+  | "metadata" | "numbers" | "watermark"
   | "pagesize" | "headerfooter" | "nup" | "greyscale" | "markdown" | "csv"
   | "crop" | "removeannot" | "removeform" | "fillform" | "unlockform"
   | "overlay" | "stamp" | "singlepage" | "booklet" | "poster";
@@ -21,8 +21,7 @@ export const ALL_TOOLS: ToolDef[] = [
   { key: "reorder",   icon: "\uD83D\uDDD1\uFE0F", label: "Reorder Pages" },
   { key: "reverse",   icon: "\uD83D\uDD00", label: "Reverse Order" },
   { key: "blank",     icon: "\u2795",       label: "Add Blank Page" },
-  { key: "encrypt",   icon: "\uD83D\uDD12", label: "Encrypt PDF" },
-  { key: "decrypt",   icon: "\uD83D\uDD13", label: "Decrypt PDF" },
+
   { key: "metadata",  icon: "\uD83D\uDCC4", label: "Edit Metadata" },
   { key: "numbers",   icon: "#\uFE0F\u20E3", label: "Page Numbers" },
   { key: "watermark", icon: "\uD83C\uDF2A\uFE0F", label: "Watermark" },
