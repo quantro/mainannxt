@@ -267,7 +267,7 @@ export default function TarotPage() {
         onClick={deal}
         className="cosmic-btn-primary h-12 px-10 text-[15px] font-semibold mb-6"
       >
-        Ambil Kartu (Draw Cards)
+        Draw Cards
       </button>
 
       {dealt && cards.length > 0 && (
@@ -301,7 +301,7 @@ export default function TarotPage() {
                       {card.suit === "Major Arcana" ? "Major Arcana" : `${card.suit} (${card.element})`}
                     </div>
                     {reversed && (
-                      <div className="text-[9px] text-red-500 font-semibold mt-1 uppercase tracking-wider">Terbalik (Reversed)</div>
+                      <div className="text-[9px] text-red-500 font-semibold mt-1 uppercase tracking-wider">Reversed</div>
                     )}
                   </div>
                   <div className="text-[10px] text-[var(--color-ink-muted-48)] mt-2 font-semibold text-center">
@@ -320,7 +320,7 @@ export default function TarotPage() {
                   <h3 className="text-[17px] font-bold text-[var(--color-ink)]">{card.name}</h3>
                   <div className="text-[11px] text-[var(--color-ink-muted-48)]">
                     {SPREADS[spread].positions[i]}
-                    {reversed && <span className="text-red-500 ml-2 font-semibold">Terbalik (Reversed)</span>}
+                    {reversed && <span className="text-red-500 ml-2 font-semibold">Reversed</span>}
                   </div>
                 </div>
                 <div className="text-[11px] text-right shrink-0" style={{ color: getSuitColor(card.suit) }}>
@@ -341,13 +341,13 @@ export default function TarotPage() {
 
               <div className="mt-3 px-4 py-3 rounded-[11px]" style={{ background: `${getSuitColor(card.suit)}0D` }}>
                 <div className="text-[10px] font-semibold uppercase tracking-wider mb-1" style={{ color: getSuitColor(card.suit) }}>
-                  {reversed ? "Makna Terbalik (Reversed)" : "Makna Tegak (Upright)"}
+                  {reversed ? "Reversed" : "Upright"}
                 </div>
                 <p className="text-[13px] leading-[1.6] text-[var(--color-ink)]">{reversed ? card.reversed : card.upright}</p>
               </div>
 
               <div className="mt-3 px-4 py-3 rounded-[11px] bg-[var(--color-surface-pearl)]">
-                <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-ink-muted-48)] mb-1">Nasihat (Advice)</div>
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-ink-muted-48)] mb-1">Advice</div>
                 <p className="text-[13px] leading-[1.6] italic text-[var(--color-ink)]">&ldquo;{card.advice}&rdquo;</p>
               </div>
             </div>
@@ -357,7 +357,7 @@ export default function TarotPage() {
           <div className="cosmic-card px-6 py-5 border-l-4" style={{ borderLeftColor: "var(--color-primary)" }}>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-[18px]">📜</span>
-              <h3 className="text-[14px] font-bold uppercase tracking-wider text-[var(--color-ink)]">Pembacaan Anda (Your Reading)</h3>
+              <h3 className="text-[14px] font-bold uppercase tracking-wider text-[var(--color-ink)]">Your Reading</h3>
             </div>
             <p className="text-[13px] leading-[1.8] text-[var(--color-ink)]">{conclusion}</p>
           </div>
@@ -366,7 +366,7 @@ export default function TarotPage() {
 
       {!dealt && (
         <div className="w-full max-w-2xl cosmic-card px-6 py-5">
-          <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Tentang Tarot (About Tarot)</h2>
+          <h2 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">About Tarot</h2>
           <p className="text-[13px] leading-[1.6] text-[var(--color-ink)] mb-2">
             The tarot deck contains 78 cards: 22 Major Arcana representing life's major archetypal lessons, and 56 Minor Arcana divided into four suits — Wands (fire, creativity), Cups (water, emotions), Swords (air, intellect), and Pentacles (earth, material).
           </p>

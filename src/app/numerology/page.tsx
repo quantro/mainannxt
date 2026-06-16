@@ -218,7 +218,7 @@ export default function NumerologyPage() {
 
       <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
-          Tanggal Lahir (Birth Date)
+          Birth Date
         </h2>
         <div className="grid grid-cols-3 gap-2">
           <select
@@ -226,7 +226,7 @@ export default function NumerologyPage() {
             onChange={(e) => setMonth(e.target.value)}
             className="cosmic-input w-full h-10 text-[14px]"
           >
-            <option value="">Bulan (Month)</option>
+            <option value="">Month</option>
             {Array.from({ length: 12 }, (_, i) => (
               <option key={i + 1} value={i + 1}>{i + 1}</option>
             ))}
@@ -236,7 +236,7 @@ export default function NumerologyPage() {
             onChange={(e) => setDay(e.target.value)}
             className="cosmic-input w-full h-10 text-[14px]"
           >
-            <option value="">Hari (Day)</option>
+            <option value="">Day</option>
             {Array.from({ length: 31 }, (_, i) => (
               <option key={i + 1} value={i + 1}>{i + 1}</option>
             ))}
@@ -244,7 +244,7 @@ export default function NumerologyPage() {
           <input
             value={year}
             onChange={(e) => setYear(e.target.value.replace(/\D/g, "").slice(0, 4))}
-            placeholder="Tahun (Year)"
+            placeholder="Year"
             className="cosmic-input w-full h-10 text-[14px]"
           />
         </div>
@@ -252,12 +252,12 @@ export default function NumerologyPage() {
 
       <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
-          Atau Nama Lengkap (Or Full Name)
+          Or Full Name
         </h2>
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Masukkan nama lengkap (contoh: John Doe / Enter your full name)"
+          placeholder="Enter your full name (e.g. John Doe)"
           className="cosmic-input w-full h-10 text-[14px]"
         />
       </div>
@@ -273,14 +273,14 @@ export default function NumerologyPage() {
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Angka Jalan Hidup (Life Path Number)</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Life Path Number</h3>
             <p className="text-[14px] leading-[1.6] text-[var(--color-ink)]">
               {result.meaning.description}
             </p>
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Pembacaan Anda (Your Reading)</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Your Reading</h3>
             {result.meaning.reading.split("\n\n").map((p, i) => (
               <p key={i} className="text-[14px] leading-[1.7] text-[var(--color-ink)] mb-2 last:mb-0">
                 {p}
@@ -289,7 +289,7 @@ export default function NumerologyPage() {
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Kata Kunci (Keywords)</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Keywords</h3>
             <div className="flex flex-wrap gap-1.5">
               {result.meaning.keywords.map((k) => (
                 <span key={k} className="px-2.5 py-1 rounded-[9999px] text-[12px] bg-[var(--color-surface-pearl)] text-[var(--color-ink)]">
@@ -301,11 +301,11 @@ export default function NumerologyPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="cosmic-card px-6 py-5">
-              <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Positif (Positive)</h3>
+              <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Positive</h3>
               <p className="text-[13px] leading-[1.5] text-[var(--color-ink)]">{result.meaning.positive}</p>
             </div>
             <div className="cosmic-card px-6 py-5">
-              <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Tantangan (Challenge)</h3>
+              <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Challenge</h3>
               <p className="text-[13px] leading-[1.5] text-[var(--color-ink)]">{result.meaning.negative}</p>
             </div>
           </div>
@@ -313,7 +313,7 @@ export default function NumerologyPage() {
           <div className="cosmic-card px-6 py-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Karir Ideal (Ideal Careers)</h3>
+                <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Ideal Careers</h3>
                 <div className="flex flex-wrap gap-1.5">
                   {result.meaning.career.map((c) => (
                     <span key={c} className="px-2.5 py-1 rounded-[9999px] text-[12px] bg-[var(--color-surface-pearl)] text-[var(--color-ink)]">
@@ -323,7 +323,7 @@ export default function NumerologyPage() {
                 </div>
               </div>
               <div>
-                <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Cinta (Love)</h3>
+                <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-2">Love</h3>
                 <p className="text-[13px] leading-[1.5] text-[var(--color-ink)]">{result.meaning.love}</p>
               </div>
             </div>
@@ -333,7 +333,7 @@ export default function NumerologyPage() {
 
       {nameDestiny && (
         <div className="w-full max-w-2xl cosmic-card px-6 py-5 mt-4">
-          <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Angka Takdir (Destiny Number)</h3>
+          <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Destiny Number</h3>
           <div className="flex items-center gap-3 mb-3">
             <span className="text-[36px]">{ELEMENTS[nameDestiny.number]}</span>
             <div>
@@ -342,7 +342,7 @@ export default function NumerologyPage() {
             </div>
           </div>
           <p className="text-[13px] leading-[1.5] text-[var(--color-ink)]">
-            Berasal dari huruf-huruf dalam <strong>{name.trim()}</strong>, Angka Takdir Anda mengungkapkan bakat dan kemampuan yang harus Anda kembangkan. (Derived from the letters in <strong>{name.trim()}</strong>, your Destiny Number reveals the talents and abilities you're meant to develop.)
+            Derived from the letters in <strong>{name.trim()}</strong>, your Destiny Number reveals the talents and abilities you're meant to develop.
           </p>
           <p className="text-[13px] leading-[1.5] text-[var(--color-ink)] mt-2">
             {nameDestiny.meaning.description.split(".")[0]}.
@@ -354,7 +354,7 @@ export default function NumerologyPage() {
         <div className="w-full max-w-2xl space-y-4">
           <div className="cosmic-card px-6 py-5">
             <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
-              Tentang Numerologi (About Numerology)
+              About Numerology
             </h2>
             <p className="text-[14px] leading-[1.6] text-[var(--color-ink)] mb-3">
               Numerology is the ancient study of the divine or mystical relationship between numbers and events in the physical world. Its origins span multiple cultures &mdash; the Greek philosopher Pythagoras (c. 570&ndash;495 BCE) is considered the father of Western numerology, believing that numbers were the ultimate building blocks of reality. The Hebrew system of Gematria, the Chinese tradition of lucky and unlucky numbers, and the Chaldean system of Mesopotamia each developed their own numerological frameworks independently.
@@ -363,7 +363,7 @@ export default function NumerologyPage() {
               In Pythagorean numerology (the system used here), every number from 1 to 9 carries a distinct vibrational frequency and archetypal meaning. Your <strong>Life Path Number</strong> is the most important number in your chart &mdash; it's derived from your birth date and reveals your core personality, natural talents, challenges, and the overarching purpose of your life. It is your cosmic blueprint, the path you were born to walk.
             </p>
             <p className="text-[14px] leading-[1.6] text-[var(--color-ink)] mb-3">
-              Your <strong>Angka Takdir</strong> (also called the Expression Number) is calculated from the letters in your full birth name. Each letter corresponds to a number (A=1, B=2, etc.), and their sum reveals the talents, abilities, and shortcomings you brought into this life. While your Life Path is the road you travel, your Angka Takdir is the tools you carry in your backpack.
+              Your <strong>Destiny Number</strong> (also called the Expression Number) is calculated from the letters in your full birth name. Each letter corresponds to a number (A=1, B=2, etc.), and their sum reveals the talents, abilities, and shortcomings you brought into this life. While your Life Path is the road you travel, your Destiny Number is the tools you carry in your backpack.
             </p>
             <p className="text-[14px] leading-[1.6] text-[var(--color-ink)]">
               Master Numbers (11, 22, 33) are the exceptions &mdash; they are never reduced to a single digit because they carry amplified energy and heightened spiritual significance. Those with Master Numbers often feel a greater sense of purpose and intensity in their lives.
@@ -371,7 +371,7 @@ export default function NumerologyPage() {
           </div>
           <div className="cosmic-card px-6 py-5">
             <p className="text-[14px] leading-[1.43] text-[var(--color-ink-muted-48)] text-center">
-              Masukkan tanggal lahir untuk menghitung Angka Jalan Hidup, atau ketik nama untuk menemukan Angka Takdir. Keduanya mengungkap dimensi berbeda dari profil numerologi Anda. (Enter your birth date to calculate your Life Path Number, or type your name to discover your Destiny Number. Both reveal different dimensions of your numerological profile.)
+              Enter your birth date to calculate your Life Path Number, or type your name to discover your Destiny Number. Both reveal different dimensions of your numerological profile.
             </p>
           </div>
         </div>

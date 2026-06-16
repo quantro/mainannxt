@@ -22,6 +22,7 @@ const tools: Tool[] = [
   { slug: "/blender", icon: "\uD83E\uDDEA", name: "Name Blender", desc: "Blend two names together", category: "Words" },
   { slug: "/ladder", icon: "\uD83E\uDE9C", name: "Word Ladder", desc: "Find shortest path between two words", category: "Words" },
   { slug: "/cipher", icon: "\uD83D\uDD11", name: "Cipher Tool", desc: "Encode and decode text with ciphers", category: "Utilities" },
+  { slug: "/spin-the-wheel", icon: "\uD83C\uDFAF", name: "Wheel of Names", desc: "Spin to pick a random winner", category: "Utilities" },
   { slug: "/wheel", icon: "\uD83C\uDF0D", name: "Emotion Wheel", desc: "Roda emosi Plutchik 8 sektor — jelajahi emosi dasar dan hubungannya", category: "Psychology" },
   { slug: "/network", icon: "\uD83C\uDF10", name: "Network Tools", desc: "IP, DNS lookup, and port reference", category: "Utilities" },
   { slug: "/pdf-forge", icon: "\uD83D\uDCC4", name: "PDF Forge", desc: "Compress, merge, split, convert images and text to PDF", category: "Utilities" },

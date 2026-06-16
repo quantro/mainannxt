@@ -85,6 +85,36 @@ function getTarot(name: string) {
   return TAROT_CARDS[idx];
 }
 
+const MAJOR_TO_FILE: Record<string, string> = {
+  "The Fool": "fool",
+  "The Magician": "magician",
+  "The High Priestess": "priestess",
+  "The Empress": "empress",
+  "The Emperor": "emperor",
+  "The Hierophant": "hierophant",
+  "The Lovers": "lovers",
+  "The Chariot": "chariot",
+  "Strength": "strength",
+  "The Hermit": "hermit",
+  "Wheel of Fortune": "fortune",
+  "Justice": "justice",
+  "The Hanged Man": "hanged",
+  "Death": "death",
+  "Temperance": "temperance",
+  "The Devil": "devil",
+  "The Tower": "tower",
+  "The Star": "star",
+  "The Moon": "moon",
+  "The Sun": "sun",
+  "Judgement": "judgement",
+  "The World": "world",
+};
+
+function getTarotImage(name: string): string {
+  const key = MAJOR_TO_FILE[name];
+  return key ? `/tarot/major_arcana_${key}.png` : "";
+}
+
 export default function FortunePage() {
   const [name, setName] = useState("");
   const [animate, setAnimate] = useState(false);
@@ -121,14 +151,14 @@ export default function FortunePage() {
 
       <div className="w-full max-w-2xl cosmic-card px-6 py-5 mb-5">
         <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
-          Nama Anda (Your Name)
+          Your Name
         </h2>
         <div className="flex gap-2">
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleReveal()}
-            placeholder="Masukkan nama Anda... (Enter your name...)"
+            placeholder="Enter your name..."
             className="cosmic-input w-full h-10 text-[14px]"
           />
           <button
@@ -136,7 +166,7 @@ export default function FortunePage() {
             className="cosmic-btn-primary text-[13px] whitespace-nowrap"
             disabled={!name.trim()}
           >
-            Buka (Reveal)
+            Reveal
           </button>
         </div>
       </div>
@@ -154,11 +184,14 @@ export default function FortunePage() {
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Kartu Tarot (Tarot Card)</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Tarot Card</h3>
             <div className="flex items-start gap-3">
-              <div className="w-12 h-16 rounded-[8px] bg-gradient-to-br from-[var(--color-primary)] to-purple-600 flex items-center justify-center text-white text-[20px] font-bold shadow-sm shrink-0">
-                ?
-              </div>
+              <img
+                src={getTarotImage(tarot.name)}
+                alt={tarot.name}
+                className="w-[80px] h-auto rounded-[6px] shadow-sm shrink-0"
+                loading="lazy"
+              />
               <div>
                 <div className="text-[17px] font-semibold text-[var(--color-ink)]">{tarot.name}</div>
                 <div className="text-[13px] text-[var(--color-ink-muted-48)]">{tarot.meaning}</div>
@@ -167,7 +200,7 @@ export default function FortunePage() {
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Interpretasi Tarot (Tarot Interpretation)</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Tarot Interpretation</h3>
             {tarot.reading.split("\n\n").map((p, i) => (
               <p key={i} className="text-[14px] leading-[1.7] text-[var(--color-ink)] mb-2 last:mb-0">
                 {p}
@@ -176,7 +209,7 @@ export default function FortunePage() {
           </div>
 
           <div className="cosmic-card px-6 py-5">
-            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Nasihat (Advice)</h3>
+            <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Advice</h3>
             <p className="text-[15px] text-[var(--color-ink)] leading-[1.5]">
               {reading.advice}
             </p>
@@ -184,18 +217,18 @@ export default function FortunePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="cosmic-card px-6 py-5">
-              <div className="text-[10px] uppercase text-[var(--color-ink-muted-48)] tracking-wider">Angka Keberuntungan (Lucky Number)</div>
+              <div className="text-[10px] uppercase text-[var(--color-ink-muted-48)] tracking-wider">Lucky Number</div>
               <div className="text-[28px] font-bold text-[var(--color-ink)] tabular-nums">{reading.luckyNumber}</div>
             </div>
             <div className="cosmic-card px-6 py-5">
-              <div className="text-[10px] uppercase text-[var(--color-ink-muted-48)] tracking-wider">Warna Keberuntungan (Lucky Color)</div>
+              <div className="text-[10px] uppercase text-[var(--color-ink-muted-48)] tracking-wider">Lucky Color</div>
               <div className="text-[28px] font-bold text-[var(--color-ink)]">{reading.luckyColor}</div>
             </div>
           </div>
 
           <div className="cosmic-card px-6 py-5 text-center">
             <p className="text-[13px] text-[var(--color-ink-muted-48)] italic">
-              Roh telah berbicara melalui nama (The spirits have spoken through the name) <strong className="text-[var(--color-ink)]">{name.trim()}</strong>. Kembali besok untuk ramalan baru. (Come back tomorrow for a new reading.)
+              The spirits have spoken through the name <strong className="text-[var(--color-ink)]">{name.trim()}</strong>. Come back tomorrow for a new reading.
             </p>
           </div>
         </div>
@@ -205,7 +238,7 @@ export default function FortunePage() {
         <div className="w-full max-w-2xl space-y-4">
           <div className="cosmic-card px-6 py-5">
             <h2 className="text-[14px] font-semibold leading-[1.29] tracking-[-0.224px] text-[var(--color-ink-muted-48)] mb-3 uppercase">
-              Tentang Ramalan (About Fortune Telling)
+              About Fortune Telling
             </h2>
             <p className="text-[14px] leading-[1.6] text-[var(--color-ink)] mb-3">
               Fortune telling is one of humanity's oldest spiritual practices, spanning every culture and era. From the oracle bones of ancient China (c. 1600 BCE) to the Pythia of Delphi in ancient Greece, from the I Ching of Taoist philosophy to the tarot decks of medieval Europe, humans have always sought to peer beyond the veil of the present moment and glimpse what lies ahead. The common thread across all traditions is the belief that patterns &mdash; in nature, in symbols, in names, in numbers &mdash; can reveal truths about our past, present, and future.
@@ -222,7 +255,7 @@ export default function FortunePage() {
           </div>
           <div className="cosmic-card px-6 py-5">
             <p className="text-[14px] leading-[1.43] text-[var(--color-ink-muted-48)] text-center">
-              Masukkan nama Anda untuk menerima ramalan yang dipersonalisasi, kartu tarot dari Arcana Mayor, angka keberuntungan, warna keberuntungan, dan nasihat spiritual untuk jalan ke depan. (Enter your name to receive a personalized fortune, a tarot card drawn from the Major Arcana, your lucky number, your lucky color, and spiritual advice for the path ahead.)
+              Enter your name to receive a personalized fortune, a tarot card drawn from the Major Arcana, your lucky number, your lucky color, and spiritual advice for the path ahead.
             </p>
           </div>
         </div>
