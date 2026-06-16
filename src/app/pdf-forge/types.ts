@@ -2,7 +2,9 @@ export type ToolKey =
   | "compress" | "merge" | "split" | "image" | "text"
   | "rotate" | "delete" | "reorder" | "reverse" | "blank"
   | "encrypt" | "decrypt" | "metadata" | "numbers" | "watermark"
-  | "pagesize" | "headerfooter" | "nup" | "greyscale" | "markdown" | "csv";
+  | "pagesize" | "headerfooter" | "nup" | "greyscale" | "markdown" | "csv"
+  | "crop" | "removeannot" | "removeform" | "fillform" | "unlockform"
+  | "overlay" | "stamp" | "singlepage" | "booklet" | "poster";
 
 export interface ToolDef {
   key: ToolKey;
@@ -32,4 +34,14 @@ export const ALL_TOOLS: ToolDef[] = [
   { key: "text",      icon: "\u270D\uFE0F", label: "Text to PDF" },
   { key: "markdown",  icon: "\uD83D\uDCDD", label: "Markdown to PDF" },
   { key: "csv",       icon: "\uD83D\uDCCA", label: "CSV to PDF" },
+  { key: "crop",      icon: "\u2702\uFE0F", label: "Crop PDF" },
+  { key: "removeannot", icon: "\uD83D\uDD0D", label: "Remove Annotations" },
+  { key: "removeform",  icon: "\u274C",       label: "Remove Form Fields" },
+  { key: "fillform",    icon: "\u270F\uFE0F", label: "Fill Forms" },
+  { key: "unlockform",  icon: "\uD83D\uDD13", label: "Unlock Forms" },
+  { key: "overlay",     icon: "\uD83D\uDCD1", label: "Overlay PDFs" },
+  { key: "stamp",       icon: "\uD83D\uDCE6", label: "Add Stamp" },
+  { key: "singlepage",  icon: "\uD83D\uDCC4", label: "PDF to Single Page" },
+  { key: "booklet",     icon: "\uD83D\uDCD6", label: "Booklet Imposition" },
+  { key: "poster",      icon: "\uD83D\uDDBC\uFE0F", label: "Poster Split" },
 ];

@@ -27,6 +27,16 @@ import ImageToPdf from "./components/ImageToPdf";
 import TextToPdf from "./components/TextToPdf";
 import MarkdownToPdf from "./components/MarkdownToPdf";
 import CsvToPdf from "./components/CsvToPdf";
+import CropPdf from "./components/CropPdf";
+import RemoveAnnotations from "./components/RemoveAnnotations";
+import RemoveFormFields from "./components/RemoveFormFields";
+import FillForms from "./components/FillForms";
+import UnlockForms from "./components/UnlockForms";
+import OverlayPdfs from "./components/OverlayPdfs";
+import AddStamp from "./components/AddStamp";
+import PdfToSinglePage from "./components/PdfToSinglePage";
+import BookletImposition from "./components/BookletImposition";
+import PosterSplit from "./components/PosterSplit";
 
 const TOOL_MAP: Record<ToolKey, React.ReactNode> = {
   merge: <MergePdf />,
@@ -50,6 +60,16 @@ const TOOL_MAP: Record<ToolKey, React.ReactNode> = {
   text: <TextToPdf />,
   markdown: <MarkdownToPdf />,
   csv: <CsvToPdf />,
+  crop: <CropPdf />,
+  removeannot: <RemoveAnnotations />,
+  removeform: <RemoveFormFields />,
+  fillform: <FillForms />,
+  unlockform: <UnlockForms />,
+  overlay: <OverlayPdfs />,
+  stamp: <AddStamp />,
+  singlepage: <PdfToSinglePage />,
+  booklet: <BookletImposition />,
+  poster: <PosterSplit />,
 };
 
 export default function PdfForgePage() {
@@ -86,13 +106,17 @@ export default function PdfForgePage() {
 
       {TOOL_MAP[tab]}
 
-      <div className="w-full max-w-2xl mt-6 cosmic-card px-6 py-4">
+      <div className="w-full max-w-2xl mt-6 cosmic-card px-6 py-4 space-y-2">
         <p className="text-[12px] leading-[1.6] text-[var(--color-ink-muted-48)] text-center">
           Inspired by{" "}
           <a href="https://bentopdf.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] font-semibold hover:underline">
             BentoPDF
           </a>
-          , an open-source privacy-first PDF toolkit.
+          {" "}and{" "}
+          <a href="https://github.com/Frooodle/Stirling-PDF" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] font-semibold hover:underline">
+            Stirling-PDF
+          </a>
+          , open-source privacy-first PDF toolkits.
         </p>
       </div>
 
