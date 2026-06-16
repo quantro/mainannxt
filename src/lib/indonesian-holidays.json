@@ -1116,9 +1116,8 @@
       "name": "Muharram / Islamic New Year (Tentative Date)",
       "type": "Public Holiday",
       "year": 2026,
-      "is_today": false,
-      "is_upcoming": true,
-      "days_until": 3,
+      "is_today": true,
+      "is_upcoming": false,
       "is_holiday": true,
       "is_joint_holiday": false,
       "is_observance": false
@@ -1133,7 +1132,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 18,
+      "days_until": 15,
       "is_holiday": false,
       "is_joint_holiday": false,
       "is_observance": true
@@ -1148,7 +1147,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 49,
+      "days_until": 46,
       "is_holiday": false,
       "is_joint_holiday": false,
       "is_observance": true
@@ -1163,7 +1162,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 49,
+      "days_until": 46,
       "is_holiday": false,
       "is_joint_holiday": false,
       "is_observance": true
@@ -1178,7 +1177,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 65,
+      "days_until": 62,
       "is_holiday": true,
       "is_joint_holiday": false,
       "is_observance": false
@@ -1193,7 +1192,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 73,
+      "days_until": 70,
       "is_holiday": true,
       "is_joint_holiday": false,
       "is_observance": false
@@ -1208,7 +1207,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 80,
+      "days_until": 77,
       "is_holiday": false,
       "is_joint_holiday": false,
       "is_observance": true
@@ -1223,7 +1222,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 80,
+      "days_until": 77,
       "is_holiday": false,
       "is_joint_holiday": false,
       "is_observance": true
@@ -1238,7 +1237,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 110,
+      "days_until": 107,
       "is_holiday": false,
       "is_joint_holiday": false,
       "is_observance": true
@@ -1253,7 +1252,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 110,
+      "days_until": 107,
       "is_holiday": false,
       "is_joint_holiday": false,
       "is_observance": true
@@ -1268,7 +1267,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 110,
+      "days_until": 107,
       "is_holiday": false,
       "is_joint_holiday": false,
       "is_observance": true
@@ -1283,7 +1282,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 141,
+      "days_until": 138,
       "is_holiday": false,
       "is_joint_holiday": false,
       "is_observance": true
@@ -1298,7 +1297,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 141,
+      "days_until": 138,
       "is_holiday": false,
       "is_joint_holiday": false,
       "is_observance": true
@@ -1313,7 +1312,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 171,
+      "days_until": 168,
       "is_holiday": false,
       "is_joint_holiday": false,
       "is_observance": true
@@ -1328,7 +1327,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 171,
+      "days_until": 168,
       "is_holiday": false,
       "is_joint_holiday": false,
       "is_observance": true
@@ -1343,7 +1342,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 194,
+      "days_until": 191,
       "is_holiday": false,
       "is_joint_holiday": true,
       "is_observance": false
@@ -1358,7 +1357,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 195,
+      "days_until": 192,
       "is_holiday": true,
       "is_joint_holiday": false,
       "is_observance": false
@@ -1373,7 +1372,7 @@
       "year": 2026,
       "is_today": false,
       "is_upcoming": true,
-      "days_until": 201,
+      "days_until": 198,
       "is_holiday": false,
       "is_joint_holiday": false,
       "is_observance": true
