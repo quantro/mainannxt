@@ -53,10 +53,65 @@ function maskIp(ip: string) {
   return ip;
 }
 
+function IpSummary({
+  logs, maskIp, toolsInfo, formatTime,
+}: {
+  logs: LogEntry[];
+  maskIp: (ip: string) => string;
+  toolsInfo: Record<string, { icon: string; name: string }>;
+  formatTime: (iso: string) => string;
+}) {
+  const byIp = logs.reduce<Record<string, { count: number; tools: Set<string>; first: string; last: string }>>((acc, l) => {
+    if (!acc[l.ip_address]) {
+      acc[l.ip_address] = { count: 0, tools: new Set(), first: l.clicked_at, last: l.clicked_at };
+    }
+    const ip = acc[l.ip_address];
+    ip.count++;
+    ip.tools.add(l.tool_slug);
+    if (l.clicked_at < ip.first) ip.first = l.clicked_at;
+    if (l.clicked_at > ip.last) ip.last = l.clicked_at;
+    return acc;
+  }, {});
+
+  const sorted = Object.entries(byIp).sort((a, b) => b[1].count - a[1].count);
+
+  return (
+    <div className="w-full max-w-3xl space-y-2">
+      {sorted.map(([ip, data]) => {
+        const toolEntries = [...data.tools].map((slug) => toolsInfo[slug] || { icon: "\uD83D\uDCC1", name: slug });
+        return (
+          <div key={ip} className="cosmic-card px-4 py-3 text-[13px]">
+            <div className="flex items-center justify-between mb-1.5">
+              <code className="text-[12px] font-mono font-semibold">{maskIp(ip)}</code>
+              <span className="text-[12px] text-[var(--color-ink-muted-48)] tabular-nums">
+                {data.count} click{data.count === 1 ? "" : "s"}
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-1 mb-1.5">
+              {toolEntries.map((t) => (
+                <span key={t.name} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-[6px] bg-[var(--color-surface-pearl)] text-[11px]">
+                  {t.icon} {t.name}
+                </span>
+              ))}
+            </div>
+            <div className="text-[11px] text-[var(--color-ink-muted-48)]">
+              {formatTime(data.first)} – {formatTime(data.last)}
+            </div>
+          </div>
+        );
+      })}
+      {sorted.length === 0 && (
+        <p className="text-[14px] text-[var(--color-ink-muted-48)] text-center py-8">No clicks yet.</p>
+      )}
+    </div>
+  );
+}
+
 export default function AdminClickLog() {
   const [loading, setLoading] = useState(true);
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [search, setSearch] = useState("");
+  const [view, setView] = useState<"timeline" | "ips">("timeline");
 
   useEffect(() => {
     fetch("/api/click-log?limit=500")
@@ -91,15 +146,25 @@ export default function AdminClickLog() {
         {logs.length} click{logs.length === 1 ? "" : "s"} recorded
       </p>
 
-      <input
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Filter by tool or IP…"
-        className="cosmic-input w-full max-w-xs h-10 text-[14px] text-center mb-8"
-      />
+      <div className="flex items-center gap-3 mb-8">
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Filter by tool or IP…"
+          className="cosmic-input w-full max-w-xs h-10 text-[14px] text-center"
+        />
+        <button
+          onClick={() => setView(view === "timeline" ? "ips" : "timeline")}
+          className="cosmic-btn h-10 px-4 text-[13px]"
+        >
+          {view === "timeline" ? "IP Summary" : "Timeline"}
+        </button>
+      </div>
 
       {loading ? (
         <SkeletonTable rows={10} />
+      ) : view === "ips" ? (
+        <IpSummary logs={filtered} maskIp={maskIp} toolsInfo={toolsInfo} formatTime={formatTime} />
       ) : (
         <div className="w-full max-w-2xl space-y-6">
           {Object.entries(grouped).map(([day, entries]) => (
