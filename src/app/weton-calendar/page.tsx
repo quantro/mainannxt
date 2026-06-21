@@ -80,9 +80,9 @@ export default function WetonCalendarPage() {
         isCurrentMonth: false,
         jdn,
         dayOfWeek: (jdn + 1) % 7,
-        pasaranIndex: ((jdn + 1) % 5 + 5) % 5,
+        pasaranIndex: (jdn % 5 + 5) % 5,
         wetonDay: DAYS[(jdn + 1) % 7],
-        wetonPasaran: PASARAN[((jdn + 1) % 5 + 5) % 5],
+        wetonPasaran: PASARAN[(jdn % 5 + 5) % 5],
       });
     }
 
@@ -95,9 +95,9 @@ export default function WetonCalendarPage() {
         isCurrentMonth: true,
         jdn,
         dayOfWeek: (jdn + 1) % 7,
-        pasaranIndex: ((jdn + 1) % 5 + 5) % 5,
+        pasaranIndex: (jdn % 5 + 5) % 5,
         wetonDay: DAYS[(jdn + 1) % 7],
-        wetonPasaran: PASARAN[((jdn + 1) % 5 + 5) % 5],
+        wetonPasaran: PASARAN[(jdn % 5 + 5) % 5],
       });
     }
 
@@ -111,9 +111,9 @@ export default function WetonCalendarPage() {
         isCurrentMonth: false,
         jdn,
         dayOfWeek: (jdn + 1) % 7,
-        pasaranIndex: ((jdn + 1) % 5 + 5) % 5,
+        pasaranIndex: (jdn % 5 + 5) % 5,
         wetonDay: DAYS[(jdn + 1) % 7],
-        wetonPasaran: PASARAN[((jdn + 1) % 5 + 5) % 5],
+        wetonPasaran: PASARAN[(jdn % 5 + 5) % 5],
       });
     }
 

@@ -232,7 +232,7 @@ export default function CalendarPage() {
   const chineseYear = useMemo(() => getChineseYear(year), [year]);
 
   const wetonDay = DAYS[dayOfWeek];
-  const wetonPasaran = PASARAN[((jdn + 1) % 5 + 5) % 5];
+  const wetonPasaran = PASARAN[(jdn % 5 + 5) % 5];
   const sakaYear = year - 78;
   const jMonthIdx = ((month + 9) % 12 + 12) % 12;
 
@@ -416,9 +416,9 @@ export default function CalendarPage() {
             <h3 className="text-[12px] font-semibold uppercase text-[var(--color-ink-muted-48)] mb-3">Pasaran Cycle</h3>
             <div className="grid grid-cols-5 gap-1.5">
               {PASARAN.map((p, i) => (
-                <div key={p} className={`px-1 py-1.5 rounded-[8px] text-center ${i === ((jdn + 1) % 5 + 5) % 5 ? 'bg-[var(--color-primary)] text-white font-semibold' : 'bg-[var(--color-surface-pearl)] text-[var(--color-ink-muted-48)]'}`}>
+                <div key={p} className={`px-1 py-1.5 rounded-[8px] text-center ${i === (jdn % 5 + 5) % 5 ? 'bg-[var(--color-primary)] text-white font-semibold' : 'bg-[var(--color-surface-pearl)] text-[var(--color-ink-muted-48)]'}`}>
                   <div className="text-[10px] font-semibold">{p}</div>
-                  <div className="text-[8px] opacity-70">{i === ((jdn + 1) % 5 + 5) % 5 ? "active" : ""}</div>
+                  <div className="text-[8px] opacity-70">{i === (jdn % 5 + 5) % 5 ? "active" : ""}</div>
                 </div>
               ))}
             </div>
