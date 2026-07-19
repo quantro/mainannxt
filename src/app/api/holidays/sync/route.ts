@@ -48,24 +48,8 @@ async function fetchYear(year: number): Promise<ApiHoliday[]> {
   return allItems;
 }
 
-export async function POST(req: NextRequest) {
-  const authHeader = req.headers.get("authorization");
-  const syncSecret = process.env.SYNC_SECRET;
-
-  if (syncSecret && authHeader !== `Bearer ${syncSecret}`) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  if (!supabase) {
-    return NextResponse.json({ error: "Database tidak tersedia" }, { status: 500 });
-  }
-
-  const { searchParams } = new URL(req.url);
-  const from = parseInt(searchParams.get("from") || String(new Date().getFullYear()));
-  const to = parseInt(searchParams.get("to") || String(from));
-
+async function syncYears(db: NonNullable<typeof supabase>, from: number, to: number) {
   const years = Array.from({ length: to - from + 1 }, (_, i) => from + i);
-
   const results = { fetched: 0, touched: 0, inserted: 0, failed: 0, errors: [] as string[] };
 
   for (const year of years) {
@@ -81,7 +65,7 @@ export async function POST(req: NextRequest) {
     for (const item of items) {
       results.fetched++;
 
-      const { data: existing } = await supabase
+      const { data: existing } = await db
         .from("indonesian_holidays")
         .select("id, date, name, type, is_holiday, is_joint_holiday, is_observance, source_id")
         .eq("source_id", item.id)
@@ -97,13 +81,13 @@ export async function POST(req: NextRequest) {
           existing.is_observance === item.is_observance;
 
         if (same) {
-          await supabase
+          await db
             .from("indonesian_holidays")
             .update({ updated_at: new Date().toISOString() })
             .eq("id", existing.id);
           results.touched++;
         } else {
-          await supabase
+          await db
             .from("indonesian_holidays")
             .update({
               date: item.date,
@@ -119,7 +103,7 @@ export async function POST(req: NextRequest) {
           results.touched++;
         }
       } else {
-        await supabase.from("indonesian_holidays").insert({
+        await db.from("indonesian_holidays").insert({
           source_id: item.id,
           date: item.date,
           name: item.name,
@@ -134,5 +118,33 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  return results;
+}
+
+function unauthorized() {
+  return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+}
+
+async function handleSync(req: NextRequest) {
+  const authHeader = req.headers.get("authorization");
+  const isCron = req.headers.get("x-vercel-cron") === "1";
+  const syncSecret = process.env.SYNC_SECRET;
+
+  if (!isCron && syncSecret && authHeader !== `Bearer ${syncSecret}`) {
+    return unauthorized();
+  }
+
+  if (!supabase) {
+    return NextResponse.json({ error: "Database tidak tersedia" }, { status: 500 });
+  }
+
+  const { searchParams } = new URL(req.url);
+  const from = parseInt(searchParams.get("from") || String(new Date().getFullYear()));
+  const to = parseInt(searchParams.get("to") || String(from));
+
+  const results = await syncYears(supabase, from, to);
   return NextResponse.json(results, { status: 200 });
 }
+
+export const GET = handleSync;
+export const POST = handleSync;
