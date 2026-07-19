@@ -1,8 +1,12 @@
 -- Run this in your Supabase SQL editor
 -- Migration 002: Indonesian Holidays table
 
-create table if not exists indonesian_holidays (
-  id integer primary key,
+-- Drop the table if re-running (safe since data is reproducible)
+drop table if exists indonesian_holidays;
+
+create table indonesian_holidays (
+  id bigint primary key generated always as identity,
+  source_id integer,
   date date not null,
   name text not null,
   type text not null,

@@ -27,7 +27,7 @@ const rows = [];
 for (const [yearStr, holidays] of Object.entries(data)) {
   for (const h of holidays) {
     rows.push({
-      id: h.id,
+      source_id: h.id ?? null,
       date: h.date,
       name: h.name,
       type: h.type,
@@ -39,16 +39,19 @@ for (const [yearStr, holidays] of Object.entries(data)) {
   }
 }
 
-console.log(`Found ${rows.length} holiday rows to insert`);
+console.log(`Found ${rows.length} holiday rows to insert. Truncating existing data...`);
 
-// Upsert in batches of 500
+// Clear existing data
+const { error: delErr } = await supabase.from("indonesian_holidays").delete().neq("year", 0);
+if (delErr) {
+  console.error("Error clearing table:", delErr.message);
+  process.exit(1);
+}
+
 const BATCH_SIZE = 500;
 for (let i = 0; i < rows.length; i += BATCH_SIZE) {
   const batch = rows.slice(i, i + BATCH_SIZE);
-  const { error } = await supabase
-    .from("indonesian_holidays")
-    .upsert(batch, { onConflict: "id", ignoreDuplicates: false });
-
+  const { error } = await supabase.from("indonesian_holidays").insert(batch);
   if (error) {
     console.error(`Error inserting batch ${i / BATCH_SIZE + 1}:`, error.message);
     process.exit(1);
