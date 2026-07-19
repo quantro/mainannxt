@@ -34,6 +34,12 @@ jobs:
         env:
           API_CO_ID_KEY: ${{ secrets.API_CO_ID_KEY }}
 
+      - name: Sync to Supabase
+        run: node scripts/seed-holidays.mjs
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
