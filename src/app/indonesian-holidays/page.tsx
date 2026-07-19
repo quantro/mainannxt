@@ -1,18 +1,19 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import ThemeToggle from "../theme-toggle";
 import { Disclaimer } from "../disclaimer";
 import { PageTitle } from "../page-title";
-import data from "@/lib/indonesian-holidays.json";
 
 type Holiday = {
+  id: number;
   date: string;
   name: string;
   type: string;
+  year: number;
+  is_holiday: boolean;
   is_joint_holiday: boolean;
   is_observance: boolean;
-  date_formatted?: string;
 };
 
 const TYPE_COLORS: Record<string, string> = {
@@ -47,21 +48,26 @@ function getDayName(dateStr: string): string {
 export default function IndonesianHolidaysPage() {
   const [year, setYear] = useState(2026);
   const [typeFilter, setTypeFilter] = useState("All");
+  const [holidays, setHolidays] = useState<Record<string, Holiday[]>>({});
+
+  useEffect(() => {
+    fetch(`/api/holidays?year=${year}`)
+      .then((r) => r.json())
+      .then((data) => setHolidays({ [String(year)]: data }))
+      .catch(() => {});
+  }, [year]);
 
   const allTypes = useMemo(() => {
     const types = new Set<string>();
-    for (const y of Object.keys(data)) {
-      for (const h of data[y as keyof typeof data] as Holiday[]) {
+    for (const arr of Object.values(holidays)) {
+      for (const h of arr) {
         types.add(h.type);
       }
     }
     return ["All", ...Array.from(types).sort()];
-  }, []);
+  }, [holidays]);
 
-  const yearData = useMemo(() => {
-    const key = String(year) as keyof typeof data;
-    return (data[key] as Holiday[]) || [];
-  }, [year]);
+  const yearData = useMemo(() => holidays[String(year)] || [], [holidays, year]);
 
   const filtered = useMemo(() => {
     if (typeFilter === "All") return yearData;
